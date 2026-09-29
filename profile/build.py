@@ -89,7 +89,6 @@ query($o: String!, $r: String!, $n: Int!) {
       author { login }
       mergedBy { login }
       mergeCommit { oid }
-      reviews(states: APPROVED, first: 20) { nodes { author { login __typename } } }
     }
   }
 }"""
@@ -118,18 +117,13 @@ def fetch_pr(url, tok):
     pr = data and data["pullRequest"]
     if not pr:
         return None
-    approvers = []
-    for node in pr["reviews"]["nodes"]:
-        a = node["author"]
-        if a and a["__typename"] == "User" and a["login"] not in approvers:
-            approvers.append(a["login"])
     return {
         "url": pr["url"], "repo": f"{o}/{r}", "number": n, "title": pr["title"],
         "state": pr["state"], "author": (pr["author"] or {}).get("login"),
         "merged_at": pr["mergedAt"], "merged_by": (pr["mergedBy"] or {}).get("login"),
         "merge_oid": (pr["mergeCommit"] or {}).get("oid"),
         "additions": pr["additions"], "deletions": pr["deletions"],
-        "approvers": approvers, "stars": data["stargazerCount"],
+        "stars": data["stargazerCount"],
     }
 
 
@@ -194,8 +188,6 @@ def project(repo):
 
 
 def credit(pr):
-    if pr["approvers"]:
-        return "approved by " + ", ".join(f"@{a}" for a in pr["approvers"])
     if pr["merged_by"] and pr["merged_by"] not in BOTS:
         return f"merged by @{pr['merged_by']}"
     return "merged"
@@ -252,11 +244,15 @@ def render_svg(items):
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="840" height="150" viewBox="0 0 840 150" role="img" aria-label="Upstream ledger: {e(', '.join(parts))} merged">
   <rect x="0.5" y="0.5" width="839" height="149" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="36" r="4" fill="{LIME}"/>
-  <text x="48" y="40" fill="{LIME}" font-family="{e(MONO)}" font-size="11" letter-spacing="2.6">UPSTREAM LEDGER · MERGED · MAINTAINER-APPROVED</text>
+  <text x="48" y="40" fill="{LIME}" font-family="{e(MONO)}" font-size="11" letter-spacing="2.6">UPSTREAM LEDGER · MERGED FIXES</text>
   <text x="28" y="88" fill="#fafafa" font-family="{e(SANS)}" font-size="30" font-weight="700">{e('  ·  '.join(parts))}</text>
   <text x="28" y="122" fill="#a1a1aa" font-family="{e(MONO)}" font-size="12" letter-spacing="1.2">{tested} OF {len(a)} SHIP A REGRESSION TEST UPSTREAM · +{len(b)} MORE MERGED FIXES</text>
 </svg>
 """
+
+
+def render_notes(notes):
+    return "\n".join(f"- [{n['title']}]({n['url']}) · {month(n['date'])}" for n in notes["essays"])
 
 
 def replace_block(text, name, body):
@@ -302,8 +298,14 @@ def build(out, allow, items, candidates, log=print):
         readme = f.read()
     readme = replace_block(readme, "ledger", render_ledger(items))
     readme = replace_block(readme, "proofs", render_proofs(items))
+    notes_path = os.path.join(out, "profile", "notes.json")
+    scan_inputs = ["profile/allowlist.json"]
+    if os.path.exists(notes_path):
+        with open(notes_path) as f:
+            readme = replace_block(readme, "notes", render_notes(json.load(f)))
+        scan_inputs.append("profile/notes.json")
     ledger = {"items": [{k: p[k] for k in ("url", "repo", "number", "title", "tier", "merged_at",
-                                           "additions", "deletions", "approvers", "merged_by",
+                                           "additions", "deletions", "merged_by",
                                            "merge_oid", "proof")} for p in items]}
     files = {
         "README.md": readme,
@@ -312,8 +314,10 @@ def build(out, allow, items, candidates, log=print):
         "assets/ledger.svg": render_svg(items),
     }
     terms = load_guard(os.path.join(out, "profile", "guard.txt"))
-    with open(os.path.join(out, "profile", "allowlist.json")) as f:
-        files_to_scan = dict(files, **{"profile/allowlist.json": f.read()})
+    files_to_scan = dict(files)
+    for name in scan_inputs:
+        with open(os.path.join(out, name)) as f:
+            files_to_scan[name] = f.read()
     for name, text in files_to_scan.items():
         if guard_hits(text, terms):
             raise BuildError(f"banned term found in {name}")

@@ -69,7 +69,7 @@
       "tier": "A",
       "issue": "Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.",
       "fix": "Accept signed numbers in the range fields so negative bounds type normally.",
-      "proof": {"path": "public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx", "anchor": "should allow editing negative bounds on existing range mapping", "label": "allows editing negative bounds"}
+      "proof": {"path": "public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx", "anchor": "should allow editing negative bounds on existing range mapping", "label": "should allow editing negative bounds on existing range mapping"}
     },
     {
       "url": "https://github.com/pvlib/pvlib-python/pull/2821",

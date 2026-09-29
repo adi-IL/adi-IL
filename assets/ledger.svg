@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="150" viewBox="0 0 840 150" role="img" aria-label="Upstream ledger: 8 TensorFlow, 1 gVisor, 1 Grafana merged">
   <rect x="0.5" y="0.5" width="839" height="149" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="36" r="4" fill="#CAFF4A"/>
-  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">UPSTREAM LEDGER · MERGED · MAINTAINER-APPROVED</text>
+  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">UPSTREAM LEDGER · MERGED FIXES</text>
   <text x="28" y="88" fill="#fafafa" font-family="Satoshi, &#x27;Cabinet Grotesk&#x27;, system-ui, -apple-system, &#x27;Segoe UI&#x27;, sans-serif" font-size="30" font-weight="700">8 TensorFlow  ·  1 gVisor  ·  1 Grafana</text>
   <text x="28" y="122" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" letter-spacing="1.2">9 OF 10 SHIP A REGRESSION TEST UPSTREAM · +8 MORE MERGED FIXES</text>
 </svg>

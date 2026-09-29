@@ -1,0 +1,30 @@
+{
+  "source": "adi-IL/adityaai.dev@c0154c9 (src/content/articles frontmatter), live URLs checked 2026-09-29 IST",
+  "essays": [
+    {
+      "title": "Shared caches beat sandbox walls",
+      "url": "https://www.adityaai.dev/articles/shared-caches-beat-sandbox-walls",
+      "date": "2026-09-14"
+    },
+    {
+      "title": "The Verification Gap: Why Reasoning Models Need Deterministic Arbiters",
+      "url": "https://www.adityaai.dev/articles/the-verification-gap",
+      "date": "2026-09-02"
+    },
+    {
+      "title": "The Chat Template Trap: Why Dynamic Agent State Crashes Open-Weight Models",
+      "url": "https://www.adityaai.dev/articles/the-chat-template-trap",
+      "date": "2026-09-02"
+    },
+    {
+      "title": "The Invariant Problem in Autonomous Remediation: Why Code Synthesis Fails Without Closed-Loop Verification",
+      "url": "https://www.adityaai.dev/articles/closed-loop-remediation-architecture",
+      "date": "2026-08-28"
+    },
+    {
+      "title": "Sandboxing Architectures for Autonomous Agents: MicroVMs, gVisor, and the Egress Dilemma",
+      "url": "https://www.adityaai.dev/articles/sandboxing-architectures-for-agents",
+      "date": "2026-08-14"
+    }
+  ]
+}

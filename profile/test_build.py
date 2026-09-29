@@ -22,7 +22,7 @@ def pr(url, tier="A", proof=True, **kw):
     o, r, n = build.parse_url(url)
     item = {"url": url, "repo": f"{o}/{r}", "number": n, "title": f"fix {n}", "state": "MERGED",
             "author": "adi-IL", "merged_at": "2026-09-10T12:00:00Z", "merged_by": "copybara-service",
-            "merge_oid": "a" * 40, "additions": 10, "deletions": 2, "approvers": ["maint"],
+            "merge_oid": "a" * 40, "additions": 10, "deletions": 2,
             "stars": 5000, "tier": tier, "issue": "It broke.", "fix": "It works.",
             "proof": {"label": "testX", "path": "t.py", "line": 3,
                       "url": f"https://github.com/{o}/{r}/blob/{'a' * 40}/t.py#L3"} if proof else None}
@@ -41,7 +41,7 @@ class GuardTest(unittest.TestCase):
 
     def test_repo_guard_file_parses(self):
         terms = build.load_guard(os.path.join(ROOT, "profile", "guard.txt"))
-        self.assertEqual(len(terms), 3)
+        self.assertEqual(len(terms), 4)
         self.assertTrue(all(len(d) == 64 for d, _ in terms))
 
     def test_tracked_text_files_are_clean(self):
@@ -78,7 +78,7 @@ class BuildTest(unittest.TestCase):
 
     def items(self):
         return [pr("https://github.com/tensorflow/tensorflow/pull/1"),
-                pr("https://github.com/google/mug/pull/2", tier="B", approvers=[], merged_by="owner")]
+                pr("https://github.com/google/mug/pull/2", tier="B", merged_by="owner")]
 
     def read(self, name):
         with open(os.path.join(self.dir, name)) as f:
@@ -88,12 +88,27 @@ class BuildTest(unittest.TestCase):
         build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
         readme = self.read("README.md")
         self.assertIn("#### TensorFlow · 1 merged", readme)
-        self.assertIn("approved by @maint", readme)
+        self.assertIn("· merged ·", readme)
+        self.assertNotIn("approv", readme.lower())
         self.assertIn("merged by @owner", readme)
         self.assertIn("<summary>1 more merged fixes</summary>", readme)
         self.assertIn("[`testX`](https://github.com/tensorflow/tensorflow/blob/", readme)
         self.assertIn("1 TensorFlow", self.read("assets/ledger.svg"))
         self.assertIn("1 OF 1 SHIP A REGRESSION TEST", self.read("assets/ledger.svg"))
+        self.assertNotIn("APPROV", self.read("assets/ledger.svg"))
+
+    def test_renders_notes_and_guards_them(self):
+        self.write_readme("intro\n<!-- BEGIN:notes -->\n<!-- END:notes -->\n")
+        notes = {"essays": [{"title": "On caches", "url": "https://www.adityaai.dev/articles/x", "date": "2026-09-14"}]}
+        with open(os.path.join(self.dir, "profile", "notes.json"), "w") as f:
+            json.dump(notes, f)
+        build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
+        self.assertIn("- [On caches](https://www.adityaai.dev/articles/x) · Sep 2026", self.read("README.md"))
+        notes["essays"][0]["title"] = "ZEBRA_FJORD"
+        with open(os.path.join(self.dir, "profile", "notes.json"), "w") as f:
+            json.dump(notes, f)
+        with self.assertRaises(build.BuildError):
+            build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
 
     def test_rejects_pr_link_outside_allowlist(self):
         self.write_readme("see https://github.com/google/gvisor/pull/14402\n")
