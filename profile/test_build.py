@@ -221,6 +221,30 @@ class ChartNumbersTest(unittest.TestCase):
         timeline = chart_values(svgs["assets/charts/timeline-dark.svg"])
         self.assertEqual(timeline, {"2026-07": 0, "2026-08": 1, "2026-09": 2})
 
+    def test_every_chart_animates_once_and_respects_reduced_motion(self):
+        with open(os.path.join(ROOT, "data", "ledger.json")) as f:
+            items = json.load(f)["items"]
+        durations = {"grow-x": 0.6, "grow-y": 0.6, "fade": 0.35, "draw": 0.9}
+        for name, svg in charts.render_all(items, build.project).items():
+            root = ET.fromstring(svg)
+            style = "".join(el.text or "" for el in root.iter("{http://www.w3.org/2000/svg}style"))
+            self.assertRegex(style, r"@keyframes \w", name)
+            self.assertRegex(style, r"@media \(prefers-reduced-motion: reduce\) \{[^}]*animation: none", name)
+            self.assertNotIn("infinite", style, name)
+            animated = [el for el in root.iter() if el.get("class") in durations]
+            self.assertTrue(animated, name)
+            for el in animated:
+                start = float(el.get("style", "animation-delay:0s").split(":")[1].rstrip("s"))
+                self.assertLessEqual(start + durations[el.get("class")], charts.DURATION + 1e-9, name)
+            data = [el for el in root.iter() if "data-label" in el.attrib]
+            self.assertTrue(all(el.get("class") for el in data) or "proofs" in name, name)
+
+    def test_charts_link_to_interactive_page(self):
+        with open(os.path.join(ROOT, "README.md")) as f:
+            readme = f.read()
+        self.assertEqual(readme.count(f'<a href="{charts.INTERACTIVE_URL}"><picture>'), 4)
+        self.assertEqual(readme.count("<picture>"), 5)
+
     def test_committed_charts_match_ledger(self):
         with open(os.path.join(ROOT, "data", "ledger.json")) as f:
             items = json.load(f)["items"]

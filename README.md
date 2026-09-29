@@ -19,23 +19,23 @@ I design production AI systems (agent harnesses, evaluation, sandboxing, and the
 Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, gVisor, and Grafana. The list is generated daily from public GitHub data, and only reviewed entries appear.
 
 <!-- BEGIN:ledger -->
-<picture>
+<a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
   <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 8, herdr E2B sandbox 5, Dataflow guides 1, Grafana 1, gVisor 1, Mug 1, pvlib 1" width="100%">
-</picture>
+</picture></a>
 
-<picture>
+<a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
   <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 12" width="100%">
-</picture>
+</picture></a>
 
-<picture>
+<a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
   <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +449 -153, herdr E2B sandbox +424 -46, Dataflow guides +233 -22, Mug +94 -4, Grafana +64 -10, gVisor +33 -0, pvlib +22 -8" width="100%">
-</picture>
+</picture></a>
 
 <details>
 <summary>All 18 merged fixes as text</summary>
@@ -128,11 +128,11 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 A fix without a test is a claim. Each link below opens the regression test in the upstream tree, at the exact commit where it landed.
 
 <!-- BEGIN:proofs -->
-<picture>
+<a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
   <img src="assets/charts/proofs-dark.svg" alt="17 of 18 merged fixes ship a regression test" width="100%">
-</picture>
+</picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |
 |---|---|---|

@@ -1,15 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="244" viewBox="0 0 840 244" role="img" aria-label="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 12">
+  <style>
+    .grow-x { transform-box: fill-box; transform-origin: left center; animation: grow-x 0.6s cubic-bezier(.2,.7,.2,1) both; }
+    .grow-y { transform-box: fill-box; transform-origin: center bottom; animation: grow-y 0.6s cubic-bezier(.2,.7,.2,1) both; }
+    .fade { animation: fade 0.35s ease-out both; }
+    .draw { stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw 0.9s ease-in-out both; }
+    @keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) { .grow-x, .grow-y, .fade, .draw { animation: none; } }
+  </style>
   <rect x="0.5" y="0.5" width="839" height="243" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="36" r="4" fill="#CAFF4A" stroke="none"/>
   <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">MERGES PER MONTH · SINCE JUL 2026</text>
   <line x1="48" y1="200" x2="792" y2="200" stroke="#27272a"/>
-  <rect data-label="2026-07" data-value="0" x="124.0" y="200" width="96.0" height="0" rx="4" fill="#CAFF4A" stroke="none"/>
-  <text x="172" y="190" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle">0</text>
+  <rect class="grow-y" style="animation-delay:0.00s" data-label="2026-07" data-value="0" x="124.0" y="200" width="96.0" height="0" rx="4" fill="#CAFF4A" fill-opacity="0.35" stroke="none"/>
+  <text class="fade" style="animation-delay:1.15s" x="172" y="186" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle">0</text>
   <text x="172" y="222" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="middle">Jul 2026</text>
-  <rect data-label="2026-08" data-value="6" x="372.0" y="140" width="96.0" height="60" rx="4" fill="#CAFF4A" stroke="none"/>
-  <text x="420" y="130" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle">6</text>
+  <rect class="grow-y" style="animation-delay:0.12s" data-label="2026-08" data-value="6" x="372.0" y="140" width="96.0" height="60" rx="4" fill="#CAFF4A" fill-opacity="0.35" stroke="none"/>
+  <text class="fade" style="animation-delay:1.15s" x="420" y="126" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle">6</text>
   <text x="420" y="222" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="middle">Aug 2026</text>
-  <rect data-label="2026-09" data-value="12" x="620.0" y="80" width="96.0" height="120" rx="4" fill="#CAFF4A" stroke="none"/>
-  <text x="668" y="70" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle">12</text>
+  <rect class="grow-y" style="animation-delay:0.24s" data-label="2026-09" data-value="12" x="620.0" y="80" width="96.0" height="120" rx="4" fill="#CAFF4A" fill-opacity="0.35" stroke="none"/>
+  <text class="fade" style="animation-delay:1.15s" x="668" y="66" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" text-anchor="middle">12</text>
   <text x="668" y="222" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="middle">Sep 2026</text>
+  <polyline class="draw" style="animation-delay:0.6s" pathLength="1" points="172.0,200 420.0,140 668.0,80" fill="none" stroke="#CAFF4A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <circle class="fade" style="animation-delay:0.60s" cx="172.0" cy="200" r="5" fill="#CAFF4A" stroke="#09090b" stroke-width="2"/>
+  <circle class="fade" style="animation-delay:1.05s" cx="420.0" cy="140" r="5" fill="#CAFF4A" stroke="#09090b" stroke-width="2"/>
+  <circle class="fade" style="animation-delay:1.15s" cx="668.0" cy="80" r="5" fill="#CAFF4A" stroke="#09090b" stroke-width="2"/>
 </svg>

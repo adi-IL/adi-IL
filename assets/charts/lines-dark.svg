@@ -1,33 +1,44 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="840" height="304" viewBox="0 0 840 304" role="img" aria-label="Lines changed by project: TensorFlow +449 -153, herdr E2B sandbox +424 -46, Dataflow guides +233 -22, Mug +94 -4, Grafana +64 -10, gVisor +33 -0, pvlib +22 -8">
+  <style>
+    .grow-x { transform-box: fill-box; transform-origin: left center; animation: grow-x 0.6s cubic-bezier(.2,.7,.2,1) both; }
+    .grow-y { transform-box: fill-box; transform-origin: center bottom; animation: grow-y 0.6s cubic-bezier(.2,.7,.2,1) both; }
+    .fade { animation: fade 0.35s ease-out both; }
+    .draw { stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw 0.9s ease-in-out both; }
+    @keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+    @keyframes grow-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @media (prefers-reduced-motion: reduce) { .grow-x, .grow-y, .fade, .draw { animation: none; } }
+  </style>
   <rect x="0.5" y="0.5" width="839" height="303" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="36" r="4" fill="#CAFF4A" stroke="none"/>
   <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">LINES CHANGED BY PROJECT · +1319 −243</text>
   <text x="28" y="84" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">TensorFlow</text>
-  <rect data-label="TensorFlow" data-kind="additions" data-value="449" x="220" y="70" width="358" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="TensorFlow" data-kind="deletions" data-value="153" x="578" y="70" width="122" height="18" rx="4" fill="#52525b"/>
-  <text x="710" y="84" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+449 −153</text>
+  <rect class="grow-x" style="animation-delay:0.00s" data-label="TensorFlow" data-kind="additions" data-value="449" x="220" y="70" width="358" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.30s" data-label="TensorFlow" data-kind="deletions" data-value="153" x="578" y="70" width="122" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="710" y="84" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+449 −153</text>
   <text x="28" y="114" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">herdr E2B sandbox</text>
-  <rect data-label="herdr E2B sandbox" data-kind="additions" data-value="424" x="220" y="100" width="338" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="herdr E2B sandbox" data-kind="deletions" data-value="46" x="558" y="100" width="37" height="18" rx="4" fill="#52525b"/>
-  <text x="605" y="114" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+424 −46</text>
+  <rect class="grow-x" style="animation-delay:0.10s" data-label="herdr E2B sandbox" data-kind="additions" data-value="424" x="220" y="100" width="338" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.40s" data-label="herdr E2B sandbox" data-kind="deletions" data-value="46" x="558" y="100" width="37" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="605" y="114" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+424 −46</text>
   <text x="28" y="144" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Dataflow guides</text>
-  <rect data-label="Dataflow guides" data-kind="additions" data-value="233" x="220" y="130" width="186" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="Dataflow guides" data-kind="deletions" data-value="22" x="406" y="130" width="18" height="18" rx="4" fill="#52525b"/>
-  <text x="434" y="144" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+233 −22</text>
+  <rect class="grow-x" style="animation-delay:0.20s" data-label="Dataflow guides" data-kind="additions" data-value="233" x="220" y="130" width="186" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.50s" data-label="Dataflow guides" data-kind="deletions" data-value="22" x="406" y="130" width="18" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="434" y="144" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+233 −22</text>
   <text x="28" y="174" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Mug</text>
-  <rect data-label="Mug" data-kind="additions" data-value="94" x="220" y="160" width="75" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="Mug" data-kind="deletions" data-value="4" x="295" y="160" width="3" height="18" rx="4" fill="#52525b"/>
-  <text x="308" y="174" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+94 −4</text>
+  <rect class="grow-x" style="animation-delay:0.30s" data-label="Mug" data-kind="additions" data-value="94" x="220" y="160" width="75" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.60s" data-label="Mug" data-kind="deletions" data-value="4" x="295" y="160" width="3" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="308" y="174" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+94 −4</text>
   <text x="28" y="204" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Grafana</text>
-  <rect data-label="Grafana" data-kind="additions" data-value="64" x="220" y="190" width="51" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="Grafana" data-kind="deletions" data-value="10" x="271" y="190" width="8" height="18" rx="4" fill="#52525b"/>
-  <text x="289" y="204" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+64 −10</text>
+  <rect class="grow-x" style="animation-delay:0.40s" data-label="Grafana" data-kind="additions" data-value="64" x="220" y="190" width="51" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.70s" data-label="Grafana" data-kind="deletions" data-value="10" x="271" y="190" width="8" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="289" y="204" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+64 −10</text>
   <text x="28" y="234" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">gVisor</text>
-  <rect data-label="gVisor" data-kind="additions" data-value="33" x="220" y="220" width="26" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="gVisor" data-kind="deletions" data-value="0" x="246" y="220" width="0" height="18" rx="4" fill="#52525b"/>
-  <text x="256" y="234" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+33 −0</text>
+  <rect class="grow-x" style="animation-delay:0.50s" data-label="gVisor" data-kind="additions" data-value="33" x="220" y="220" width="26" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.80s" data-label="gVisor" data-kind="deletions" data-value="0" x="246" y="220" width="0" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="256" y="234" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+33 −0</text>
   <text x="28" y="264" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">pvlib</text>
-  <rect data-label="pvlib" data-kind="additions" data-value="22" x="220" y="250" width="18" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
-  <rect data-label="pvlib" data-kind="deletions" data-value="8" x="238" y="250" width="6" height="18" rx="4" fill="#52525b"/>
-  <text x="254" y="264" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+22 −8</text>
+  <rect class="grow-x" style="animation-delay:0.60s" data-label="pvlib" data-kind="additions" data-value="22" x="220" y="250" width="18" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.90s" data-label="pvlib" data-kind="deletions" data-value="8" x="238" y="250" width="6" height="18" rx="4" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="254" y="264" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">+22 −8</text>
 </svg>
