@@ -3,7 +3,7 @@
 
 Standard library only. Reads public GitHub data, renders only URLs listed in
 profile/allowlist.json, and writes README.md blocks, data/*.json and
-assets/ledger.svg. New merged PRs that match the showcase rules go to
+the SVG charts in assets/charts/. New merged PRs that match the showcase rules go to
 data/review.json and are never rendered.
 """
 import argparse
@@ -20,6 +20,9 @@ import urllib.error
 import urllib.request
 from datetime import datetime
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import charts  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API = "https://api.github.com"
 MIN_STARS = 1000
@@ -28,13 +31,14 @@ PROJECT_NAMES = {
     "tensorflow/tensorflow": "TensorFlow",
     "google/gvisor": "gVisor",
     "grafana/grafana": "Grafana",
+    "e2b-dev/herdr-e2b-sandbox": "herdr E2B sandbox",
+    "pvlib/pvlib-python": "pvlib",
+    "GoogleCloudPlatform/dataflow-solution-guides": "Dataflow guides",
+    "google/mug": "Mug",
 }
 PROJECT_ORDER = ["tensorflow/tensorflow", "google/gvisor", "grafana/grafana"]
 BOTS = {"copybara-service", "github-actions"}
 PR_URL = re.compile(r"https://github\.com/([\w.-]+)/([\w.-]+)/pull/(\d+)")
-MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
-SANS = "Satoshi, 'Cabinet Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif"
-LIME = "#CAFF4A"
 
 
 class BuildError(Exception):
@@ -210,45 +214,35 @@ def grouped(items):
     return [(r, sorted(groups[r], key=lambda p: p["merged_at"], reverse=True)) for r in order]
 
 
-def render_ledger(items):
+def chart(svgs, name):
+    alt = re.search(r'aria-label="([^"]*)"', svgs[f"assets/charts/{name}-dark.svg"]).group(1)
+    return charts.picture(name, html.unescape(alt))
+
+
+def render_ledger(items, svgs):
     a = [p for p in items if p["tier"] == "A"]
     b = [p for p in items if p["tier"] == "B"]
-    out = ['<img src="assets/ledger.svg" alt="Upstream ledger summary" width="100%">', ""]
+    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), "", chart(svgs, "lines"), "",
+           f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
     for repo, prs in grouped(a):
         out.append(f"#### {project(repo)} · {len(prs)} merged\n")
         out.extend(row(p) for p in prs)
     if b:
-        out.append(f"<details>\n<summary>{len(b)} more merged fixes</summary>\n")
-        for p in sorted(b, key=lambda p: p["merged_at"], reverse=True):
-            out.append(row(p))
-        out.append("</details>")
+        out.append(f"#### More merged fixes · {len(b)}\n")
+        out.extend(row(p) for p in sorted(b, key=lambda p: p["merged_at"], reverse=True))
+    out.append("</details>")
     return "\n".join(out)
 
 
-def render_proofs(items):
+def render_proofs(items, svgs):
     rows = [p for p in items if p["tier"] == "A" and p["proof"]]
-    out = ["| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
+    out = [chart(svgs, "proofs"), "",
+           "| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
     for repo, prs in grouped(rows):
         for p in prs:
             out.append(f"| {project(repo)} | [#{p['number']}]({p['url']}) {p['title']} "
                        f"| [`{p['proof']['label']}`]({p['proof']['url']}) |")
     return "\n".join(out)
-
-
-def render_svg(items):
-    a = [p for p in items if p["tier"] == "A"]
-    b = [p for p in items if p["tier"] == "B"]
-    parts = [f"{len(prs)} {project(r)}" for r, prs in grouped(a)]
-    tested = sum(1 for p in a if p["proof"])
-    e = html.escape
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="840" height="150" viewBox="0 0 840 150" role="img" aria-label="Upstream ledger: {e(', '.join(parts))} merged">
-  <rect x="0.5" y="0.5" width="839" height="149" rx="14" fill="#09090b" stroke="#27272a"/>
-  <circle cx="34" cy="36" r="4" fill="{LIME}"/>
-  <text x="48" y="40" fill="{LIME}" font-family="{e(MONO)}" font-size="11" letter-spacing="2.6">UPSTREAM LEDGER · MERGED FIXES</text>
-  <text x="28" y="88" fill="#fafafa" font-family="{e(SANS)}" font-size="30" font-weight="700">{e('  ·  '.join(parts))}</text>
-  <text x="28" y="122" fill="#a1a1aa" font-family="{e(MONO)}" font-size="12" letter-spacing="1.2">{tested} OF {len(a)} SHIP A REGRESSION TEST UPSTREAM · +{len(b)} MORE MERGED FIXES</text>
-</svg>
-"""
 
 
 def render_notes(notes):
@@ -296,8 +290,9 @@ def build(out, allow, items, candidates, log=print):
     readme_path = os.path.join(out, "README.md")
     with open(readme_path) as f:
         readme = f.read()
-    readme = replace_block(readme, "ledger", render_ledger(items))
-    readme = replace_block(readme, "proofs", render_proofs(items))
+    svgs = charts.render_all(items, project)
+    readme = replace_block(readme, "ledger", render_ledger(items, svgs))
+    readme = replace_block(readme, "proofs", render_proofs(items, svgs))
     notes_path = os.path.join(out, "profile", "notes.json")
     scan_inputs = ["profile/allowlist.json"]
     if os.path.exists(notes_path):
@@ -311,8 +306,8 @@ def build(out, allow, items, candidates, log=print):
         "README.md": readme,
         "data/ledger.json": json.dumps(ledger, indent=2, ensure_ascii=False) + "\n",
         "data/review.json": json.dumps({"candidates": candidates}, indent=2) + "\n",
-        "assets/ledger.svg": render_svg(items),
     }
+    files.update(svgs)
     terms = load_guard(os.path.join(out, "profile", "guard.txt"))
     files_to_scan = dict(files)
     for name in scan_inputs:

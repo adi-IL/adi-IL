@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="316" viewBox="0 0 840 316" role="img" aria-label="17 of 18 merged fixes ship a regression test">
+  <rect x="0.5" y="0.5" width="839" height="315" rx="14" fill="#09090b" stroke="#27272a"/>
+  <circle cx="34" cy="36" r="4" fill="#CAFF4A" stroke="none"/>
+  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">17 OF 18 MERGED FIXES SHIP A REGRESSION TEST</text>
+  <text x="28" y="83" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">TensorFlow</text>
+  <g data-label="TensorFlow" data-tested="7" data-total="8">
+    <rect x="220" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="242" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="264" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="286" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="308" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="330" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="352" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="374.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+  </g>
+  <text x="404" y="83" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">7/8</text>
+  <text x="28" y="113" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">herdr E2B sandbox</text>
+  <g data-label="herdr E2B sandbox" data-tested="5" data-total="5">
+    <rect x="220" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="242" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="264" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="286" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect x="308" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+  </g>
+  <text x="338" y="113" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">5/5</text>
+  <text x="28" y="143" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Dataflow guides</text>
+  <g data-label="Dataflow guides" data-tested="1" data-total="1">
+    <rect x="220" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+  </g>
+  <text x="250" y="143" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/1</text>
+  <text x="28" y="173" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Grafana</text>
+  <g data-label="Grafana" data-tested="1" data-total="1">
+    <rect x="220" y="160" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+  </g>
+  <text x="250" y="173" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/1</text>
+  <text x="28" y="203" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">gVisor</text>
+  <g data-label="gVisor" data-tested="1" data-total="1">
+    <rect x="220" y="190" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+  </g>
+  <text x="250" y="203" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/1</text>
+  <text x="28" y="233" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Mug</text>
+  <g data-label="Mug" data-tested="1" data-total="1">
+    <rect x="220" y="220" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+  </g>
+  <text x="250" y="233" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/1</text>
+  <text x="28" y="263" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">pvlib</text>
+  <g data-label="pvlib" data-tested="1" data-total="1">
+    <rect x="220" y="250" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+  </g>
+  <text x="250" y="263" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/1</text>
+  <rect x="28" y="282" width="12" height="12" rx="3" fill="#CAFF4A" stroke="none"/>
+  <text x="48" y="292" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="400" text-anchor="start">ships a regression test</text>
+  <rect x="248.5" y="282.5" width="11" height="11" rx="3" fill="none" stroke="#52525b"/>
+  <text x="268" y="292" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" font-weight="400" text-anchor="start">no test</text>
+</svg>

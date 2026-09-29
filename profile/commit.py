@@ -13,7 +13,7 @@ import sys
 import urllib.request
 from datetime import datetime, timezone
 
-GENERATED = ["README.md", "data/ledger.json", "data/review.json", "assets/ledger.svg"]
+GENERATED = ["README.md", "data/ledger.json", "data/review.json", "assets/charts"]
 
 MUTATION = """
 mutation($input: CreateCommitOnBranchInput!) {

@@ -19,7 +19,26 @@ I design production AI systems (agent harnesses, evaluation, sandboxing, and the
 Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, gVisor, and Grafana. The list is generated daily from public GitHub data, and only reviewed entries appear.
 
 <!-- BEGIN:ledger -->
-<img src="assets/ledger.svg" alt="Upstream ledger summary" width="100%">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 8, herdr E2B sandbox 5, Dataflow guides 1, Grafana 1, gVisor 1, Mug 1, pvlib 1" width="100%">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 12" width="100%">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +449 -153, herdr E2B sandbox +424 -46, Dataflow guides +233 -22, Mug +94 -4, Grafana +64 -10, gVisor +33 -0, pvlib +22 -8" width="100%">
+</picture>
+
+<details>
+<summary>All 18 merged fixes as text</summary>
 
 #### TensorFlow · 8 merged
 
@@ -67,8 +86,7 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
 
-<details>
-<summary>8 more merged fixes</summary>
+#### More merged fixes · 8
 
 **e2b-dev/herdr-e2b-sandbox [#36](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/36)** · Sep 2026 · merged by @OndrejDrapalik · `+225 −26`<br>
 **Issue** One unreadable remote file or failed local write aborted the whole pull batch.<br>
@@ -110,6 +128,12 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 A fix without a test is a claim. Each link below opens the regression test in the upstream tree, at the exact commit where it landed.
 
 <!-- BEGIN:proofs -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 18 merged fixes ship a regression test" width="100%">
+</picture>
+
 | Project | Fix | Regression test, at the commit that landed |
 |---|---|---|
 | TensorFlow | [#125856](https://github.com/tensorflow/tensorflow/pull/125856) fix: validate output signatures in LookupTableExportOp to prevent crash on dtype mismatch | [`testExportSignatureMismatch`](https://github.com/tensorflow/tensorflow/blob/c21d28ea07c47872d5e2efd29d0b3b046b6dbdaf/tensorflow/python/kernel_tests/data_structures/lookup_ops_test.py#L119) |

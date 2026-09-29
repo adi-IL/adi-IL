@@ -5,10 +5,13 @@ import shutil
 import sys
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
+from collections import Counter
 from unittest import mock
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import build  # noqa: E402
+import charts  # noqa: E402
 
 ROOT = build.ROOT
 SYNTHETIC = "zebrafjord"
@@ -91,11 +94,20 @@ class BuildTest(unittest.TestCase):
         self.assertIn("· merged ·", readme)
         self.assertNotIn("approv", readme.lower())
         self.assertIn("merged by @owner", readme)
-        self.assertIn("<summary>1 more merged fixes</summary>", readme)
+        self.assertIn("<summary>All 2 merged fixes as text</summary>", readme)
         self.assertIn("[`testX`](https://github.com/tensorflow/tensorflow/blob/", readme)
-        self.assertIn("1 TensorFlow", self.read("assets/ledger.svg"))
-        self.assertIn("1 OF 1 SHIP A REGRESSION TEST", self.read("assets/ledger.svg"))
-        self.assertNotIn("APPROV", self.read("assets/ledger.svg"))
+        self.assertIn('srcset="assets/charts/projects-light.svg"', readme)
+        self.assertIn('alt="Merged PRs by project: Mug 1, TensorFlow 1"', readme)
+        for name in charts.render_all(self.items(), build.project):
+            svg = self.read(name)
+            ET.fromstring(svg)
+            self.assertNotIn("approv", svg.lower())
+        self.assertIn("2 OF 2 MERGED FIXES SHIP A REGRESSION TEST", self.read("assets/charts/proofs-dark.svg"))
+
+    def test_banned_term_in_chart_label_is_caught(self):
+        with mock.patch.dict(build.PROJECT_NAMES, {"google/mug": "Zebra Fjord"}):
+            with self.assertRaises(build.BuildError):
+                build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
 
     def test_renders_notes_and_guards_them(self):
         self.write_readme("intro\n<!-- BEGIN:notes -->\n<!-- END:notes -->\n")
@@ -149,11 +161,73 @@ class RepoOfflineTest(unittest.TestCase):
                 src = os.path.join(ROOT, part)
                 (shutil.copytree if os.path.isdir(src) else shutil.copy)(src, os.path.join(tmp, part))
             self.assertEqual(build.main(["--out", tmp, "--offline"]), 0)
-            for name in ("README.md", "assets/ledger.svg", "data/ledger.json"):
+            names = ["README.md", "data/ledger.json"] + sorted(
+                os.path.join("assets", "charts", n) for n in os.listdir(os.path.join(ROOT, "assets", "charts")))
+            self.assertEqual(len(names), 10)
+            for name in names:
                 with open(os.path.join(ROOT, name)) as a, open(os.path.join(tmp, name)) as b:
                     self.assertEqual(a.read(), b.read(), name)
         finally:
             shutil.rmtree(tmp)
+
+
+def chart_values(svg, attr="data-value", kind=None):
+    out = {}
+    for el in ET.fromstring(svg).iter():
+        if "data-label" in el.attrib and attr in el.attrib and (kind is None or el.get("data-kind") == kind):
+            out[el.get("data-label")] = int(el.get(attr))
+    return out
+
+
+def expected(items):
+    name = build.project
+    counts = Counter(name(p["repo"]) for p in items)
+    tested = Counter(name(p["repo"]) for p in items if p["proof"])
+    adds, dels = Counter(), Counter()
+    for p in items:
+        adds[name(p["repo"])] += p["additions"]
+        dels[name(p["repo"])] += p["deletions"]
+    months = Counter(p["merged_at"][:7] for p in items)
+    return counts, tested, adds, dels, months
+
+
+class ChartNumbersTest(unittest.TestCase):
+    def check(self, items):
+        counts, tested, adds, dels, months = expected(items)
+        svgs = charts.render_all(items, build.project)
+        self.assertEqual(len(svgs), 8)
+        for theme in charts.THEMES:
+            get = lambda n: svgs[f"assets/charts/{n}-{theme}.svg"]
+            self.assertEqual(chart_values(get("projects")), dict(counts))
+            self.assertEqual(chart_values(get("proofs"), "data-total"), dict(counts))
+            self.assertEqual(chart_values(get("proofs"), "data-tested"), {k: tested[k] for k in counts})
+            self.assertEqual(chart_values(get("lines"), kind="additions"), dict(adds))
+            self.assertEqual(chart_values(get("lines"), kind="deletions"), dict(dels))
+            timeline = chart_values(get("timeline"))
+            self.assertEqual(min(timeline), charts.TIMELINE_START)
+            self.assertEqual({m: c for m, c in timeline.items() if c}, dict(months))
+            self.assertEqual(sum(timeline.values()), len(items))
+            total = sum(counts.values())
+            self.assertIn(f"{sum(tested.values())} OF {total} MERGED FIXES", get("proofs"))
+            self.assertIn(f"{total} TOTAL", get("projects"))
+        return svgs
+
+    def test_fixture_items(self):
+        items = [pr("https://github.com/tensorflow/tensorflow/pull/1", merged_at="2026-09-02T00:00:00Z"),
+                 pr("https://github.com/tensorflow/tensorflow/pull/2", proof=False, merged_at="2026-08-02T00:00:00Z",
+                    additions=100, deletions=50),
+                 pr("https://github.com/google/gvisor/pull/3", tier="B", merged_at="2026-09-20T00:00:00Z")]
+        svgs = self.check(items)
+        timeline = chart_values(svgs["assets/charts/timeline-dark.svg"])
+        self.assertEqual(timeline, {"2026-07": 0, "2026-08": 1, "2026-09": 2})
+
+    def test_committed_charts_match_ledger(self):
+        with open(os.path.join(ROOT, "data", "ledger.json")) as f:
+            items = json.load(f)["items"]
+        self.check(items)
+        for name, svg in charts.render_all(items, build.project).items():
+            with open(os.path.join(ROOT, name)) as f:
+                self.assertEqual(f.read(), svg, name)
 
 
 if __name__ == "__main__":
