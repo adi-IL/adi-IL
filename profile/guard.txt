@@ -1,0 +1,7 @@
+# Banned-term guard for generated profile files.
+# Each line: sha256 of a banned term (lowercase, letters and digits only), then its length.
+# Terms are stored hashed so this repo never contains them in any form.
+# build.py lowercases each generated file, drops everything but [a-z0-9], and hashes every window of each length.
+1a79668eac4051a9128b81c116007d1b41ce17828d7722afc9746699f4e817b8 6
+2b7847b7b705781d7cf21a05e9c1bb37cbf078aea103bc3edcc6aca52ab65453 8
+13f0d18dd168fd715bc57125445b3f8daf651fc2920601b02dba63fa7a72280a 15

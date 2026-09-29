@@ -1,0 +1,375 @@
+{
+  "items": [
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/127438",
+      "repo": "tensorflow/tensorflow",
+      "number": 127438,
+      "title": "fix(kernels): reject INT32_MAX index in TensorListScatter resize",
+      "tier": "A",
+      "merged_at": "2026-09-25T06:30:46Z",
+      "additions": 33,
+      "deletions": 2,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "8a3a427ea8c7f04f04236801a115e974834c9bb6",
+      "proof": {
+        "label": "testScatterRejectsUnrepresentableLength",
+        "path": "tensorflow/python/kernel_tests/data_structures/list_ops_test.py",
+        "line": 612,
+        "url": "https://github.com/tensorflow/tensorflow/blob/8a3a427ea8c7f04f04236801a115e974834c9bb6/tensorflow/python/kernel_tests/data_structures/list_ops_test.py#L612"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126937",
+      "repo": "tensorflow/tensorflow",
+      "number": 126937,
+      "title": "fix(kernels): fix 32-bit signed integer overflow in Dilation GPU kernels",
+      "tier": "A",
+      "merged_at": "2026-09-25T01:10:15Z",
+      "additions": 122,
+      "deletions": 107,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "294e93d81ba9786537afc264dde89823cf7f8890",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126936",
+      "repo": "tensorflow/tensorflow",
+      "number": 126936,
+      "title": "fix(tf2xla): register EuclideanNorm reduction OpKernel",
+      "tier": "A",
+      "merged_at": "2026-09-10T18:49:58Z",
+      "additions": 74,
+      "deletions": 2,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "5d2d6216761c6344c621a93d84ce67027f6723dd",
+      "proof": {
+        "label": "testReduceEuclideanNorm",
+        "path": "tensorflow/compiler/tests/reduce_ops_test.py",
+        "line": 182,
+        "url": "https://github.com/tensorflow/tensorflow/blob/5d2d6216761c6344c621a93d84ce67027f6723dd/tensorflow/compiler/tests/reduce_ops_test.py#L182"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126935",
+      "repo": "tensorflow/tensorflow",
+      "number": 126935,
+      "title": "fix(tf2xla): register XLA OpKernels for BesselI0 and BesselI1",
+      "tier": "A",
+      "merged_at": "2026-09-10T14:09:06Z",
+      "additions": 29,
+      "deletions": 1,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "957c552af12162dbc096f2258c56c1081a733edc",
+      "proof": {
+        "label": "testBesselI0 / testBesselI1",
+        "path": "tensorflow/compiler/tests/unary_ops_test.py",
+        "line": 218,
+        "url": "https://github.com/tensorflow/tensorflow/blob/957c552af12162dbc096f2258c56c1081a733edc/tensorflow/compiler/tests/unary_ops_test.py#L218"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126688",
+      "repo": "tensorflow/tensorflow",
+      "number": 126688,
+      "title": "[FusedOps] Support broadcast-shaped bias with leading 1s in fused MatMul and Conv2D",
+      "tier": "A",
+      "merged_at": "2026-09-25T01:55:09Z",
+      "additions": 81,
+      "deletions": 11,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "908220bfa21522475b25b9de1ff4492f93fdbe0b",
+      "proof": {
+        "label": "testMatMulAddBroadcastInTfFunction",
+        "path": "tensorflow/python/kernel_tests/math_ops/matmul_op_test.py",
+        "line": 63,
+        "url": "https://github.com/tensorflow/tensorflow/blob/908220bfa21522475b25b9de1ff4492f93fdbe0b/tensorflow/python/kernel_tests/math_ops/matmul_op_test.py#L63"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126449",
+      "repo": "tensorflow/tensorflow",
+      "number": 126449,
+      "title": "[XLA:tf2xla] Support half, bfloat16, and integer dtypes in RangeOp",
+      "tier": "A",
+      "merged_at": "2026-09-02T16:44:10Z",
+      "additions": 66,
+      "deletions": 25,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "b95e0be7f86632cec71f29ff379e98184481283b",
+      "proof": {
+        "label": "testRange",
+        "path": "tensorflow/compiler/tests/ternary_ops_test.py",
+        "line": 62,
+        "url": "https://github.com/tensorflow/tensorflow/blob/b95e0be7f86632cec71f29ff379e98184481283b/tensorflow/compiler/tests/ternary_ops_test.py#L62"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/125859",
+      "repo": "tensorflow/tensorflow",
+      "number": 125859,
+      "title": "fix: validate minimum input rank in convolution_internal to prevent crash on invalid shapes",
+      "tier": "A",
+      "merged_at": "2026-08-26T12:24:48Z",
+      "additions": 22,
+      "deletions": 5,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "deb1655618e2469a5953448d3d22fe92a77c632e",
+      "proof": {
+        "label": "testInvalidInputRank",
+        "path": "tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py",
+        "line": 275,
+        "url": "https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/125856",
+      "repo": "tensorflow/tensorflow",
+      "number": 125856,
+      "title": "fix: validate output signatures in LookupTableExportOp to prevent crash on dtype mismatch",
+      "tier": "A",
+      "merged_at": "2026-09-25T13:48:29Z",
+      "additions": 22,
+      "deletions": 0,
+      "approvers": [
+        "dmiltr3"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "c21d28ea07c47872d5e2efd29d0b3b046b6dbdaf",
+      "proof": {
+        "label": "testExportSignatureMismatch",
+        "path": "tensorflow/python/kernel_tests/data_structures/lookup_ops_test.py",
+        "line": 119,
+        "url": "https://github.com/tensorflow/tensorflow/blob/c21d28ea07c47872d5e2efd29d0b3b046b6dbdaf/tensorflow/python/kernel_tests/data_structures/lookup_ops_test.py#L119"
+      }
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14505",
+      "repo": "google/gvisor",
+      "number": 14505,
+      "title": "devpts: return ESPIPE on positional read and write",
+      "tier": "A",
+      "merged_at": "2026-09-28T21:54:00Z",
+      "additions": 33,
+      "deletions": 0,
+      "approvers": [
+        "rexren-gif"
+      ],
+      "merged_by": "copybara-service",
+      "merge_oid": "d327f2d30b04e5ba65b57d55b12b180130cac254",
+      "proof": {
+        "label": "PtyTest.PositionalIO",
+        "path": "test/syscalls/linux/pty.cc",
+        "line": 2908,
+        "url": "https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908"
+      }
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/131335",
+      "repo": "grafana/grafana",
+      "number": 131335,
+      "title": "ValueMappings: Allow editing negative bounds in range mappings",
+      "tier": "A",
+      "merged_at": "2026-08-24T20:59:34Z",
+      "additions": 64,
+      "deletions": 10,
+      "approvers": [
+        "gelicia"
+      ],
+      "merged_by": "gelicia",
+      "merge_oid": "8d215375a0ea5ded82ec3266254a4f39aad64b5d",
+      "proof": {
+        "label": "allows editing negative bounds",
+        "path": "public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx",
+        "line": 159,
+        "url": "https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159"
+      }
+    },
+    {
+      "url": "https://github.com/pvlib/pvlib-python/pull/2821",
+      "repo": "pvlib/pvlib-python",
+      "number": 2821,
+      "title": "Fix delta_kt_prime halving single valid neighbor difference (gh-1847)",
+      "tier": "B",
+      "merged_at": "2026-08-06T09:20:14Z",
+      "additions": 22,
+      "deletions": 8,
+      "approvers": [
+        "kandersolar"
+      ],
+      "merged_by": "kandersolar",
+      "merge_oid": "482ca3c6fee3aeb357166505c02d2d9fc92fe6e2",
+      "proof": {
+        "label": "test_delta_kt_prime_interior_nan",
+        "path": "tests/test_irradiance.py",
+        "line": 798,
+        "url": "https://github.com/pvlib/pvlib-python/blob/482ca3c6fee3aeb357166505c02d2d9fc92fe6e2/tests/test_irradiance.py#L798"
+      }
+    },
+    {
+      "url": "https://github.com/GoogleCloudPlatform/dataflow-solution-guides/pull/224",
+      "repo": "GoogleCloudPlatform/dataflow-solution-guides",
+      "number": 224,
+      "title": "fix(cdp): pass schema as runtime option and add typed join handling",
+      "tier": "B",
+      "merged_at": "2026-08-24T07:12:36Z",
+      "additions": 233,
+      "deletions": 22,
+      "approvers": [
+        "iht"
+      ],
+      "merged_by": "iht",
+      "merge_oid": "73f05d16ab6050325ec493a1fd40d3b6a459df57",
+      "proof": {
+        "label": "test_load_output_schema_default",
+        "path": "pipelines/cdp/tests/test_customer_data_platform.py",
+        "line": 83,
+        "url": "https://github.com/GoogleCloudPlatform/dataflow-solution-guides/blob/73f05d16ab6050325ec493a1fd40d3b6a459df57/pipelines/cdp/tests/test_customer_data_platform.py#L83"
+      }
+    },
+    {
+      "url": "https://github.com/google/mug/pull/130",
+      "repo": "google/mug",
+      "number": 130,
+      "title": "fix: prevent escape fallback from swallowing malformed constructs and enable error test suite",
+      "tier": "B",
+      "merged_at": "2026-08-23T15:43:36Z",
+      "additions": 94,
+      "deletions": 4,
+      "approvers": [],
+      "merged_by": "fluentfuture",
+      "merge_oid": "e34619eecd3eade471f59fbf9d91647767c0557c",
+      "proof": {
+        "label": "RegexParserErrorTest",
+        "path": "dot-parse/src/test/java/com/google/common/labs/regex/RegexParserErrorTest.java",
+        "line": 792,
+        "url": "https://github.com/google/mug/blob/e34619eecd3eade471f59fbf9d91647767c0557c/dot-parse/src/test/java/com/google/common/labs/regex/RegexParserErrorTest.java#L792"
+      }
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/36",
+      "repo": "e2b-dev/herdr-e2b-sandbox",
+      "number": 36,
+      "title": "fix: finish pull batches while reporting per-file failures",
+      "tier": "B",
+      "merged_at": "2026-09-07T07:55:47Z",
+      "additions": 225,
+      "deletions": 26,
+      "approvers": [
+        "OndrejDrapalik"
+      ],
+      "merged_by": "OndrejDrapalik",
+      "merge_oid": "6cc81c43afec6f11b6e5a30788f5d28307054eb8",
+      "proof": {
+        "label": "per-file failure tests",
+        "path": "test/download-cli.test.js",
+        "line": 77,
+        "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/blob/6cc81c43afec6f11b6e5a30788f5d28307054eb8/test/download-cli.test.js#L77"
+      }
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/35",
+      "repo": "e2b-dev/herdr-e2b-sandbox",
+      "number": 35,
+      "title": "fix: clamp terminal dimensions to positive integers in attach plan",
+      "tier": "B",
+      "merged_at": "2026-09-07T07:45:21Z",
+      "additions": 51,
+      "deletions": 6,
+      "approvers": [
+        "OndrejDrapalik"
+      ],
+      "merged_by": "OndrejDrapalik",
+      "merge_oid": "de09335ce9dd336e5bd4fae29d075d4e9aba2032",
+      "proof": {
+        "label": "terminal dimension tests",
+        "path": "test/attach-plan.test.js",
+        "line": 88,
+        "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/blob/de09335ce9dd336e5bd4fae29d075d4e9aba2032/test/attach-plan.test.js#L88"
+      }
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/34",
+      "repo": "e2b-dev/herdr-e2b-sandbox",
+      "number": 34,
+      "title": "fix(exec): preserve JSON results for input and setup errors",
+      "tier": "B",
+      "merged_at": "2026-09-07T07:45:06Z",
+      "additions": 97,
+      "deletions": 8,
+      "approvers": [
+        "OndrejDrapalik"
+      ],
+      "merged_by": "OndrejDrapalik",
+      "merge_oid": "11943a4a49855759a34540290cca4e88bb57bf78",
+      "proof": {
+        "label": "JSON error tests",
+        "path": "test/exec.test.js",
+        "line": 39,
+        "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/blob/11943a4a49855759a34540290cca4e88bb57bf78/test/exec.test.js#L39"
+      }
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33",
+      "repo": "e2b-dev/herdr-e2b-sandbox",
+      "number": 33,
+      "title": "fix: prevent intra-process tempfile collisions in atomic store writes",
+      "tier": "B",
+      "merged_at": "2026-09-07T07:44:51Z",
+      "additions": 37,
+      "deletions": 3,
+      "approvers": [
+        "OndrejDrapalik"
+      ],
+      "merged_by": "OndrejDrapalik",
+      "merge_oid": "f5f5b6abeabad87e846f4820e6b2945b448e615a",
+      "proof": {
+        "label": "100 concurrent writes test",
+        "path": "test/store.test.js",
+        "line": 13,
+        "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/blob/f5f5b6abeabad87e846f4820e6b2945b448e615a/test/store.test.js#L13"
+      }
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/21",
+      "repo": "e2b-dev/herdr-e2b-sandbox",
+      "number": 21,
+      "title": "fix: invoke credential resolver under daemon even when ambient env is populated",
+      "tier": "B",
+      "merged_at": "2026-08-26T12:17:55Z",
+      "additions": 14,
+      "deletions": 3,
+      "approvers": [
+        "OndrejDrapalik"
+      ],
+      "merged_by": "OndrejDrapalik",
+      "merge_oid": "1e9da2a0bb017cb7d54eb0cdc4c168650c0abf56",
+      "proof": {
+        "label": "daemon pre-flight check",
+        "path": "test/cli.test.sh",
+        "line": 652,
+        "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/blob/1e9da2a0bb017cb7d54eb0cdc4c168650c0abf56/test/cli.test.sh#L652"
+      }
+    }
+  ]
+}

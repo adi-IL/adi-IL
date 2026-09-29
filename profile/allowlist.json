@@ -1,0 +1,131 @@
+{
+  "note": "Include-only. build.py renders only these URLs, after a live check that each is MERGED and authored by the profile owner. New candidates go to data/review.json and are never rendered until a human adds them here.",
+  "owner": "adi-IL",
+  "items": [
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/127438",
+      "tier": "A",
+      "issue": "TensorListScatter computed its resize length as a signed highest_index + 1, so an index of INT32_MAX overflowed before the resize.",
+      "fix": "Reject INT32_MAX with InvalidArgument and compute the length as size_t, matching the sibling IntoExistingList op.",
+      "proof": {"path": "tensorflow/python/kernel_tests/data_structures/list_ops_test.py", "anchor": "def testScatterRejectsUnrepresentableLength", "label": "testScatterRejectsUnrepresentableLength"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126937",
+      "tier": "A",
+      "issue": "The GPU Dilation kernels counted elements in 32-bit signed ints, so tensors past INT32_MAX elements overflowed, tripped a CHECK, or launched too few threads.",
+      "fix": "Promote counts and loop indices to int64 and launch through GetGpuLaunchConfig64, as gather_nd already does."
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126936",
+      "tier": "A",
+      "issue": "An automated import in 2020 dropped the EuclideanNorm registration from tf2xla, so reduce_euclidean_norm failed to compile under jit_compile.",
+      "fix": "Restore the PreprocessInput hook on XlaReductionOp and register EuclideanNorm as square, sum, sqrt.",
+      "proof": {"path": "tensorflow/compiler/tests/reduce_ops_test.py", "anchor": "def testReduceEuclideanNorm", "label": "testReduceEuclideanNorm"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126935",
+      "tier": "A",
+      "issue": "tf2xla registered BesselI0e and BesselI1e but not BesselI0 and BesselI1, so bessel_i0 and bessel_i1 aborted XLA compilation.",
+      "fix": "Register both from existing primitives: I0(x) = I0e(x) * exp(|x|), and the same for I1.",
+      "proof": {"path": "tensorflow/compiler/tests/unary_ops_test.py", "anchor": "def testBesselI0", "label": "testBesselI0 / testBesselI1"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126688",
+      "tier": "A",
+      "issue": "Grappler fused MatMul or Conv2D with a broadcast bias like [1, N], but the Eigen and GPU kernels demanded a 1-D bias, so the fused op failed inside tf.function.",
+      "fix": "Accept any bias whose leading dimensions are all 1, matching the remapper and the MKL kernel.",
+      "proof": {"path": "tensorflow/python/kernel_tests/math_ops/matmul_op_test.py", "anchor": "def testMatMulAddBroadcastInTfFunction", "label": "testMatMulAddBroadcastInTfFunction"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126449",
+      "tier": "A",
+      "issue": "XLA RangeOp under jit_compile had no path for half, bfloat16, or integer dtypes, so those ranges failed at compile time.",
+      "fix": "Wire the missing dtype handlers so Range works under XLA for those types.",
+      "proof": {"path": "tensorflow/compiler/tests/ternary_ops_test.py", "anchor": "def testRange", "label": "testRange"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/125859",
+      "tier": "A",
+      "issue": "A convolution with an invalid rank aborted the Python process instead of returning an error.",
+      "fix": "Raise ValueError so callers can catch the bad shape and keep the process alive.",
+      "proof": {"path": "tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py", "anchor": "def testInvalidInputRank", "label": "testInvalidInputRank"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/125856",
+      "tier": "A",
+      "issue": "LookupTableExport skipped the dtype signature check its sibling ops run, so a key or value dtype mismatch hit a CHECK and killed the process.",
+      "fix": "Call MatchSignature before exporting, so a mismatch returns InvalidArgumentError.",
+      "proof": {"path": "tensorflow/python/kernel_tests/data_structures/lookup_ops_test.py", "anchor": "def testExportSignatureMismatch", "label": "testExportSignatureMismatch"}
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14505",
+      "tier": "A",
+      "issue": "Positional reads and writes on pseudo-terminals returned EINVAL in gVisor, where Linux returns ESPIPE.",
+      "fix": "Set DenyPRead and DenyPWrite on both devpts file descriptions so pread and pwrite return ESPIPE.",
+      "proof": {"path": "test/syscalls/linux/pty.cc", "anchor": "TEST_F(PtyTest, PositionalIO)", "label": "PtyTest.PositionalIO"}
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/131335",
+      "tier": "A",
+      "issue": "Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.",
+      "fix": "Accept signed numbers in the range fields so negative bounds type normally.",
+      "proof": {"path": "public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx", "anchor": "should allow editing negative bounds on existing range mapping", "label": "allows editing negative bounds"}
+    },
+    {
+      "url": "https://github.com/pvlib/pvlib-python/pull/2821",
+      "tier": "B",
+      "issue": "delta_kt_prime halved the difference when only one neighbor was valid.",
+      "fix": "Use the single valid neighbor difference as is.",
+      "proof": {"path": "tests/test_irradiance.py", "anchor": "def test_delta_kt_prime_interior_nan", "label": "test_delta_kt_prime_interior_nan"}
+    },
+    {
+      "url": "https://github.com/GoogleCloudPlatform/dataflow-solution-guides/pull/224",
+      "tier": "B",
+      "issue": "The CDP pipeline read its BigQuery schema from a relative path at import time, which failed on Dataflow workers.",
+      "fix": "Load the schema through a runtime option and type the coupon join.",
+      "proof": {"path": "pipelines/cdp/tests/test_customer_data_platform.py", "anchor": "def test_load_output_schema_default", "label": "test_load_output_schema_default"}
+    },
+    {
+      "url": "https://github.com/google/mug/pull/130",
+      "tier": "B",
+      "issue": "Regex escape handling swallowed malformed input, and the error suite never ran because the files were named *Tests.java instead of *Test.java.",
+      "fix": "Fail on bad escapes, and rename the suite so Surefire actually executes it.",
+      "proof": {"path": "dot-parse/src/test/java/com/google/common/labs/regex/RegexParserErrorTest.java", "anchor": "public void unicodeEscape_invalidHex", "label": "RegexParserErrorTest"}
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/36",
+      "tier": "B",
+      "issue": "One unreadable remote file or failed local write aborted the whole pull batch.",
+      "fix": "Handle failures per file, finish the remaining batches, and exit 1 on an incomplete pull.",
+      "proof": {"path": "test/download-cli.test.js", "anchor": "read and write failures do not stop the same or subsequent batches", "label": "per-file failure tests"}
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/35",
+      "tier": "B",
+      "issue": "Missing, nonpositive, or nonfinite pane sizes could reach PTY creation as invalid geometry.",
+      "fix": "Route creation, resizing, and the attach plan through one helper that clamps to positive integers.",
+      "proof": {"path": "test/attach-plan.test.js", "anchor": "terminal dimensions default independently", "label": "terminal dimension tests"}
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/34",
+      "tier": "B",
+      "issue": "Malformed input or a setup failure crashed exec.js before it emitted its JSON result.",
+      "fix": "Validate inputs and route parse and config errors through the existing result emitter.",
+      "proof": {"path": "test/exec.test.js", "anchor": "invalid JSON and missing or invalid fields produce one JSON error", "label": "JSON error tests"}
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33",
+      "tier": "B",
+      "issue": "Concurrent writes in one process shared a temp path, causing overwrites and rename failures.",
+      "fix": "Give each write its own temp file and clean it up on failure.",
+      "proof": {"path": "test/store.test.js", "anchor": "concurrent writes to one record all finish", "label": "100 concurrent writes test"}
+    },
+    {
+      "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/21",
+      "tier": "B",
+      "issue": "Under the daemon, inherited credentials skipped the resolver, so config changes needed a restart.",
+      "fix": "Always run the resolver under the daemon.",
+      "proof": {"path": "test/cli.test.sh", "anchor": "the daemon pre-flight demotes inherited env", "label": "daemon pre-flight check"}
+    }
+  ]
+}
