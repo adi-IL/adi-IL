@@ -4,14 +4,14 @@
       "url": "https://github.com/google/gvisor/pull/15301",
       "title": "netstack: remove only the first matching route on RTM_DELROUTE",
       "repo": "google/gvisor",
-      "stars": 19573,
+      "stars": 19595,
       "merged_at": "2026-10-06T23:09:17Z"
     },
     {
       "url": "https://github.com/tensorflow/tensorflow/pull/125946",
       "title": "fix: validate filter and out_backprop dimensions in Conv2DBackpropInput to prevent crash on invalid rank",
       "repo": "tensorflow/tensorflow",
-      "stars": 200723,
+      "stars": 200737,
       "merged_at": "2026-09-29T14:14:40Z"
     }
   ]
