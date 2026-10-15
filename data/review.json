@@ -4,35 +4,42 @@
       "url": "https://github.com/google/gvisor/pull/15291",
       "title": "tcp: update TS.Recent from a zero-window probe",
       "repo": "google/gvisor",
-      "stars": 19669,
+      "stars": 19679,
       "merged_at": "2026-10-08T23:35:50Z"
     },
     {
       "url": "https://github.com/google/gvisor/pull/15301",
       "title": "netstack: remove only the first matching route on RTM_DELROUTE",
       "repo": "google/gvisor",
-      "stars": 19669,
+      "stars": 19679,
       "merged_at": "2026-10-06T23:09:17Z"
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/133648",
+      "title": "TraceToLogs: use V2 query when customQuery is omitted",
+      "repo": "grafana/grafana",
+      "stars": 77287,
+      "merged_at": "2026-10-14T14:23:44Z"
     },
     {
       "url": "https://github.com/huggingface/peft/pull/3886",
       "title": "Fix OSF merge applying the delta twice on repeated merge",
       "repo": "huggingface/peft",
-      "stars": 21788,
+      "stars": 21789,
       "merged_at": "2026-10-12T15:32:41Z"
     },
     {
       "url": "https://github.com/tensorflow/tensorflow/pull/125946",
       "title": "fix: validate filter and out_backprop dimensions in Conv2DBackpropInput to prevent crash on invalid rank",
       "repo": "tensorflow/tensorflow",
-      "stars": 200949,
+      "stars": 200972,
       "merged_at": "2026-09-29T14:14:40Z"
     },
     {
       "url": "https://github.com/tensorflow/tensorflow/pull/126448",
       "title": "fix(gpu): prevent integer overflow in RollKernel on large tensors",
       "repo": "tensorflow/tensorflow",
-      "stars": 200949,
+      "stars": 200972,
       "merged_at": "2026-10-13T10:34:34Z"
     }
   ]
