@@ -22,25 +22,41 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 8, herdr E2B sandbox 5, Dataflow guides 1, Grafana 1, gVisor 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, herdr E2B sandbox 5, gVisor 3, Grafana 2, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 12" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 7" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +449 -153, herdr E2B sandbox +424 -46, Dataflow guides +233 -22, Mug +94 -4, Grafana +64 -10, gVisor +33 -0, pvlib +22 -8" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +264 -2, Dataflow guides +233 -22, Grafana +168 -13, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 <details>
-<summary>All 18 merged fixes as text</summary>
+<summary>All 26 merged fixes as text</summary>
 
-#### TensorFlow · 8 merged
+#### TensorFlow · 12 merged
+
+**tensorflow/tensorflow [#126450](https://github.com/tensorflow/tensorflow/pull/126450)** · Oct 2026 · merged · `+190 −2`<br>
+**Issue** LinSpace declared half and bfloat16 support, but only float and double kernels were registered, so those dtypes failed with OpKernel not found.<br>
+**Fix** Register half and bfloat16 kernels on CPU and default devices, with explicit casts in Compute.
+
+**tensorflow/tensorflow [#128149](https://github.com/tensorflow/tensorflow/pull/128149)** · Oct 2026 · merged · `+59 −0`<br>
+**Issue** Under jit_compile, QuantizeAndDequantizeV3 accepted num_bits of 0 or below, while eager and graph mode rejected it.<br>
+**Fix** Apply the CPU kernel's num_bits range check when the input folds to a constant.
+
+**tensorflow/tensorflow [#126448](https://github.com/tensorflow/tensorflow/pull/126448)** · Oct 2026 · merged · `+80 −39`<br>
+**Issue** The GPU RollKernel counted threads in int32, so tensors past INT32_MAX elements walked negative indices and faulted the GPU.<br>
+**Fix** Carry counts, dim sizes and strides as int64 and launch through GetGpuLaunchConfig64.
+
+**tensorflow/tensorflow [#125946](https://github.com/tensorflow/tensorflow/pull/125946)** · Sep 2026 · merged · `+48 −2`<br>
+**Issue** Conv2DBackpropInput never checked that the filter had rank 4, so a scalar filter passed to conv2d_transpose aborted the process on a CHECK.<br>
+**Fix** Validate filter and out_backprop ranks up front and return InvalidArgumentError.
 
 **tensorflow/tensorflow [#125856](https://github.com/tensorflow/tensorflow/pull/125856)** · Sep 2026 · merged · `+22 −0`<br>
 **Issue** LookupTableExport skipped the dtype signature check its sibling ops run, so a key or value dtype mismatch hit a CHECK and killed the process.<br>
@@ -74,17 +90,35 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** A convolution with an invalid rank aborted the Python process instead of returning an error.<br>
 **Fix** Raise ValueError so callers can catch the bad shape and keep the process alive. [Test ↗](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275)
 
-#### gVisor · 1 merged
+#### gVisor · 3 merged
+
+**google/gvisor [#15291](https://github.com/google/gvisor/pull/15291)** · Oct 2026 · merged · `+48 −0`<br>
+**Issue** A zero-window probe at RCV.NXT was ACKed before TS.Recent was updated, so the ACK echoed a stale timestamp, against RFC 7323.<br>
+**Fix** Update TS.Recent for a probe at RCV.NXT when timestamps are on, then send the ACK.
+
+**google/gvisor [#15301](https://github.com/google/gvisor/pull/15301)** · Oct 2026 · merged · `+183 −2`<br>
+**Issue** One RTM_DELROUTE request removed every matching route, where Linux removes only the first.<br>
+**Fix** Stop matching after the first route, so a single request deletes a single route.
 
 **google/gvisor [#14505](https://github.com/google/gvisor/pull/14505)** · Sep 2026 · merged · `+33 −0`<br>
 **Issue** Positional reads and writes on pseudo-terminals returned EINVAL in gVisor, where Linux returns ESPIPE.<br>
 **Fix** Set DenyPRead and DenyPWrite on both devpts file descriptions so pread and pwrite return ESPIPE. [Test ↗](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908)
 
-#### Grafana · 1 merged
+#### Grafana · 2 merged
+
+**grafana/grafana [#133648](https://github.com/grafana/grafana/pull/133648)** · Oct 2026 · merged by @mattvella07 · `+104 −3`<br>
+**Issue** Trace to logs ignored a configured V2 query when customQuery was omitted and fell back to the default tag query, dropping provisioned custom queries.<br>
+**Fix** Use the configured query when customQuery is true or unset.
 
 **grafana/grafana [#131335](https://github.com/grafana/grafana/pull/131335)** · Aug 2026 · merged by @gelicia · `+64 −10`<br>
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
+
+#### huggingface/peft · 1 merged
+
+**huggingface/peft [#3886](https://github.com/huggingface/peft/pull/3886)** · Oct 2026 · merged by @githubnemo · `+22 −3`<br>
+**Issue** OSFLayer.merge() skipped check_adapters_to_merge(), so merging twice applied the OSF delta twice.<br>
+**Fix** Route merge() through check_adapters_to_merge() so an already merged adapter is skipped.
 
 #### More merged fixes · 8
 
@@ -131,7 +165,7 @@ A fix without a test is a claim. Each link below opens the regression test in th
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 18 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 26 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |

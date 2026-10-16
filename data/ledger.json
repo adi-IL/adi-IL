@@ -318,6 +318,110 @@
         "line": 652,
         "url": "https://github.com/e2b-dev/herdr-e2b-sandbox/blob/1e9da2a0bb017cb7d54eb0cdc4c168650c0abf56/test/cli.test.sh#L652"
       }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/125946",
+      "repo": "tensorflow/tensorflow",
+      "number": 125946,
+      "title": "fix: validate filter and out_backprop dimensions in Conv2DBackpropInput to prevent crash on invalid rank",
+      "tier": "A",
+      "merged_at": "2026-09-29T14:14:40Z",
+      "additions": 48,
+      "deletions": 2,
+      "merged_by": "copybara-service",
+      "merge_oid": "5f17f49e13e6823be6367b70eb97b0400f7b3724",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126448",
+      "repo": "tensorflow/tensorflow",
+      "number": 126448,
+      "title": "fix(gpu): prevent integer overflow in RollKernel on large tensors",
+      "tier": "A",
+      "merged_at": "2026-10-13T10:34:34Z",
+      "additions": 80,
+      "deletions": 39,
+      "merged_by": "copybara-service",
+      "merge_oid": "95e1edf883c077c4a9323be7ba555fc172015795",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126450",
+      "repo": "tensorflow/tensorflow",
+      "number": 126450,
+      "title": "[LinSpace] Register half and bfloat16 OpKernels for LinSpace",
+      "tier": "A",
+      "merged_at": "2026-10-15T21:35:00Z",
+      "additions": 190,
+      "deletions": 2,
+      "merged_by": "copybara-service",
+      "merge_oid": "720092659294d826daaf8884b907b17afa0576e7",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/128149",
+      "repo": "tensorflow/tensorflow",
+      "number": 128149,
+      "title": "Validate constant num_bits in XLA QuantizeAndDequantizeV3",
+      "tier": "A",
+      "merged_at": "2026-10-15T09:44:44Z",
+      "additions": 59,
+      "deletions": 0,
+      "merged_by": "copybara-service",
+      "merge_oid": "00669fc8c0410365139e75f60172d0d49063ec5e",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15291",
+      "repo": "google/gvisor",
+      "number": 15291,
+      "title": "tcp: update TS.Recent from a zero-window probe",
+      "tier": "A",
+      "merged_at": "2026-10-08T23:35:50Z",
+      "additions": 48,
+      "deletions": 0,
+      "merged_by": "copybara-service",
+      "merge_oid": "25e4d4778b06a66f268e13c2b8b0abc433096693",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15301",
+      "repo": "google/gvisor",
+      "number": 15301,
+      "title": "netstack: remove only the first matching route on RTM_DELROUTE",
+      "tier": "A",
+      "merged_at": "2026-10-06T23:09:17Z",
+      "additions": 183,
+      "deletions": 2,
+      "merged_by": "copybara-service",
+      "merge_oid": "186b5da1acc33f16036fb8e85c8f40ab0f3ab51e",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/133648",
+      "repo": "grafana/grafana",
+      "number": 133648,
+      "title": "TraceToLogs: use V2 query when customQuery is omitted",
+      "tier": "A",
+      "merged_at": "2026-10-14T14:23:44Z",
+      "additions": 104,
+      "deletions": 3,
+      "merged_by": "mattvella07",
+      "merge_oid": "aca0b24e7d4b781aea52fa285e2b22162a1dc848",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/huggingface/peft/pull/3886",
+      "repo": "huggingface/peft",
+      "number": 3886,
+      "title": "Fix OSF merge applying the delta twice on repeated merge",
+      "tier": "A",
+      "merged_at": "2026-10-12T15:32:41Z",
+      "additions": 22,
+      "deletions": 3,
+      "merged_by": "githubnemo",
+      "merge_oid": "8314d7c8606a901953261c5582d1bdc98dacd6be",
+      "proof": null
     }
   ]
 }
