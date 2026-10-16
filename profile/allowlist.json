@@ -126,6 +126,54 @@
       "issue": "Under the daemon, inherited credentials skipped the resolver, so config changes needed a restart.",
       "fix": "Always run the resolver under the daemon.",
       "proof": {"path": "test/cli.test.sh", "anchor": "the daemon pre-flight demotes inherited env", "label": "daemon pre-flight check"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/125946",
+      "tier": "A",
+      "issue": "Conv2DBackpropInput never checked that the filter had rank 4, so a scalar filter passed to conv2d_transpose aborted the process on a CHECK.",
+      "fix": "Validate filter and out_backprop ranks up front and return InvalidArgumentError."
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126448",
+      "tier": "A",
+      "issue": "The GPU RollKernel counted threads in int32, so tensors past INT32_MAX elements walked negative indices and faulted the GPU.",
+      "fix": "Carry counts, dim sizes and strides as int64 and launch through GetGpuLaunchConfig64."
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/126450",
+      "tier": "A",
+      "issue": "LinSpace declared half and bfloat16 support, but only float and double kernels were registered, so those dtypes failed with OpKernel not found.",
+      "fix": "Register half and bfloat16 kernels on CPU and default devices, with explicit casts in Compute."
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/128149",
+      "tier": "A",
+      "issue": "Under jit_compile, QuantizeAndDequantizeV3 accepted num_bits of 0 or below, while eager and graph mode rejected it.",
+      "fix": "Apply the CPU kernel's num_bits range check when the input folds to a constant."
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15291",
+      "tier": "A",
+      "issue": "A zero-window probe at RCV.NXT was ACKed before TS.Recent was updated, so the ACK echoed a stale timestamp, against RFC 7323.",
+      "fix": "Update TS.Recent for a probe at RCV.NXT when timestamps are on, then send the ACK."
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15301",
+      "tier": "A",
+      "issue": "One RTM_DELROUTE request removed every matching route, where Linux removes only the first.",
+      "fix": "Stop matching after the first route, so a single request deletes a single route."
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/133648",
+      "tier": "A",
+      "issue": "Trace to logs ignored a configured V2 query when customQuery was omitted and fell back to the default tag query, dropping provisioned custom queries.",
+      "fix": "Use the configured query when customQuery is true or unset."
+    },
+    {
+      "url": "https://github.com/huggingface/peft/pull/3886",
+      "tier": "A",
+      "issue": "OSFLayer.merge() skipped check_adapters_to_merge(), so merging twice applied the OSF delta twice.",
+      "fix": "Route merge() through check_adapters_to_merge() so an already merged adapter is skipped."
     }
-  ]
+]
 }
