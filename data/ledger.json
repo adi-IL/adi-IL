@@ -422,6 +422,19 @@
       "merged_by": "githubnemo",
       "merge_oid": "8314d7c8606a901953261c5582d1bdc98dacd6be",
       "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/15770",
+      "repo": "can1357/oh-my-pi",
+      "number": 15770,
+      "title": "fix(catalog): preserve authoritative caches in resolveProviderModels",
+      "tier": "A",
+      "merged_at": "2026-10-16T18:11:42Z",
+      "additions": 95,
+      "deletions": 20,
+      "merged_by": "H4vC",
+      "merge_oid": "c472124c189c682b411cef9cb9bd2f149d7b404c",
+      "proof": null
     }
   ]
 }

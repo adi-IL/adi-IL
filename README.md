@@ -22,23 +22,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, herdr E2B sandbox 5, gVisor 3, Grafana 2, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, herdr E2B sandbox 5, gVisor 3, Grafana 2, can1357/oh-my-pi 1, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 7" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 8" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +264 -2, Dataflow guides +233 -22, Grafana +168 -13, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +264 -2, Dataflow guides +233 -22, Grafana +168 -13, can1357/oh-my-pi +95 -20, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 <details>
-<summary>All 26 merged fixes as text</summary>
+<summary>All 27 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -114,6 +114,12 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
 
+#### can1357/oh-my-pi · 1 merged
+
+**can1357/oh-my-pi [#15770](https://github.com/can1357/oh-my-pi/pull/15770)** · Oct 2026 · merged by @H4vC · `+95 −20`<br>
+**Issue** For authoritative providers, cached model reads merged the bundled static catalog back in, so retired models came back after a warm cache write.<br>
+**Fix** Trust an authoritative provider cache as the full model set and keep static merging for models.dev overlays only.
+
 #### huggingface/peft · 1 merged
 
 **huggingface/peft [#3886](https://github.com/huggingface/peft/pull/3886)** · Oct 2026 · merged by @githubnemo · `+22 −3`<br>
@@ -165,7 +171,7 @@ A fix without a test is a claim. Each link below opens the regression test in th
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 26 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 27 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |
