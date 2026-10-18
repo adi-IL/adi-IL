@@ -180,6 +180,30 @@
       "tier": "A",
       "issue": "For authoritative providers, cached model reads merged the bundled static catalog back in, so retired models came back after a warm cache write.",
       "fix": "Trust an authoritative provider cache as the full model set and keep static merging for models.dev overlays only."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16054",
+      "tier": "A",
+      "issue": "A failed catalog refresh re-saved the authoritative cache as non-authoritative, so the next launch merged retired bundled models back in.",
+      "fix": "Decide cache retention from the cached payload's own authority instead of the effective authority after a failed refresh."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16055",
+      "tier": "A",
+      "issue": "The read result's Resolved path notice printed the raw absolute path, exposing the home directory, while every sibling render path shortened it.",
+      "fix": "Render the notice through shortenPath(), matching the rest of the read renderer."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16056",
+      "tier": "A",
+      "issue": "Video reads with a frame or timestamp selector, such as clip.mp4:2s, failed for files outside the session cwd that suffix matching would have found.",
+      "fix": "Keep a valid video selector split unless a literal file with the full name exists."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16064",
+      "tier": "A",
+      "issue": "The hermes in-band scanner started a tool call on a partial name when a chunk split inside it, so calls were reported under names like write_ that do not exist.",
+      "fix": "Start a hermes tool call only after the name is complete, through one shared parser also used by qwen3."
     }
 ]
 }

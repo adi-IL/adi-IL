@@ -435,6 +435,58 @@
       "merged_by": "H4vC",
       "merge_oid": "c472124c189c682b411cef9cb9bd2f149d7b404c",
       "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16054",
+      "repo": "can1357/oh-my-pi",
+      "number": 16054,
+      "title": "fix(catalog): keep authoritative cache retention across a failed refresh",
+      "tier": "A",
+      "merged_at": "2026-10-17T12:01:07Z",
+      "additions": 58,
+      "deletions": 1,
+      "merged_by": "H4vC",
+      "merge_oid": "17f5eb9aacade621821cfd0c9539a29483f57d2e",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16055",
+      "repo": "can1357/oh-my-pi",
+      "number": 16055,
+      "title": "fix(tui): shorten the resolved path in the read result notice",
+      "tier": "A",
+      "merged_at": "2026-10-17T12:01:07Z",
+      "additions": 34,
+      "deletions": 1,
+      "merged_by": "H4vC",
+      "merge_oid": "7bdd81fe5d555319f5739ae95bd8006873e9ed51",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16056",
+      "repo": "can1357/oh-my-pi",
+      "number": 16056,
+      "title": "fix(coding-agent): resolve video timestamp selectors outside the session cwd",
+      "tier": "A",
+      "merged_at": "2026-10-17T12:01:07Z",
+      "additions": 56,
+      "deletions": 4,
+      "merged_by": "H4vC",
+      "merge_oid": "9e4130156e2b64a1eb0ea3148876beae898c940f",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16064",
+      "repo": "can1357/oh-my-pi",
+      "number": 16064,
+      "title": "fix(ai): require a complete tool name before hermes in-band toolStart",
+      "tier": "A",
+      "merged_at": "2026-10-17T12:01:07Z",
+      "additions": 88,
+      "deletions": 22,
+      "merged_by": "H4vC",
+      "merge_oid": "dd3fb324fc6c258fa8d8a3a6e7e494f02496a746",
+      "proof": null
     }
   ]
 }

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="376" viewBox="0 0 840 376" role="img" aria-label="17 of 27 merged fixes ship a regression test">
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="376" viewBox="0 0 840 376" role="img" aria-label="17 of 31 merged fixes ship a regression test">
   <style>
     .grow-x { transform-box: fill-box; transform-origin: left center; animation: grow-x 0.6s cubic-bezier(.2,.7,.2,1) both; }
     .grow-y { transform-box: fill-box; transform-origin: center bottom; animation: grow-y 0.6s cubic-bezier(.2,.7,.2,1) both; }
@@ -12,58 +12,62 @@
   </style>
   <rect x="0.5" y="0.5" width="839" height="375" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="36" r="4" fill="#CAFF4A" stroke="none"/>
-  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">17 OF 27 MERGED FIXES SHIP A REGRESSION TEST</text>
+  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">17 OF 31 MERGED FIXES SHIP A REGRESSION TEST</text>
   <text x="28" y="83" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">TensorFlow</text>
   <g data-label="TensorFlow" data-tested="7" data-total="12">
     <rect class="fade" style="animation-delay:0.00s" x="220" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
     <rect class="fade" style="animation-delay:0.04s" x="242" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.08s" x="264" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.13s" x="286" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.17s" x="308" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.21s" x="330" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.25s" x="352" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.30s" x="374.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
-    <rect class="fade" style="animation-delay:0.34s" x="396.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
-    <rect class="fade" style="animation-delay:0.38s" x="418.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
-    <rect class="fade" style="animation-delay:0.42s" x="440.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
-    <rect class="fade" style="animation-delay:0.47s" x="462.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.07s" x="264" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.11s" x="286" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.15s" x="308" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.18s" x="330" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.22s" x="352" y="70" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.26s" x="374.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.29s" x="396.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.33s" x="418.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.37s" x="440.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.40s" x="462.5" y="70.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
   </g>
   <text x="492" y="83" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">7/12</text>
-  <text x="28" y="113" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">herdr E2B sandbox</text>
+  <text x="28" y="113" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">can1357/oh-my-pi</text>
+  <g data-label="can1357/oh-my-pi" data-tested="0" data-total="5">
+    <rect class="fade" style="animation-delay:0.44s" x="220.5" y="100.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.48s" x="242.5" y="100.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.51s" x="264.5" y="100.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.55s" x="286.5" y="100.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.59s" x="308.5" y="100.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+  </g>
+  <text x="338" y="113" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">0/5</text>
+  <text x="28" y="143" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">herdr E2B sandbox</text>
   <g data-label="herdr E2B sandbox" data-tested="5" data-total="5">
-    <rect class="fade" style="animation-delay:0.51s" x="220" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.55s" x="242" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.59s" x="264" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.63s" x="286" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.68s" x="308" y="100" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.62s" x="220" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.66s" x="242" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.70s" x="264" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.73s" x="286" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.77s" x="308" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
   </g>
-  <text x="338" y="113" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">5/5</text>
-  <text x="28" y="143" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">gVisor</text>
+  <text x="338" y="143" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">5/5</text>
+  <text x="28" y="173" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">gVisor</text>
   <g data-label="gVisor" data-tested="1" data-total="3">
-    <rect class="fade" style="animation-delay:0.72s" x="220" y="130" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.76s" x="242.5" y="130.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
-    <rect class="fade" style="animation-delay:0.80s" x="264.5" y="130.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.81s" x="220" y="160" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.84s" x="242.5" y="160.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.88s" x="264.5" y="160.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
   </g>
-  <text x="294" y="143" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/3</text>
-  <text x="28" y="173" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Grafana</text>
+  <text x="294" y="173" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/3</text>
+  <text x="28" y="203" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Grafana</text>
   <g data-label="Grafana" data-tested="1" data-total="2">
-    <rect class="fade" style="animation-delay:0.85s" x="220" y="160" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
-    <rect class="fade" style="animation-delay:0.89s" x="242.5" y="160.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:0.92s" x="220" y="190" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.95s" x="242.5" y="190.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
   </g>
-  <text x="272" y="173" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/2</text>
-  <text x="28" y="203" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">can1357/oh-my-pi</text>
-  <g data-label="can1357/oh-my-pi" data-tested="0" data-total="1">
-    <rect class="fade" style="animation-delay:0.93s" x="220.5" y="190.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
-  </g>
-  <text x="250" y="203" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">0/1</text>
+  <text x="272" y="203" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/2</text>
   <text x="28" y="233" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Dataflow guides</text>
   <g data-label="Dataflow guides" data-tested="1" data-total="1">
-    <rect class="fade" style="animation-delay:0.97s" x="220" y="220" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
+    <rect class="fade" style="animation-delay:0.99s" x="220" y="220" width="16" height="16" rx="3" fill="#CAFF4A" stroke="none"/>
   </g>
   <text x="250" y="233" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">1/1</text>
   <text x="28" y="263" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">huggingface/peft</text>
   <g data-label="huggingface/peft" data-tested="0" data-total="1">
-    <rect class="fade" style="animation-delay:1.02s" x="220.5" y="250.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
+    <rect class="fade" style="animation-delay:1.03s" x="220.5" y="250.5" width="15" height="15" rx="3" fill="none" stroke="#52525b"/>
   </g>
   <text x="250" y="263" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">0/1</text>
   <text x="28" y="293" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Mug</text>

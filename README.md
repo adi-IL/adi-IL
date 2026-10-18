@@ -22,23 +22,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, herdr E2B sandbox 5, gVisor 3, Grafana 2, can1357/oh-my-pi 1, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, can1357/oh-my-pi 5, herdr E2B sandbox 5, gVisor 3, Grafana 2, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 8" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 12" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +264 -2, Dataflow guides +233 -22, Grafana +168 -13, can1357/oh-my-pi +95 -20, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, herdr E2B sandbox +424 -46, can1357/oh-my-pi +331 -48, gVisor +264 -2, Dataflow guides +233 -22, Grafana +168 -13, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 <details>
-<summary>All 27 merged fixes as text</summary>
+<summary>All 31 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -114,7 +114,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
 
-#### can1357/oh-my-pi · 1 merged
+#### can1357/oh-my-pi · 5 merged
+
+**can1357/oh-my-pi [#16054](https://github.com/can1357/oh-my-pi/pull/16054)** · Oct 2026 · merged by @H4vC · `+58 −1`<br>
+**Issue** A failed catalog refresh re-saved the authoritative cache as non-authoritative, so the next launch merged retired bundled models back in.<br>
+**Fix** Decide cache retention from the cached payload's own authority instead of the effective authority after a failed refresh.
+
+**can1357/oh-my-pi [#16055](https://github.com/can1357/oh-my-pi/pull/16055)** · Oct 2026 · merged by @H4vC · `+34 −1`<br>
+**Issue** The read result's Resolved path notice printed the raw absolute path, exposing the home directory, while every sibling render path shortened it.<br>
+**Fix** Render the notice through shortenPath(), matching the rest of the read renderer.
+
+**can1357/oh-my-pi [#16056](https://github.com/can1357/oh-my-pi/pull/16056)** · Oct 2026 · merged by @H4vC · `+56 −4`<br>
+**Issue** Video reads with a frame or timestamp selector, such as clip.mp4:2s, failed for files outside the session cwd that suffix matching would have found.<br>
+**Fix** Keep a valid video selector split unless a literal file with the full name exists.
+
+**can1357/oh-my-pi [#16064](https://github.com/can1357/oh-my-pi/pull/16064)** · Oct 2026 · merged by @H4vC · `+88 −22`<br>
+**Issue** The hermes in-band scanner started a tool call on a partial name when a chunk split inside it, so calls were reported under names like write_ that do not exist.<br>
+**Fix** Start a hermes tool call only after the name is complete, through one shared parser also used by qwen3.
 
 **can1357/oh-my-pi [#15770](https://github.com/can1357/oh-my-pi/pull/15770)** · Oct 2026 · merged by @H4vC · `+95 −20`<br>
 **Issue** For authoritative providers, cached model reads merged the bundled static catalog back in, so retired models came back after a warm cache write.<br>
@@ -171,7 +187,7 @@ A fix without a test is a claim. Each link below opens the regression test in th
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 27 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 31 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |
