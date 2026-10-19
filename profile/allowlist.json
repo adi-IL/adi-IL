@@ -204,6 +204,12 @@
       "tier": "A",
       "issue": "The hermes in-band scanner started a tool call on a partial name when a chunk split inside it, so calls were reported under names like write_ that do not exist.",
       "fix": "Start a hermes tool call only after the name is complete, through one shared parser also used by qwen3."
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15948",
+      "tier": "A",
+      "issue": "setrlimit(RLIMIT_MSGQUEUE) returned EPERM even when the new value equaled the current one, because the limit was missing from the settable set.",
+      "fix": "Add RLIMIT_MSGQUEUE to the settable limits, so it is accepted and stored like Core, ProcessCount and RealTimePriority."
     }
 ]
 }

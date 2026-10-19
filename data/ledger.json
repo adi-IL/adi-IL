@@ -487,6 +487,19 @@
       "merged_by": "H4vC",
       "merge_oid": "dd3fb324fc6c258fa8d8a3a6e7e494f02496a746",
       "proof": null
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15948",
+      "repo": "google/gvisor",
+      "number": 15948,
+      "title": "Allow setting RLIMIT_MSGQUEUE",
+      "tier": "A",
+      "merged_at": "2026-10-19T22:20:37Z",
+      "additions": 20,
+      "deletions": 3,
+      "merged_by": "copybara-service",
+      "merge_oid": "33b4e654d563a55388c3f0d3a39236ffaffaf578",
+      "proof": null
     }
   ]
 }
