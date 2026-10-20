@@ -240,6 +240,12 @@
       "tier": "A",
       "issue": "An oversized leading context line aborted a ranged read, so the requested lines were never returned.",
       "fix": "Retry from the requested start without leading context when the context alone hit the byte budget."
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/133723",
+      "tier": "A",
+      "issue": "The V2 dashboard save model kept a panel subtitle only on the snapshot path, so text moved there with Use as subtitle was gone after save and reload.",
+      "fix": "Write the panel subtitle on the normal save path too; the snapshot path still interpolates it."
     }
 ]
 }

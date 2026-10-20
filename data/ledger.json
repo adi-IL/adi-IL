@@ -565,6 +565,19 @@
       "merged_by": "H4vC",
       "merge_oid": "4d1c0c01efc7519f1f0468478341308477ebb177",
       "proof": null
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/133723",
+      "repo": "grafana/grafana",
+      "number": 133723,
+      "title": "Dashboard: Preserve panel subtitle in V2 save model",
+      "tier": "A",
+      "merged_at": "2026-10-20T22:20:57Z",
+      "additions": 37,
+      "deletions": 1,
+      "merged_by": "harisrozajac",
+      "merge_oid": "215f14835c7312e253044add84021ccd4de743ac",
+      "proof": null
     }
   ]
 }

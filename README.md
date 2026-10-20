@@ -22,23 +22,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, can1357/oh-my-pi 10, herdr E2B sandbox 5, gVisor 4, Grafana 2, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, can1357/oh-my-pi 10, herdr E2B sandbox 5, gVisor 4, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 18" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 19" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, can1357/oh-my-pi +695 -117, herdr E2B sandbox +424 -46, gVisor +284 -5, Dataflow guides +233 -22, Grafana +168 -13, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, can1357/oh-my-pi +695 -117, herdr E2B sandbox +424 -46, gVisor +284 -5, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 <details>
-<summary>All 37 merged fixes as text</summary>
+<summary>All 38 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -108,7 +108,11 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** Positional reads and writes on pseudo-terminals returned EINVAL in gVisor, where Linux returns ESPIPE.<br>
 **Fix** Set DenyPRead and DenyPWrite on both devpts file descriptions so pread and pwrite return ESPIPE. [Test ↗](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908)
 
-#### Grafana · 2 merged
+#### Grafana · 3 merged
+
+**grafana/grafana [#133723](https://github.com/grafana/grafana/pull/133723)** · Oct 2026 · merged by @harisrozajac · `+37 −1`<br>
+**Issue** The V2 dashboard save model kept a panel subtitle only on the snapshot path, so text moved there with Use as subtitle was gone after save and reload.<br>
+**Fix** Write the panel subtitle on the normal save path too; the snapshot path still interpolates it.
 
 **grafana/grafana [#133648](https://github.com/grafana/grafana/pull/133648)** · Oct 2026 · merged by @mattvella07 · `+104 −3`<br>
 **Issue** Trace to logs ignored a configured V2 query when customQuery was omitted and fell back to the default tag query, dropping provisioned custom queries.<br>
@@ -211,7 +215,7 @@ A fix without a test is a claim. Each link below opens the regression test in th
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 37 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 38 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |
