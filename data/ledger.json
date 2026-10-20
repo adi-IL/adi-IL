@@ -500,6 +500,71 @@
       "merged_by": "copybara-service",
       "merge_oid": "33b4e654d563a55388c3f0d3a39236ffaffaf578",
       "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16477",
+      "repo": "can1357/oh-my-pi",
+      "number": 16477,
+      "title": "fix(web): render the GitLab merge request description",
+      "tier": "A",
+      "merged_at": "2026-10-20T13:10:28Z",
+      "additions": 47,
+      "deletions": 1,
+      "merged_by": "H4vC",
+      "merge_oid": "f69d9a3e5f08b2bf08e5329622e33bca2a9cc580",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16479",
+      "repo": "can1357/oh-my-pi",
+      "number": 16479,
+      "title": "fix(tui): keep wide-glyph table cells inside their column",
+      "tier": "A",
+      "merged_at": "2026-10-20T13:57:27Z",
+      "additions": 43,
+      "deletions": 3,
+      "merged_by": "H4vC",
+      "merge_oid": "59567702b9b83d534fb99c26c89a0db6b0f5db49",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16481",
+      "repo": "can1357/oh-my-pi",
+      "number": 16481,
+      "title": "fix(utils): keep HTML comments in frontmatter bodies",
+      "tier": "A",
+      "merged_at": "2026-10-20T13:16:13Z",
+      "additions": 41,
+      "deletions": 4,
+      "merged_by": "H4vC",
+      "merge_oid": "29407ea24cf1c8a40d7b46c7d665d8b1e52a4150",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16483",
+      "repo": "can1357/oh-my-pi",
+      "number": 16483,
+      "title": "fix(session): replay the active leaf after an off-branch entry",
+      "tier": "A",
+      "merged_at": "2026-10-20T13:53:44Z",
+      "additions": 118,
+      "deletions": 29,
+      "merged_by": "H4vC",
+      "merge_oid": "b2c5d4ece8d39f2c7e4d30c58b79257b52cebb4b",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16485",
+      "repo": "can1357/oh-my-pi",
+      "number": 16485,
+      "title": "fix(read): keep requested lines when leading context exceeds the byte budget",
+      "tier": "A",
+      "merged_at": "2026-10-20T14:20:51Z",
+      "additions": 115,
+      "deletions": 32,
+      "merged_by": "H4vC",
+      "merge_oid": "4d1c0c01efc7519f1f0468478341308477ebb177",
+      "proof": null
     }
   ]
 }

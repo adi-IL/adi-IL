@@ -22,23 +22,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, can1357/oh-my-pi 5, herdr E2B sandbox 5, gVisor 4, Grafana 2, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, can1357/oh-my-pi 10, herdr E2B sandbox 5, gVisor 4, Grafana 2, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 13" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 18" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, herdr E2B sandbox +424 -46, can1357/oh-my-pi +331 -48, gVisor +284 -5, Dataflow guides +233 -22, Grafana +168 -13, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, can1357/oh-my-pi +695 -117, herdr E2B sandbox +424 -46, gVisor +284 -5, Dataflow guides +233 -22, Grafana +168 -13, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 <details>
-<summary>All 32 merged fixes as text</summary>
+<summary>All 37 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -118,7 +118,27 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
 
-#### can1357/oh-my-pi · 5 merged
+#### can1357/oh-my-pi · 10 merged
+
+**can1357/oh-my-pi [#16485](https://github.com/can1357/oh-my-pi/pull/16485)** · Oct 2026 · merged by @H4vC · `+115 −32`<br>
+**Issue** An oversized leading context line aborted a ranged read, so the requested lines were never returned.<br>
+**Fix** Retry from the requested start without leading context when the context alone hit the byte budget.
+
+**can1357/oh-my-pi [#16479](https://github.com/can1357/oh-my-pi/pull/16479)** · Oct 2026 · merged by @H4vC · `+43 −3`<br>
+**Issue** A wide glyph in a column squeezed to one cell made the row one cell too wide, so the re-wrap pushed the trailing border onto its own line.<br>
+**Fix** Clamp each wrapped cell line to the column width before the row is joined between borders.
+
+**can1357/oh-my-pi [#16483](https://github.com/can1357/oh-my-pi/pull/16483)** · Oct 2026 · merged by @H4vC · `+118 −29`<br>
+**Issue** Replay took the leaf from the last entry, so a late off-branch entry made the abandoned branch active and dropped the current branch from the resumed context.<br>
+**Fix** Off-branch entries record the leaf they interrupted and replay restores it.
+
+**can1357/oh-my-pi [#16481](https://github.com/can1357/oh-my-pi/pull/16481)** · Oct 2026 · merged by @H4vC · `+41 −4`<br>
+**Issue** The frontmatter repair path deleted every HTML comment in the document, including ones in the body.<br>
+**Fix** Strip only comments that lead the document right before the opening delimiter and keep the body byte for byte.
+
+**can1357/oh-my-pi [#16477](https://github.com/can1357/oh-my-pi/pull/16477)** · Oct 2026 · merged by @H4vC · `+47 −1`<br>
+**Issue** renderGitLabMR concatenated an unawaited htmlToBasicMarkdown promise, so GitLab merge request reads showed [object Promise] instead of the description.<br>
+**Fix** Await the description conversion, as the issue renderer already did.
 
 **can1357/oh-my-pi [#16054](https://github.com/can1357/oh-my-pi/pull/16054)** · Oct 2026 · merged by @H4vC · `+58 −1`<br>
 **Issue** A failed catalog refresh re-saved the authoritative cache as non-authoritative, so the next launch merged retired bundled models back in.<br>
@@ -191,7 +211,7 @@ A fix without a test is a claim. Each link below opens the regression test in th
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 32 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 37 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |

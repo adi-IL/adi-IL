@@ -210,6 +210,36 @@
       "tier": "A",
       "issue": "setrlimit(RLIMIT_MSGQUEUE) returned EPERM even when the new value equaled the current one, because the limit was missing from the settable set.",
       "fix": "Add RLIMIT_MSGQUEUE to the settable limits, so it is accepted and stored like Core, ProcessCount and RealTimePriority."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16477",
+      "tier": "A",
+      "issue": "renderGitLabMR concatenated an unawaited htmlToBasicMarkdown promise, so GitLab merge request reads showed [object Promise] instead of the description.",
+      "fix": "Await the description conversion, as the issue renderer already did."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16479",
+      "tier": "A",
+      "issue": "A wide glyph in a column squeezed to one cell made the row one cell too wide, so the re-wrap pushed the trailing border onto its own line.",
+      "fix": "Clamp each wrapped cell line to the column width before the row is joined between borders."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16481",
+      "tier": "A",
+      "issue": "The frontmatter repair path deleted every HTML comment in the document, including ones in the body.",
+      "fix": "Strip only comments that lead the document right before the opening delimiter and keep the body byte for byte."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16483",
+      "tier": "A",
+      "issue": "Replay took the leaf from the last entry, so a late off-branch entry made the abandoned branch active and dropped the current branch from the resumed context.",
+      "fix": "Off-branch entries record the leaf they interrupted and replay restores it."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16485",
+      "tier": "A",
+      "issue": "An oversized leading context line aborted a ranged read, so the requested lines were never returned.",
+      "fix": "Retry from the requested start without leading context when the context alone hit the byte budget."
     }
 ]
 }
