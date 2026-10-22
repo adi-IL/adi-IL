@@ -23,29 +23,30 @@ TypeScript · DataHub · MCP · Gemini
 ### Upstream ledger
 
 <!-- BEGIN:summary -->
-42 of my fixes are merged upstream, and 17 of them ship a regression test that now runs in the project's own suite. Each test link opens the commit where it landed.
+17 of the 42 merged fixes include a linked regression test in the upstream codebase.
 <!-- END:summary -->
 
 <!-- BEGIN:ledger -->
+<p>
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, herdr E2B sandbox 5, gVisor 4, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, herdr E2B sandbox 5, gVisor 4, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="49%">
 </picture></a>
-
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 23" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 23" width="49%">
 </picture></a>
+</p>
 
 | Project | Fix | Regression test, at the commit that landed |
 |---|---|---|
 | TensorFlow | [#127438](https://github.com/tensorflow/tensorflow/pull/127438) fix(kernels): reject INT32_MAX index in TensorListScatter resize | [`testScatterRejectsUnrepresentableLength`](https://github.com/tensorflow/tensorflow/blob/8a3a427ea8c7f04f04236801a115e974834c9bb6/tensorflow/python/kernel_tests/data_structures/list_ops_test.py#L612) |
-| TensorFlow | [#126936](https://github.com/tensorflow/tensorflow/pull/126936) fix(tf2xla): register EuclideanNorm reduction OpKernel | [`testReduceEuclideanNorm`](https://github.com/tensorflow/tensorflow/blob/5d2d6216761c6344c621a93d84ce67027f6723dd/tensorflow/compiler/tests/reduce_ops_test.py#L182) |
 | gVisor | [#14505](https://github.com/google/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
 | Grafana | [#131335](https://github.com/grafana/grafana/pull/131335) ValueMappings: Allow editing negative bounds in range mappings | [`should allow editing negative bounds on existing range mapping`](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159) |
-| TensorFlow | [#126688](https://github.com/tensorflow/tensorflow/pull/126688) [FusedOps] Support broadcast-shaped bias with leading 1s in fused MatMul and Conv2D | [`testMatMulAddBroadcastInTfFunction`](https://github.com/tensorflow/tensorflow/blob/908220bfa21522475b25b9de1ff4492f93fdbe0b/tensorflow/python/kernel_tests/math_ops/matmul_op_test.py#L63) |
+| pvlib | [#2821](https://github.com/pvlib/pvlib-python/pull/2821) Fix delta_kt_prime halving single valid neighbor difference (gh-1847) | [`test_delta_kt_prime_interior_nan`](https://github.com/pvlib/pvlib-python/blob/482ca3c6fee3aeb357166505c02d2d9fc92fe6e2/tests/test_irradiance.py#L798) |
+| herdr E2B sandbox | [#33](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33) fix: prevent intra-process tempfile collisions in atomic store writes | [`100 concurrent writes test`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/f5f5b6abeabad87e846f4820e6b2945b448e615a/test/store.test.js#L13) |
 
 <details>
 <summary>All 42 merged fixes as text</summary>

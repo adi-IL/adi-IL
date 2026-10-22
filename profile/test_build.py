@@ -111,7 +111,7 @@ class BuildTest(unittest.TestCase):
             json.dump({"limit": 3, "essays": essays}, f)
         build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
         readme = self.read("README.md")
-        self.assertIn("2 of my fixes are merged upstream, and 2 of them ship a regression test", readme)
+        self.assertIn("2 of the 2 merged fixes include a linked regression test in the upstream codebase.", readme)
         self.assertIn("[E2]", readme)
         self.assertNotIn("[E3]", readme)
 

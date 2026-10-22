@@ -214,17 +214,17 @@ def grouped(items):
     return [(r, sorted(groups[r], key=lambda p: p["merged_at"], reverse=True)) for r in order]
 
 
-def chart(svgs, name):
+def chart(svgs, name, width="100%"):
     alt = re.search(r'aria-label="([^"]*)"', svgs[f"assets/charts/{name}-dark.svg"]).group(1)
-    return charts.picture(name, html.unescape(alt))
+    return charts.picture(name, html.unescape(alt), width)
 
 
 FEATURED = (
     "https://github.com/tensorflow/tensorflow/pull/127438",
-    "https://github.com/tensorflow/tensorflow/pull/126936",
     "https://github.com/google/gvisor/pull/14505",
     "https://github.com/grafana/grafana/pull/131335",
-    "https://github.com/tensorflow/tensorflow/pull/126688",
+    "https://github.com/pvlib/pvlib-python/pull/2821",
+    "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33",
 )
 
 PROOF_HEADER = ["| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
@@ -237,8 +237,7 @@ def proof_row(p):
 
 def render_summary(items):
     tested = sum(1 for p in items if p["proof"])
-    return (f"{len(items)} of my fixes are merged upstream, and {tested} of them ship a regression test "
-            "that now runs in the project's own suite. Each test link opens the commit where it landed.")
+    return f"{tested} of the {len(items)} merged fixes include a linked regression test in the upstream codebase."
 
 
 def render_ledger(items, svgs):
@@ -246,7 +245,7 @@ def render_ledger(items, svgs):
     b = [p for p in items if p["tier"] == "B"]
     by_url = {p["url"]: p for p in items if p["proof"]}
     featured = [by_url[u] for u in FEATURED if u in by_url]
-    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), ""]
+    out = ["<p>", chart(svgs, "projects", "49%"), chart(svgs, "timeline", "49%"), "</p>", ""]
     if featured:
         out += PROOF_HEADER + [proof_row(p) for p in featured] + [""]
     out += [f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]

@@ -187,9 +187,9 @@ def render_all(items, name_of):
     return out
 
 
-def picture(name, alt):
+def picture(name, alt, width="100%"):
     return (f'<a href="{INTERACTIVE_URL}"><picture>\n'
             f'  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/{name}-dark.svg">\n'
             f'  <source media="(prefers-color-scheme: light)" srcset="assets/charts/{name}-light.svg">\n'
-            f'  <img src="assets/charts/{name}-dark.svg" alt="{e(alt)}" width="100%">\n'
+            f'  <img src="assets/charts/{name}-dark.svg" alt="{e(alt)}" width="{width}">\n'
             "</picture></a>")
