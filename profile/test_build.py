@@ -104,6 +104,17 @@ class BuildTest(unittest.TestCase):
             self.assertNotIn("approv", svg.lower())
         self.assertIn("2 OF 2 MERGED FIXES SHIP A REGRESSION TEST", self.read("assets/charts/proofs-dark.svg"))
 
+    def test_summary_counts_and_notes_limit(self):
+        self.write_readme("<!-- BEGIN:summary -->\n<!-- END:summary -->\n<!-- BEGIN:notes -->\n<!-- END:notes -->\n")
+        essays = [{"title": f"E{i}", "url": f"https://www.adityaai.dev/articles/{i}", "date": "2026-09-14"} for i in range(5)]
+        with open(os.path.join(self.dir, "profile", "notes.json"), "w") as f:
+            json.dump({"limit": 3, "essays": essays}, f)
+        build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
+        readme = self.read("README.md")
+        self.assertIn("2 of my fixes are merged upstream, and 2 of them ship a regression test", readme)
+        self.assertIn("[E2]", readme)
+        self.assertNotIn("[E3]", readme)
+
     def test_banned_term_in_chart_label_is_caught(self):
         with mock.patch.dict(build.PROJECT_NAMES, {"google/mug": "Zebra Fjord"}):
             with self.assertRaises(build.BuildError):

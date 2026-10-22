@@ -1,5 +1,6 @@
 {
   "source": "adi-IL/adityaai.dev@c0154c9 (src/content/articles frontmatter), live URLs checked 2026-09-29 IST",
+  "limit": 3,
   "essays": [
     {
       "title": "Shared caches beat sandbox walls",

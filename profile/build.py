@@ -219,11 +219,37 @@ def chart(svgs, name):
     return charts.picture(name, html.unescape(alt))
 
 
+FEATURED = (
+    "https://github.com/tensorflow/tensorflow/pull/127438",
+    "https://github.com/tensorflow/tensorflow/pull/126936",
+    "https://github.com/google/gvisor/pull/14505",
+    "https://github.com/grafana/grafana/pull/131335",
+    "https://github.com/tensorflow/tensorflow/pull/126688",
+)
+
+PROOF_HEADER = ["| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
+
+
+def proof_row(p):
+    return (f"| {project(p['repo'])} | [#{p['number']}]({p['url']}) {p['title']} "
+            f"| [`{p['proof']['label']}`]({p['proof']['url']}) |")
+
+
+def render_summary(items):
+    tested = sum(1 for p in items if p["proof"])
+    return (f"{len(items)} of my fixes are merged upstream, and {tested} of them ship a regression test "
+            "that now runs in the project's own suite. Each test link opens the commit where it landed.")
+
+
 def render_ledger(items, svgs):
     a = [p for p in items if p["tier"] == "A"]
     b = [p for p in items if p["tier"] == "B"]
-    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), "", chart(svgs, "lines"), "",
-           f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
+    by_url = {p["url"]: p for p in items if p["proof"]}
+    featured = [by_url[u] for u in FEATURED if u in by_url]
+    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), ""]
+    if featured:
+        out += PROOF_HEADER + [proof_row(p) for p in featured] + [""]
+    out += [f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
     for repo, prs in grouped(a):
         out.append(f"#### {project(repo)} · {len(prs)} merged\n")
         out.extend(row(p) for p in prs)
@@ -235,18 +261,18 @@ def render_ledger(items, svgs):
 
 
 def render_proofs(items, svgs):
-    rows = [p for p in items if p["tier"] == "A" and p["proof"]]
-    out = [chart(svgs, "proofs"), "",
-           "| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
+    rows = [p for p in items if p["proof"]]
+    out = [f"<details>\n<summary>All {len(rows)} regression tests, and lines changed by project</summary>\n",
+           chart(svgs, "proofs"), "", chart(svgs, "lines"), ""] + PROOF_HEADER
     for repo, prs in grouped(rows):
-        for p in prs:
-            out.append(f"| {project(repo)} | [#{p['number']}]({p['url']}) {p['title']} "
-                       f"| [`{p['proof']['label']}`]({p['proof']['url']}) |")
+        out.extend(proof_row(p) for p in prs)
+    out.append("\n</details>")
     return "\n".join(out)
 
 
 def render_notes(notes):
-    return "\n".join(f"- [{n['title']}]({n['url']}) · {month(n['date'])}" for n in notes["essays"])
+    essays = notes["essays"][:notes.get("limit", len(notes["essays"]))]
+    return "\n".join(f"- [{n['title']}]({n['url']}) · {month(n['date'])}" for n in essays)
 
 
 def replace_block(text, name, body):
@@ -291,6 +317,8 @@ def build(out, allow, items, candidates, log=print):
     with open(readme_path) as f:
         readme = f.read()
     svgs = charts.render_all(items, project)
+    if "<!-- BEGIN:summary -->" in readme:
+        readme = replace_block(readme, "summary", render_summary(items))
     readme = replace_block(readme, "ledger", render_ledger(items, svgs))
     readme = replace_block(readme, "proofs", render_proofs(items, svgs))
     notes_path = os.path.join(out, "profile", "notes.json")
