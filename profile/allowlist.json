@@ -246,6 +246,30 @@
       "tier": "A",
       "issue": "The V2 dashboard save model kept a panel subtitle only on the snapshot path, so text moved there with Use as subtitle was gone after save and reload.",
       "fix": "Write the panel subtitle on the normal save path too; the snapshot path still interpolates it."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16654",
+      "tier": "A",
+      "issue": "The models.json to models.yml migration wrote the new file world-readable and non-atomically, exposing inline API keys to other local users and losing custom providers when a write was interrupted.",
+      "fix": "Publish the migrated file through an atomic write that stages an owner-only temp file, fsyncs it and renames it into place."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16655",
+      "tier": "A",
+      "issue": "A credential resolver that threw, such as an unreachable auth broker or a failed OAuth refresh, was reported as a missing API key and never retried.",
+      "fix": "Propagate the resolver failure as a configuration error that keeps the original cause; a resolver with no credential still reports a missing key."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16657",
+      "tier": "A",
+      "issue": "Clearing memory in one project deleted every project's rows from the shared memory database while only the current project's files were removed.",
+      "fix": "Scope the database deletes to the current project's cwd, thread ids and consolidation job key, matching the filesystem cleanup."
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16658",
+      "tier": "A",
+      "issue": "Markdown tables in the terminal padded every cell on the right, so right-aligned and centered GFM columns rendered flush left.",
+      "fix": "Pad each cell by its column's alignment, including every wrapped line of the cell."
     }
 ]
 }

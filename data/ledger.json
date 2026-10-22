@@ -578,6 +578,58 @@
       "merged_by": "harisrozajac",
       "merge_oid": "215f14835c7312e253044add84021ccd4de743ac",
       "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16654",
+      "repo": "can1357/oh-my-pi",
+      "number": 16654,
+      "title": "fix(coding-agent): write the migrated models.yml atomically with owner-only permissions",
+      "tier": "A",
+      "merged_at": "2026-10-22T09:43:25Z",
+      "additions": 163,
+      "deletions": 20,
+      "merged_by": "H4vC",
+      "merge_oid": "d72f9ddb7d60c509a24992e1aec6bed47e1aee40",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16655",
+      "repo": "can1357/oh-my-pi",
+      "number": 16655,
+      "title": "fix(ai): surface a thrown credential resolver instead of reporting a missing key",
+      "tier": "A",
+      "merged_at": "2026-10-22T09:43:25Z",
+      "additions": 78,
+      "deletions": 2,
+      "merged_by": "H4vC",
+      "merge_oid": "735317834215fb3a5faa2fefb6e8756c8d1fd5ec",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16657",
+      "repo": "can1357/oh-my-pi",
+      "number": 16657,
+      "title": "fix(coding-agent): scope /memory clear to the current project",
+      "tier": "A",
+      "merged_at": "2026-10-22T09:43:25Z",
+      "additions": 122,
+      "deletions": 9,
+      "merged_by": "H4vC",
+      "merge_oid": "e9701a6042f3b05794ac505317ac239baf2f1209",
+      "proof": null
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16658",
+      "repo": "can1357/oh-my-pi",
+      "number": 16658,
+      "title": "fix(tui): honor GFM column alignment in markdown tables",
+      "tier": "A",
+      "merged_at": "2026-10-22T09:43:25Z",
+      "additions": 106,
+      "deletions": 4,
+      "merged_by": "H4vC",
+      "merge_oid": "f99213ec0413de47511b5e3628b51f04396c71fb",
+      "proof": null
     }
   ]
 }

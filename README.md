@@ -22,23 +22,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: TensorFlow 12, can1357/oh-my-pi 10, herdr E2B sandbox 5, gVisor 4, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, herdr E2B sandbox 5, gVisor 4, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 19" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 23" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: TensorFlow +826 -196, can1357/oh-my-pi +695 -117, herdr E2B sandbox +424 -46, gVisor +284 -5, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +284 -5, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 <details>
-<summary>All 38 merged fixes as text</summary>
+<summary>All 42 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -122,7 +122,23 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
 
-#### can1357/oh-my-pi · 10 merged
+#### can1357/oh-my-pi · 14 merged
+
+**can1357/oh-my-pi [#16654](https://github.com/can1357/oh-my-pi/pull/16654)** · Oct 2026 · merged by @H4vC · `+163 −20`<br>
+**Issue** The models.json to models.yml migration wrote the new file world-readable and non-atomically, exposing inline API keys to other local users and losing custom providers when a write was interrupted.<br>
+**Fix** Publish the migrated file through an atomic write that stages an owner-only temp file, fsyncs it and renames it into place.
+
+**can1357/oh-my-pi [#16655](https://github.com/can1357/oh-my-pi/pull/16655)** · Oct 2026 · merged by @H4vC · `+78 −2`<br>
+**Issue** A credential resolver that threw, such as an unreachable auth broker or a failed OAuth refresh, was reported as a missing API key and never retried.<br>
+**Fix** Propagate the resolver failure as a configuration error that keeps the original cause; a resolver with no credential still reports a missing key.
+
+**can1357/oh-my-pi [#16657](https://github.com/can1357/oh-my-pi/pull/16657)** · Oct 2026 · merged by @H4vC · `+122 −9`<br>
+**Issue** Clearing memory in one project deleted every project's rows from the shared memory database while only the current project's files were removed.<br>
+**Fix** Scope the database deletes to the current project's cwd, thread ids and consolidation job key, matching the filesystem cleanup.
+
+**can1357/oh-my-pi [#16658](https://github.com/can1357/oh-my-pi/pull/16658)** · Oct 2026 · merged by @H4vC · `+106 −4`<br>
+**Issue** Markdown tables in the terminal padded every cell on the right, so right-aligned and centered GFM columns rendered flush left.<br>
+**Fix** Pad each cell by its column's alignment, including every wrapped line of the cell.
 
 **can1357/oh-my-pi [#16485](https://github.com/can1357/oh-my-pi/pull/16485)** · Oct 2026 · merged by @H4vC · `+115 −32`<br>
 **Issue** An oversized leading context line aborted a ranged read, so the requested lines were never returned.<br>
@@ -215,7 +231,7 @@ A fix without a test is a claim. Each link below opens the regression test in th
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 38 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 42 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |
