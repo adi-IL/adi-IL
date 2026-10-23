@@ -23,7 +23,7 @@ TypeScript · DataHub · MCP · Gemini
 ### Upstream ledger
 
 <!-- BEGIN:summary -->
-17 of the 42 merged fixes include a linked regression test in the upstream codebase.
+17 of the 43 merged fixes include a linked regression test in the upstream codebase.
 <!-- END:summary -->
 
 <!-- BEGIN:ledger -->
@@ -31,12 +31,12 @@ TypeScript · DataHub · MCP · Gemini
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, herdr E2B sandbox 5, gVisor 4, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="49%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="49%">
 </picture></a>
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 23" width="49%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 24" width="49%">
 </picture></a>
 </p>
 
@@ -49,7 +49,7 @@ TypeScript · DataHub · MCP · Gemini
 | herdr E2B sandbox | [#33](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33) fix: prevent intra-process tempfile collisions in atomic store writes | [`100 concurrent writes test`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/f5f5b6abeabad87e846f4820e6b2945b448e615a/test/store.test.js#L13) |
 
 <details>
-<summary>All 42 merged fixes as text</summary>
+<summary>All 43 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -101,7 +101,11 @@ TypeScript · DataHub · MCP · Gemini
 **Issue** A convolution with an invalid rank aborted the Python process instead of returning an error.<br>
 **Fix** Raise ValueError so callers can catch the bad shape and keep the process alive. [Test ↗](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275)
 
-#### gVisor · 4 merged
+#### gVisor · 5 merged
+
+**google/gvisor [#14401](https://github.com/google/gvisor/pull/14401)** · Oct 2026 · merged · `+62 −5`<br>
+**Issue** Any user could destroy any SysV shared memory segment with shmctl(IPC_RMID), because gVisor skipped the creator, owner or CAP_SYS_ADMIN check that Linux enforces.<br>
+**Fix** Check ownership inside Shm.MarkDestroyed under the segment lock and return EPERM for unauthorized callers, with a syscall test for both paths.
 
 **google/gvisor [#15948](https://github.com/google/gvisor/pull/15948)** · Oct 2026 · merged · `+20 −3`<br>
 **Issue** setrlimit(RLIMIT_MSGQUEUE) returned EPERM even when the new value equaled the current one, because the limit was missing from the settable set.<br>
@@ -241,13 +245,13 @@ TypeScript · DataHub · MCP · Gemini
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 42 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 43 merged fixes ship a regression test" width="100%">
 </picture></a>
 
 <a href="https://adityaai.dev/upstream"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +284 -5, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
 </picture></a>
 
 | Project | Fix | Regression test, at the commit that landed |

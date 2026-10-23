@@ -630,6 +630,19 @@
       "merged_by": "H4vC",
       "merge_oid": "f99213ec0413de47511b5e3628b51f04396c71fb",
       "proof": null
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14401",
+      "repo": "google/gvisor",
+      "number": 14401,
+      "title": "Enforce ownership check on shmctl(IPC_RMID)",
+      "tier": "A",
+      "merged_at": "2026-10-23T19:42:20Z",
+      "additions": 62,
+      "deletions": 5,
+      "merged_by": "copybara-service",
+      "merge_oid": "9f4c04884fecba9c499650105ddad35da673f126",
+      "proof": null
     }
   ]
 }

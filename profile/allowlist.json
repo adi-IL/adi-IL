@@ -270,6 +270,12 @@
       "tier": "A",
       "issue": "Markdown tables in the terminal padded every cell on the right, so right-aligned and centered GFM columns rendered flush left.",
       "fix": "Pad each cell by its column's alignment, including every wrapped line of the cell."
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14401",
+      "tier": "A",
+      "issue": "Any user could destroy any SysV shared memory segment with shmctl(IPC_RMID), because gVisor skipped the creator, owner or CAP_SYS_ADMIN check that Linux enforces.",
+      "fix": "Check ownership inside Shm.MarkDestroyed under the segment lock and return EPERM for unauthorized callers, with a syscall test for both paths."
     }
 ]
 }
