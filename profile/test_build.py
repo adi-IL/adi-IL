@@ -253,7 +253,9 @@ class ChartNumbersTest(unittest.TestCase):
     def test_charts_link_to_interactive_page(self):
         with open(os.path.join(ROOT, "README.md")) as f:
             readme = f.read()
-        self.assertEqual(readme.count(f'<a href="{charts.INTERACTIVE_URL}"><picture>'), 4)
+        # <a> and <picture> on separate lines, or GitHub splits the element apart.
+        self.assertEqual(readme.count(f'<a href="{charts.INTERACTIVE_URL}">\n<picture>\n'), 4)
+        self.assertEqual(readme.count("</picture>\n</a>"), 4)
         self.assertEqual(readme.count("<picture>"), 5)
 
     def test_committed_charts_match_ledger(self):
