@@ -214,9 +214,9 @@ def grouped(items):
     return [(r, sorted(groups[r], key=lambda p: p["merged_at"], reverse=True)) for r in order]
 
 
-def chart(svgs, name, width="100%"):
+def chart(svgs, name):
     alt = re.search(r'aria-label="([^"]*)"', svgs[f"assets/charts/{name}-dark.svg"]).group(1)
-    return charts.picture(name, html.unescape(alt), width)
+    return charts.picture(name, html.unescape(alt))
 
 
 FEATURED = (
@@ -245,7 +245,7 @@ def render_ledger(items, svgs):
     b = [p for p in items if p["tier"] == "B"]
     by_url = {p["url"]: p for p in items if p["proof"]}
     featured = [by_url[u] for u in FEATURED if u in by_url]
-    out = ["<p>", chart(svgs, "projects", "49%"), chart(svgs, "timeline", "49%"), "</p>", ""]
+    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), ""]
     if featured:
         out += PROOF_HEADER + [proof_row(p) for p in featured] + [""]
     out += [f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
