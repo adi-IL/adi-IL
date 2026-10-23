@@ -219,12 +219,19 @@ def chart(svgs, name):
     return charts.picture(name, html.unescape(alt))
 
 
+LEDGER_URL = "https://www.adityaai.dev/upstream"
+
+# A few fixes worth reading first, one line each. The full record stays in the
+# collapsed sections below and on the site.
 FEATURED = (
-    "https://github.com/tensorflow/tensorflow/pull/127438",
-    "https://github.com/google/gvisor/pull/14505",
-    "https://github.com/grafana/grafana/pull/131335",
-    "https://github.com/pvlib/pvlib-python/pull/2821",
-    "https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33",
+    ("https://github.com/google/gvisor/pull/14401",
+     "any user could delete another user's shared memory segment; removal now checks ownership, as on Linux"),
+    ("https://github.com/tensorflow/tensorflow/pull/127438",
+     "an INT32_MAX index overflowed the list resize in TensorListScatter; it is now rejected"),
+    ("https://github.com/tensorflow/tensorflow/pull/126688",
+     "fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it"),
+    ("https://github.com/google/gvisor/pull/15301",
+     "one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux"),
 )
 
 PROOF_HEADER = ["| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
@@ -237,17 +244,24 @@ def proof_row(p):
 
 def render_summary(items):
     tested = sum(1 for p in items if p["proof"])
-    return f"{tested} of the {len(items)} merged fixes include a linked regression test in the upstream codebase."
+    return (f"{tested} of the {len(items)} merged fixes include a regression test upstream. "
+            f"Every fix and its test: [full ledger on adityaai.dev]({LEDGER_URL}).")
+
+
+def render_featured(items):
+    by_url = {p["url"]: p for p in items}
+    return [f"- **{project(by_url[u]['repo'])}** [#{by_url[u]['number']}]({u}): {blurb}"
+            for u, blurb in FEATURED if u in by_url]
 
 
 def render_ledger(items, svgs):
     a = [p for p in items if p["tier"] == "A"]
     b = [p for p in items if p["tier"] == "B"]
-    by_url = {p["url"]: p for p in items if p["proof"]}
-    featured = [by_url[u] for u in FEATURED if u in by_url]
     out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), ""]
+    featured = render_featured(items)
     if featured:
-        out += PROOF_HEADER + [proof_row(p) for p in featured] + [""]
+        out += featured + [""]
+    out += [render_summary(items), ""]
     out += [f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
     for repo, prs in grouped(a):
         out.append(f"#### {project(repo)} · {len(prs)} merged\n")
@@ -316,8 +330,6 @@ def build(out, allow, items, candidates, log=print):
     with open(readme_path) as f:
         readme = f.read()
     svgs = charts.render_all(items, project)
-    if "<!-- BEGIN:summary -->" in readme:
-        readme = replace_block(readme, "summary", render_summary(items))
     readme = replace_block(readme, "ledger", render_ledger(items, svgs))
     readme = replace_block(readme, "proofs", render_proofs(items, svgs))
     notes_path = os.path.join(out, "profile", "notes.json")

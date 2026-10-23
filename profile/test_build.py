@@ -106,15 +106,26 @@ class BuildTest(unittest.TestCase):
         self.assertIn("2 OF 2 MERGED FIXES SHIP A REGRESSION TEST", self.read("assets/charts/proofs-dark.svg"))
 
     def test_summary_counts_and_notes_limit(self):
-        self.write_readme("<!-- BEGIN:summary -->\n<!-- END:summary -->\n<!-- BEGIN:notes -->\n<!-- END:notes -->\n")
+        self.write_readme("<!-- BEGIN:notes -->\n<!-- END:notes -->\n")
         essays = [{"title": f"E{i}", "url": f"https://www.adityaai.dev/articles/{i}", "date": "2026-09-14"} for i in range(5)]
         with open(os.path.join(self.dir, "profile", "notes.json"), "w") as f:
             json.dump({"limit": 3, "essays": essays}, f)
         build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
         readme = self.read("README.md")
-        self.assertIn("2 of the 2 merged fixes include a linked regression test in the upstream codebase.", readme)
+        self.assertIn("2 of the 2 merged fixes include a regression test upstream. "
+                      "Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).", readme)
+        self.assertNotIn("| Project | Fix |", readme.split("<details>")[0])
         self.assertIn("[E2]", readme)
         self.assertNotIn("[E3]", readme)
+
+    def test_featured_fixes_render_one_line_each(self):
+        featured = (("https://github.com/tensorflow/tensorflow/pull/1", "fixed a crash"),
+                    ("https://github.com/google/gvisor/pull/404", "not in the ledger, skipped"))
+        with mock.patch.object(build, "FEATURED", featured):
+            build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
+        readme = self.read("README.md")
+        self.assertIn("- **TensorFlow** [#1](https://github.com/tensorflow/tensorflow/pull/1): fixed a crash\n", readme)
+        self.assertNotIn("pull/404", readme)
 
     def test_banned_term_in_chart_label_is_caught(self):
         with mock.patch.dict(build.PROJECT_NAMES, {"google/mug": "Zebra Fjord"}):

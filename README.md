@@ -22,10 +22,6 @@ TypeScript · DataHub · MCP · Gemini
 
 ### Upstream ledger
 
-<!-- BEGIN:summary -->
-17 of the 43 merged fixes include a linked regression test in the upstream codebase.
-<!-- END:summary -->
-
 <!-- BEGIN:ledger -->
 <a href="https://adityaai.dev/upstream">
 <picture>
@@ -43,13 +39,12 @@ TypeScript · DataHub · MCP · Gemini
 </picture>
 </a>
 
-| Project | Fix | Regression test, at the commit that landed |
-|---|---|---|
-| TensorFlow | [#127438](https://github.com/tensorflow/tensorflow/pull/127438) fix(kernels): reject INT32_MAX index in TensorListScatter resize | [`testScatterRejectsUnrepresentableLength`](https://github.com/tensorflow/tensorflow/blob/8a3a427ea8c7f04f04236801a115e974834c9bb6/tensorflow/python/kernel_tests/data_structures/list_ops_test.py#L612) |
-| gVisor | [#14505](https://github.com/google/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
-| Grafana | [#131335](https://github.com/grafana/grafana/pull/131335) ValueMappings: Allow editing negative bounds in range mappings | [`should allow editing negative bounds on existing range mapping`](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159) |
-| pvlib | [#2821](https://github.com/pvlib/pvlib-python/pull/2821) Fix delta_kt_prime halving single valid neighbor difference (gh-1847) | [`test_delta_kt_prime_interior_nan`](https://github.com/pvlib/pvlib-python/blob/482ca3c6fee3aeb357166505c02d2d9fc92fe6e2/tests/test_irradiance.py#L798) |
-| herdr E2B sandbox | [#33](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33) fix: prevent intra-process tempfile collisions in atomic store writes | [`100 concurrent writes test`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/f5f5b6abeabad87e846f4820e6b2945b448e615a/test/store.test.js#L13) |
+- **gVisor** [#14401](https://github.com/google/gvisor/pull/14401): any user could delete another user's shared memory segment; removal now checks ownership, as on Linux
+- **TensorFlow** [#127438](https://github.com/tensorflow/tensorflow/pull/127438): an INT32_MAX index overflowed the list resize in TensorListScatter; it is now rejected
+- **TensorFlow** [#126688](https://github.com/tensorflow/tensorflow/pull/126688): fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it
+- **gVisor** [#15301](https://github.com/google/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
+
+17 of the 43 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
 
 <details>
 <summary>All 43 merged fixes as text</summary>
