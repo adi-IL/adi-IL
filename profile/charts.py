@@ -4,6 +4,7 @@ Every bar, column and segment carries data-* attributes with the number it
 draws, so tests can check each chart against data/ledger.json.
 """
 import html
+import math
 from collections import OrderedDict
 
 MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
@@ -105,6 +106,13 @@ def timeline_chart(items, theme):
     top = max(counts) or 1
     base, tall = 272, 160
     slot = (WIDTH - 96) / len(ms)
+    # Monospace glyphs are about 0.6em wide. Drop the year from month labels
+    # once "Aug 2026" no longer fits its slot, then label every step-th month,
+    # so labels never overlap however long the ledger runs.
+    glyph = 0.6 * LABEL
+    full = slot >= 8 * glyph + 12
+    step = 1 if full else math.ceil((3 * glyph + 12) / slot)
+    shown_year = None
     body = [f'<line x1="48" y1="{base}" x2="{WIDTH - 48}" y2="{base}" stroke="{t["border"]}"/>']
     points = []
     for i, (m, c) in enumerate(zip(ms, counts)):
@@ -118,7 +126,11 @@ def timeline_chart(items, theme):
                     f'fill="{t["accent"]}" fill-opacity="0.35" stroke="{t["bar_stroke"] if c else "none"}"/>')
         body.append(text(round(cx), base - h - 16, c, t["text"], size=LABEL + 3, anchor="middle", weight="700",
                          extra=f'class="fade" style="animation-delay:{DURATION - 0.35:.2f}s" '))
-        body.append(text(round(cx), base + 30, name, t["muted"], anchor="middle"))
+        if i % step == 0:
+            body.append(text(round(cx), base + 30, name if full else name[:3], t["muted"], anchor="middle"))
+            if not full and m[:4] != shown_year:
+                shown_year = m[:4]
+                body.append(text(round(cx), base + 50, m[:4], t["muted"], size=LABEL - 3, anchor="middle"))
     body.append(f'<polyline class="draw" style="animation-delay:0.6s" pathLength="1" points="{" ".join(points)}" '
                 f'fill="none" stroke="{t["accent_text"]}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>')
     for i, pt in enumerate(points):
@@ -128,7 +140,7 @@ def timeline_chart(items, theme):
     label = "Merges per month: " + ", ".join(
         f"{MONTHS[int(m[5:]) - 1]} {m[:4]} {c}" for m, c in zip(ms, counts))
     first = f"{MONTHS[int(ms[0][5:]) - 1].upper()} {ms[0][:4]}"
-    return frame(t, base + 56, f"MERGES PER MONTH · SINCE {first}", label, body)
+    return frame(t, base + (56 if full else 70), f"MERGES PER MONTH · SINCE {first}", label, body)
 
 
 def proofs_chart(items, name_of, theme):

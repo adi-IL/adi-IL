@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -249,6 +250,24 @@ class ChartNumbersTest(unittest.TestCase):
                 self.assertLessEqual(start + durations[el.get("class")], charts.DURATION + 1e-9, name)
             data = [el for el in root.iter() if "data-label" in el.attrib]
             self.assertTrue(all(el.get("class") for el in data) or "proofs" in name, name)
+
+    def test_timeline_month_labels_never_overlap(self):
+        for n in (4, 10, 18, 40):
+            items, y, m = [], 2026, 7
+            for _ in range(n):
+                items.append({"merged_at": f"{y:04d}-{m:02d}-15", "repo": "x"})
+                y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+            svg = charts.timeline_chart(items, "dark")
+            labels = re.findall(r'<text x="(\d+)" y="(\d+)"[^>]*font-size="(\d+)"[^>]*text-anchor="middle">([^<]*)</text>', svg)
+            rows = {}
+            for x, y_, size, s in labels:
+                if not s.isdigit():
+                    half = len(s) * 0.6 * int(size) / 2
+                    rows.setdefault(y_, []).append((int(x) - half, int(x) + half))
+            for spans in rows.values():
+                spans.sort()
+                for (_, end), (start, _) in zip(spans, spans[1:]):
+                    self.assertLess(end, start, n)
 
     def test_charts_link_to_interactive_page(self):
         with open(os.path.join(ROOT, "README.md")) as f:
