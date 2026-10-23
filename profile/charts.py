@@ -195,8 +195,12 @@ def render_all(items, name_of):
 
 
 def picture(name, alt):
-    return (f'<a href="{INTERACTIVE_URL}"><picture>\n'
+    # The <a> and <picture> tags each sit on their own line so GitHub parses the
+    # whole element as one HTML block. With both on one line the <source> lines
+    # start a separate block, the <picture> ends up empty and every theme falls
+    # back to the dark <img>.
+    return (f'<a href="{INTERACTIVE_URL}">\n<picture>\n'
             f'  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/{name}-dark.svg">\n'
             f'  <source media="(prefers-color-scheme: light)" srcset="assets/charts/{name}-light.svg">\n'
             f'  <img src="assets/charts/{name}-dark.svg" alt="{e(alt)}" width="100%">\n'
-            "</picture></a>")
+            "</picture>\n</a>")

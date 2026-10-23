@@ -27,17 +27,21 @@ TypeScript · DataHub · MCP · Gemini
 <!-- END:summary -->
 
 <!-- BEGIN:ledger -->
-<a href="https://adityaai.dev/upstream"><picture>
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
   <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
-</picture></a>
+</picture>
+</a>
 
-<a href="https://adityaai.dev/upstream"><picture>
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
   <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 24" width="100%">
-</picture></a>
+</picture>
+</a>
 
 | Project | Fix | Regression test, at the commit that landed |
 |---|---|---|
@@ -241,17 +245,21 @@ TypeScript · DataHub · MCP · Gemini
 <details>
 <summary>All 17 regression tests, and lines changed by project</summary>
 
-<a href="https://adityaai.dev/upstream"><picture>
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
   <img src="assets/charts/proofs-dark.svg" alt="17 of 43 merged fixes ship a regression test" width="100%">
-</picture></a>
+</picture>
+</a>
 
-<a href="https://adityaai.dev/upstream"><picture>
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
   <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
-</picture></a>
+</picture>
+</a>
 
 | Project | Fix | Regression test, at the commit that landed |
 |---|---|---|
