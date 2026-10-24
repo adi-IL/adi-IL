@@ -276,6 +276,12 @@
       "tier": "A",
       "issue": "Any user could destroy any SysV shared memory segment with shmctl(IPC_RMID), because gVisor skipped the creator, owner or CAP_SYS_ADMIN check that Linux enforces.",
       "fix": "Check ownership inside Shm.MarkDestroyed under the segment lock and return EPERM for unauthorized callers, with a syscall test for both paths."
+    },
+    {
+      "url": "https://github.com/nightly-labs/openbot/pull/3029",
+      "tier": "B",
+      "issue": "OpenBot's server setup, update and provisioning scripts rejected valid mixed-case Linux usernames, such as the ones Google Compute Engine creates, so installs stopped with \"The service user is not valid.\"",
+      "fix": "Allow uppercase letters in the service-user pattern while still rejecting root, empty names and other special characters."
     }
 ]
 }

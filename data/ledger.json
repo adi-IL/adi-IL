@@ -643,6 +643,19 @@
       "merged_by": "copybara-service",
       "merge_oid": "9f4c04884fecba9c499650105ddad35da673f126",
       "proof": null
+    },
+    {
+      "url": "https://github.com/nightly-labs/openbot/pull/3029",
+      "repo": "nightly-labs/openbot",
+      "number": 3029,
+      "title": "Allow mixed-case usernames in server setup and update scripts",
+      "tier": "B",
+      "merged_at": "2026-10-24T14:01:22Z",
+      "additions": 6,
+      "deletions": 3,
+      "merged_by": "NorbertBodziony",
+      "merge_oid": "c2bb7d92bc6ce833b4411733c2ab444f576e52d9",
+      "proof": null
     }
   ]
 }

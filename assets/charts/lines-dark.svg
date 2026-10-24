@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="462" viewBox="0 0 840 462" role="img" aria-label="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3">
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="502" viewBox="0 0 840 502" role="img" aria-label="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3">
   <style>
     .grow-x { transform-box: fill-box; transform-origin: left center; animation: grow-x 0.6s cubic-bezier(.2,.7,.2,1) both; }
     .grow-y { transform-box: fill-box; transform-origin: center bottom; animation: grow-y 0.6s cubic-bezier(.2,.7,.2,1) both; }
@@ -10,43 +10,47 @@
     @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
     @media (prefers-reduced-motion: reduce) { .grow-x, .grow-y, .fade, .draw { animation: none; } }
   </style>
-  <rect x="0.5" y="0.5" width="839" height="461" rx="14" fill="#09090b" stroke="#27272a"/>
+  <rect x="0.5" y="0.5" width="839" height="501" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="40" r="5" fill="#CAFF4A" stroke="none"/>
-  <text x="50" y="45" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="2">LINES CHANGED BY PROJECT · +3336 −455</text>
+  <text x="50" y="45" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="700" letter-spacing="2">LINES CHANGED BY PROJECT · +3342 −458</text>
   <text x="28" y="103" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">can1357/oh-my-pi</text>
   <rect class="grow-x" style="animation-delay:0.00s" data-label="can1357/oh-my-pi" data-kind="additions" data-value="1164" x="240" y="84" width="389" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
   <rect class="grow-x" style="animation-delay:0.30s" data-label="can1357/oh-my-pi" data-kind="deletions" data-value="152" x="629" y="84" width="51" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="690" y="103" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+1164 −152</text>
   <text x="28" y="143" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">TensorFlow</text>
   <rect class="grow-x" style="animation-delay:0.07s" data-label="TensorFlow" data-kind="additions" data-value="826" x="240" y="124" width="276" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.38s" data-label="TensorFlow" data-kind="deletions" data-value="196" x="516" y="124" width="66" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.37s" data-label="TensorFlow" data-kind="deletions" data-value="196" x="516" y="124" width="66" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="592" y="143" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+826 −196</text>
   <text x="28" y="183" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">herdr E2B sandbox</text>
-  <rect class="grow-x" style="animation-delay:0.15s" data-label="herdr E2B sandbox" data-kind="additions" data-value="424" x="240" y="164" width="142" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.45s" data-label="herdr E2B sandbox" data-kind="deletions" data-value="46" x="382" y="164" width="15" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.13s" data-label="herdr E2B sandbox" data-kind="additions" data-value="424" x="240" y="164" width="142" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.43s" data-label="herdr E2B sandbox" data-kind="deletions" data-value="46" x="382" y="164" width="15" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="407" y="183" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+424 −46</text>
   <text x="28" y="223" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">gVisor</text>
-  <rect class="grow-x" style="animation-delay:0.22s" data-label="gVisor" data-kind="additions" data-value="346" x="240" y="204" width="116" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.52s" data-label="gVisor" data-kind="deletions" data-value="10" x="356" y="204" width="3" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.20s" data-label="gVisor" data-kind="additions" data-value="346" x="240" y="204" width="116" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.50s" data-label="gVisor" data-kind="deletions" data-value="10" x="356" y="204" width="3" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="369" y="223" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+346 −10</text>
   <text x="28" y="263" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">Dataflow guides</text>
-  <rect class="grow-x" style="animation-delay:0.30s" data-label="Dataflow guides" data-kind="additions" data-value="233" x="240" y="244" width="78" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.60s" data-label="Dataflow guides" data-kind="deletions" data-value="22" x="318" y="244" width="7" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.27s" data-label="Dataflow guides" data-kind="additions" data-value="233" x="240" y="244" width="78" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.57s" data-label="Dataflow guides" data-kind="deletions" data-value="22" x="318" y="244" width="7" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="335" y="263" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+233 −22</text>
   <text x="28" y="303" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">Grafana</text>
-  <rect class="grow-x" style="animation-delay:0.38s" data-label="Grafana" data-kind="additions" data-value="205" x="240" y="284" width="69" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.68s" data-label="Grafana" data-kind="deletions" data-value="14" x="309" y="284" width="5" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.33s" data-label="Grafana" data-kind="additions" data-value="205" x="240" y="284" width="69" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.63s" data-label="Grafana" data-kind="deletions" data-value="14" x="309" y="284" width="5" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="324" y="303" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+205 −14</text>
   <text x="28" y="343" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">Mug</text>
-  <rect class="grow-x" style="animation-delay:0.45s" data-label="Mug" data-kind="additions" data-value="94" x="240" y="324" width="31" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.75s" data-label="Mug" data-kind="deletions" data-value="4" x="271" y="324" width="1" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.40s" data-label="Mug" data-kind="additions" data-value="94" x="240" y="324" width="31" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.70s" data-label="Mug" data-kind="deletions" data-value="4" x="271" y="324" width="1" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="282" y="343" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+94 −4</text>
   <text x="28" y="383" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">pvlib</text>
-  <rect class="grow-x" style="animation-delay:0.53s" data-label="pvlib" data-kind="additions" data-value="22" x="240" y="364" width="7" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.82s" data-label="pvlib" data-kind="deletions" data-value="8" x="247" y="364" width="3" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.47s" data-label="pvlib" data-kind="additions" data-value="22" x="240" y="364" width="7" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.77s" data-label="pvlib" data-kind="deletions" data-value="8" x="247" y="364" width="3" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="260" y="383" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+22 −8</text>
   <text x="28" y="423" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">huggingface/peft</text>
-  <rect class="grow-x" style="animation-delay:0.60s" data-label="huggingface/peft" data-kind="additions" data-value="22" x="240" y="404" width="7" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
-  <rect class="grow-x" style="animation-delay:0.90s" data-label="huggingface/peft" data-kind="deletions" data-value="3" x="247" y="404" width="1" height="26" rx="5" fill="#52525b"/>
+  <rect class="grow-x" style="animation-delay:0.53s" data-label="huggingface/peft" data-kind="additions" data-value="22" x="240" y="404" width="7" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.83s" data-label="huggingface/peft" data-kind="deletions" data-value="3" x="247" y="404" width="1" height="26" rx="5" fill="#52525b"/>
   <text class="fade" style="animation-delay:1.15s" x="258" y="423" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+22 −3</text>
+  <text x="28" y="463" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">nightly-labs/openbot</text>
+  <rect class="grow-x" style="animation-delay:0.60s" data-label="nightly-labs/openbot" data-kind="additions" data-value="6" x="240" y="444" width="2" height="26" rx="5" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.90s" data-label="nightly-labs/openbot" data-kind="deletions" data-value="3" x="242" y="444" width="1" height="26" rx="5" fill="#52525b"/>
+  <text class="fade" style="animation-delay:1.15s" x="253" y="463" fill="#a1a1aa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="400" text-anchor="start">+6 −3</text>
 </svg>

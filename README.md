@@ -27,7 +27,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1" width="100%">
 </picture>
 </a>
 
@@ -35,7 +35,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 24" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 25" width="100%">
 </picture>
 </a>
 
@@ -44,10 +44,10 @@ TypeScript · DataHub · MCP · Gemini
 - **TensorFlow** [#126688](https://github.com/tensorflow/tensorflow/pull/126688): fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it
 - **gVisor** [#15301](https://github.com/google/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
 
-17 of the 43 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
+17 of the 44 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
 
 <details>
-<summary>All 43 merged fixes as text</summary>
+<summary>All 44 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -199,7 +199,11 @@ TypeScript · DataHub · MCP · Gemini
 **Issue** OSFLayer.merge() skipped check_adapters_to_merge(), so merging twice applied the OSF delta twice.<br>
 **Fix** Route merge() through check_adapters_to_merge() so an already merged adapter is skipped.
 
-#### More merged fixes · 8
+#### More merged fixes · 9
+
+**nightly-labs/openbot [#3029](https://github.com/nightly-labs/openbot/pull/3029)** · Oct 2026 · merged by @NorbertBodziony · `+6 −3`<br>
+**Issue** OpenBot's server setup, update and provisioning scripts rejected valid mixed-case Linux usernames, such as the ones Google Compute Engine creates, so installs stopped with "The service user is not valid."<br>
+**Fix** Allow uppercase letters in the service-user pattern while still rejecting root, empty names and other special characters.
 
 **e2b-dev/herdr-e2b-sandbox [#36](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/36)** · Sep 2026 · merged by @OndrejDrapalik · `+225 −26`<br>
 **Issue** One unreadable remote file or failed local write aborted the whole pull batch.<br>
@@ -244,7 +248,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 43 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="17 of 44 merged fixes ship a regression test" width="100%">
 </picture>
 </a>
 
@@ -252,7 +256,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
 </picture>
 </a>
 
