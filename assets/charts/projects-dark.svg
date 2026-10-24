@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="840" height="364" viewBox="0 0 840 364" role="img" aria-label="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, pvlib 1">
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="394" viewBox="0 0 840 394" role="img" aria-label="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1">
   <style>
     .grow-x { transform-box: fill-box; transform-origin: left center; animation: grow-x 0.6s cubic-bezier(.2,.7,.2,1) both; }
     .grow-y { transform-box: fill-box; transform-origin: center bottom; animation: grow-y 0.6s cubic-bezier(.2,.7,.2,1) both; }
@@ -10,43 +10,47 @@
     @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
     @media (prefers-reduced-motion: reduce) { .grow-x, .grow-y, .fade, .draw { animation: none; } }
   </style>
-  <rect x="0.5" y="0.5" width="839" height="363" rx="14" fill="#09090b" stroke="#27272a"/>
+  <rect x="0.5" y="0.5" width="839" height="393" rx="14" fill="#09090b" stroke="#27272a"/>
   <circle cx="34" cy="36" r="4" fill="#CAFF4A" stroke="none"/>
-  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">MERGED PRS BY PROJECT · 43 TOTAL</text>
+  <text x="48" y="40" fill="#CAFF4A" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="2.6">MERGED PRS BY PROJECT · 44 TOTAL</text>
   <text x="28" y="84" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">can1357/oh-my-pi</text>
   <rect x="220" y="70" width="520" height="18" rx="4" fill="#18181b"/>
   <rect class="grow-x" style="animation-delay:0.00s" data-label="can1357/oh-my-pi" data-value="14" x="220" y="70" width="520" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="750" y="84" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">14</text>
   <text x="28" y="114" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">TensorFlow</text>
   <rect x="220" y="100" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.11s" data-label="TensorFlow" data-value="12" x="220" y="100" width="446" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.10s" data-label="TensorFlow" data-value="12" x="220" y="100" width="446" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="676" y="114" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">12</text>
   <text x="28" y="144" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">gVisor</text>
   <rect x="220" y="130" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.23s" data-label="gVisor" data-value="5" x="220" y="130" width="186" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.20s" data-label="gVisor" data-value="5" x="220" y="130" width="186" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="416" y="144" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">5</text>
   <text x="28" y="174" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">herdr E2B sandbox</text>
   <rect x="220" y="160" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.34s" data-label="herdr E2B sandbox" data-value="5" x="220" y="160" width="186" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.30s" data-label="herdr E2B sandbox" data-value="5" x="220" y="160" width="186" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="416" y="174" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">5</text>
   <text x="28" y="204" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Grafana</text>
   <rect x="220" y="190" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.45s" data-label="Grafana" data-value="3" x="220" y="190" width="111" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.40s" data-label="Grafana" data-value="3" x="220" y="190" width="111" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="341" y="204" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">3</text>
   <text x="28" y="234" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Dataflow guides</text>
   <rect x="220" y="220" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.56s" data-label="Dataflow guides" data-value="1" x="220" y="220" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.50s" data-label="Dataflow guides" data-value="1" x="220" y="220" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="267" y="234" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">1</text>
   <text x="28" y="264" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">huggingface/peft</text>
   <rect x="220" y="250" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.68s" data-label="huggingface/peft" data-value="1" x="220" y="250" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.60s" data-label="huggingface/peft" data-value="1" x="220" y="250" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="267" y="264" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">1</text>
   <text x="28" y="294" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">Mug</text>
   <rect x="220" y="280" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.79s" data-label="Mug" data-value="1" x="220" y="280" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.70s" data-label="Mug" data-value="1" x="220" y="280" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="267" y="294" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">1</text>
-  <text x="28" y="324" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">pvlib</text>
+  <text x="28" y="324" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">nightly-labs/openbot</text>
   <rect x="220" y="310" width="520" height="18" rx="4" fill="#18181b"/>
-  <rect class="grow-x" style="animation-delay:0.90s" data-label="pvlib" data-value="1" x="220" y="310" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <rect class="grow-x" style="animation-delay:0.80s" data-label="nightly-labs/openbot" data-value="1" x="220" y="310" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
   <text class="fade" style="animation-delay:1.15s" x="267" y="324" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">1</text>
+  <text x="28" y="354" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" text-anchor="start">pvlib</text>
+  <rect x="220" y="340" width="520" height="18" rx="4" fill="#18181b"/>
+  <rect class="grow-x" style="animation-delay:0.90s" data-label="pvlib" data-value="1" x="220" y="340" width="37" height="18" rx="4" fill="#CAFF4A" stroke="none"/>
+  <text class="fade" style="animation-delay:1.15s" x="267" y="354" fill="#fafafa" font-family="&#x27;JetBrains Mono&#x27;, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="700" text-anchor="start">1</text>
 </svg>
