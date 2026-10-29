@@ -219,11 +219,50 @@ def chart(svgs, name):
     return charts.picture(name, html.unescape(alt))
 
 
+LEDGER_URL = "https://www.adityaai.dev/upstream"
+
+# A few fixes worth reading first, one line each. The full record stays in the
+# collapsed sections below and on the site.
+FEATURED = (
+    ("https://github.com/google/gvisor/pull/14401",
+     "any user could delete another user's shared memory segment; removal now checks ownership, as on Linux"),
+    ("https://github.com/tensorflow/tensorflow/pull/127438",
+     "an INT32_MAX index overflowed the list resize in TensorListScatter; it is now rejected"),
+    ("https://github.com/tensorflow/tensorflow/pull/126688",
+     "fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it"),
+    ("https://github.com/google/gvisor/pull/15301",
+     "one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux"),
+)
+
+PROOF_HEADER = ["| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
+
+
+def proof_row(p):
+    return (f"| {project(p['repo'])} | [#{p['number']}]({p['url']}) {p['title']} "
+            f"| [`{p['proof']['label']}`]({p['proof']['url']}) |")
+
+
+def render_summary(items):
+    tested = sum(1 for p in items if p["proof"])
+    return (f"{tested} of the {len(items)} merged fixes include a regression test upstream. "
+            f"Every fix and its test: [full ledger on adityaai.dev]({LEDGER_URL}).")
+
+
+def render_featured(items):
+    by_url = {p["url"]: p for p in items}
+    return [f"- **{project(by_url[u]['repo'])}** [#{by_url[u]['number']}]({u}): {blurb}"
+            for u, blurb in FEATURED if u in by_url]
+
+
 def render_ledger(items, svgs):
     a = [p for p in items if p["tier"] == "A"]
     b = [p for p in items if p["tier"] == "B"]
-    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), "", chart(svgs, "lines"), "",
-           f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
+    out = [chart(svgs, "projects"), "", chart(svgs, "timeline"), ""]
+    featured = render_featured(items)
+    if featured:
+        out += featured + [""]
+    out += [render_summary(items), ""]
+    out += [f"<details>\n<summary>All {len(items)} merged fixes as text</summary>\n"]
     for repo, prs in grouped(a):
         out.append(f"#### {project(repo)} · {len(prs)} merged\n")
         out.extend(row(p) for p in prs)
@@ -235,18 +274,18 @@ def render_ledger(items, svgs):
 
 
 def render_proofs(items, svgs):
-    rows = [p for p in items if p["tier"] == "A" and p["proof"]]
-    out = [chart(svgs, "proofs"), "",
-           "| Project | Fix | Regression test, at the commit that landed |", "|---|---|---|"]
+    rows = [p for p in items if p["proof"]]
+    out = [f"<details>\n<summary>All {len(rows)} regression tests, and lines changed by project</summary>\n",
+           chart(svgs, "proofs"), "", chart(svgs, "lines"), ""] + PROOF_HEADER
     for repo, prs in grouped(rows):
-        for p in prs:
-            out.append(f"| {project(repo)} | [#{p['number']}]({p['url']}) {p['title']} "
-                       f"| [`{p['proof']['label']}`]({p['proof']['url']}) |")
+        out.extend(proof_row(p) for p in prs)
+    out.append("\n</details>")
     return "\n".join(out)
 
 
 def render_notes(notes):
-    return "\n".join(f"- [{n['title']}]({n['url']}) · {month(n['date'])}" for n in notes["essays"])
+    essays = notes["essays"][:notes.get("limit", len(notes["essays"]))]
+    return "\n".join(f"- [{n['title']}]({n['url']}) · {month(n['date'])}" for n in essays)
 
 
 def replace_block(text, name, body):

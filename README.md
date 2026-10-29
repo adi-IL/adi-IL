@@ -10,32 +10,41 @@
 
 **Building the layer between research and production.**
 
-I design production AI systems (agent harnesses, evaluation, sandboxing, and the plumbing between models and real workloads) and write about it at [adityaai.dev](https://www.adityaai.dev). I also ship fixes into the infrastructure AI runs on: TensorFlow kernels and XLA, gVisor's sandboxed kernel, and Grafana. Nearly all of them come with a regression test that upstream now runs.
+I build AI systems (agents, evaluation, sandboxes) and fix the infrastructure they run on: TensorFlow kernels and XLA, gVisor's sandboxed kernel, Grafana, and oh-my-pi. I write about it at [adityaai.dev](https://www.adityaai.dev).
 
 > The model proposes. Deterministic arbiters dispose.
 
+### Lab
+
+**[MidSphere](https://github.com/adi-IL/MidSphere)** · [Live demo](https://midsphere.vercel.app)<br>
+An autonomous context circuit-breaker for data platforms. It audits DataHub catalog context, scores the blast radius of bad metadata, and quarantines it before agents inherit the damage.<br>
+TypeScript · DataHub · MCP · Gemini
+
 ### Upstream ledger
 
-Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, gVisor, and Grafana. The list is generated daily from public GitHub data, and only reviewed entries appear.
-
 <!-- BEGIN:ledger -->
-<a href="https://adityaai.dev/upstream"><picture>
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
   <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1" width="100%">
-</picture></a>
+</picture>
+</a>
 
-<a href="https://adityaai.dev/upstream"><picture>
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
   <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 25" width="100%">
-</picture></a>
+</picture>
+</a>
 
-<a href="https://adityaai.dev/upstream"><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
-</picture></a>
+- **gVisor** [#14401](https://github.com/google/gvisor/pull/14401): any user could delete another user's shared memory segment; removal now checks ownership, as on Linux
+- **TensorFlow** [#127438](https://github.com/tensorflow/tensorflow/pull/127438): an INT32_MAX index overflowed the list resize in TensorListScatter; it is now rejected
+- **TensorFlow** [#126688](https://github.com/tensorflow/tensorflow/pull/126688): fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it
+- **gVisor** [#15301](https://github.com/google/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
+
+17 of the 44 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
 
 <details>
 <summary>All 44 merged fixes as text</summary>
@@ -231,16 +240,25 @@ Merged fixes in the projects AI infrastructure is built on, led by TensorFlow, g
 </details>
 <!-- END:ledger -->
 
-### Proof gallery
-
-A fix without a test is a claim. Each link below opens the regression test in the upstream tree, at the exact commit where it landed.
-
 <!-- BEGIN:proofs -->
-<a href="https://adityaai.dev/upstream"><picture>
+<details>
+<summary>All 17 regression tests, and lines changed by project</summary>
+
+<a href="https://adityaai.dev/upstream">
+<picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
   <img src="assets/charts/proofs-dark.svg" alt="17 of 44 merged fixes ship a regression test" width="100%">
-</picture></a>
+</picture>
+</a>
+
+<a href="https://adityaai.dev/upstream">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
+</picture>
+</a>
 
 | Project | Fix | Regression test, at the commit that landed |
 |---|---|---|
@@ -253,12 +271,17 @@ A fix without a test is a claim. Each link below opens the regression test in th
 | TensorFlow | [#125859](https://github.com/tensorflow/tensorflow/pull/125859) fix: validate minimum input rank in convolution_internal to prevent crash on invalid shapes | [`testInvalidInputRank`](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275) |
 | gVisor | [#14505](https://github.com/google/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
 | Grafana | [#131335](https://github.com/grafana/grafana/pull/131335) ValueMappings: Allow editing negative bounds in range mappings | [`should allow editing negative bounds on existing range mapping`](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159) |
+| Dataflow guides | [#224](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/pull/224) fix(cdp): pass schema as runtime option and add typed join handling | [`test_load_output_schema_default`](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/blob/73f05d16ab6050325ec493a1fd40d3b6a459df57/pipelines/cdp/tests/test_customer_data_platform.py#L83) |
+| herdr E2B sandbox | [#36](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/36) fix: finish pull batches while reporting per-file failures | [`per-file failure tests`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/6cc81c43afec6f11b6e5a30788f5d28307054eb8/test/download-cli.test.js#L77) |
+| herdr E2B sandbox | [#35](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/35) fix: clamp terminal dimensions to positive integers in attach plan | [`terminal dimension tests`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/de09335ce9dd336e5bd4fae29d075d4e9aba2032/test/attach-plan.test.js#L88) |
+| herdr E2B sandbox | [#34](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/34) fix(exec): preserve JSON results for input and setup errors | [`JSON error tests`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/11943a4a49855759a34540290cca4e88bb57bf78/test/exec.test.js#L39) |
+| herdr E2B sandbox | [#33](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/33) fix: prevent intra-process tempfile collisions in atomic store writes | [`100 concurrent writes test`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/f5f5b6abeabad87e846f4820e6b2945b448e615a/test/store.test.js#L13) |
+| herdr E2B sandbox | [#21](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/21) fix: invoke credential resolver under daemon even when ambient env is populated | [`daemon pre-flight check`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/1e9da2a0bb017cb7d54eb0cdc4c168650c0abf56/test/cli.test.sh#L652) |
+| Mug | [#130](https://github.com/google/mug/pull/130) fix: prevent escape fallback from swallowing malformed constructs and enable error test suite | [`RegexParserErrorTest`](https://github.com/google/mug/blob/e34619eecd3eade471f59fbf9d91647767c0557c/dot-parse/src/test/java/com/google/common/labs/regex/RegexParserErrorTest.java#L792) |
+| pvlib | [#2821](https://github.com/pvlib/pvlib-python/pull/2821) Fix delta_kt_prime halving single valid neighbor difference (gh-1847) | [`test_delta_kt_prime_interior_nan`](https://github.com/pvlib/pvlib-python/blob/482ca3c6fee3aeb357166505c02d2d9fc92fe6e2/tests/test_irradiance.py#L798) |
+
+</details>
 <!-- END:proofs -->
-
-### Lab
-
-- **[MidSphere](https://github.com/adi-IL/MidSphere)**: an autonomous context circuit-breaker for data platforms. [Live demo](https://midsphere.vercel.app).
-- **[Essays](https://www.adityaai.dev/articles)**: a short shelf on agent harnesses, verification, sandboxing, and inference economics.
 
 ### Notes
 
@@ -268,8 +291,6 @@ Latest essays from [adityaai.dev](https://www.adityaai.dev/articles):
 - [Shared caches beat sandbox walls](https://www.adityaai.dev/articles/shared-caches-beat-sandbox-walls) · Sep 2026
 - [The Verification Gap: Why Reasoning Models Need Deterministic Arbiters](https://www.adityaai.dev/articles/the-verification-gap) · Sep 2026
 - [The Chat Template Trap: Why Dynamic Agent State Crashes Open-Weight Models](https://www.adityaai.dev/articles/the-chat-template-trap) · Sep 2026
-- [The Invariant Problem in Autonomous Remediation: Why Code Synthesis Fails Without Closed-Loop Verification](https://www.adityaai.dev/articles/closed-loop-remediation-architecture) · Aug 2026
-- [Sandboxing Architectures for Autonomous Agents: MicroVMs, gVisor, and the Egress Dilemma](https://www.adityaai.dev/articles/sandboxing-architectures-for-agents) · Aug 2026
 <!-- END:notes -->
 
 ### Links

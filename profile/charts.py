@@ -4,6 +4,7 @@ Every bar, column and segment carries data-* attributes with the number it
 draws, so tests can check each chart against data/ledger.json.
 """
 import html
+import math
 from collections import OrderedDict
 
 MONO = "'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace"
@@ -22,6 +23,13 @@ STYLE = """<style>
     @media (prefers-reduced-motion: reduce) { .grow-x, .grow-y, .fade, .draw { animation: none; } }
   </style>"""
 WIDTH = 840
+# Sizes are in SVG units. The README shows every chart full width (about 830px
+# on desktop), so these are close to the on-screen pixel sizes.
+LABEL = 17     # project names, month names, values
+HEADER = 14    # card title
+ROW = 40       # vertical step between bars
+BAR = 26       # bar thickness
+TOP = 84       # first row below the card title
 THEMES = {
     "dark": {"bg": "#09090b", "border": "#27272a", "text": "#fafafa", "muted": "#a1a1aa",
              "accent": "#CAFF4A", "accent_text": "#CAFF4A", "track": "#18181b", "bar_stroke": "none",
@@ -62,12 +70,12 @@ def frame(t, height, header, label, body):
             f'viewBox="0 0 {WIDTH} {height}" role="img" aria-label="{e(label)}">\n'
             f'  {STYLE}\n'
             f'  <rect x="0.5" y="0.5" width="{WIDTH - 1}" height="{height - 1}" rx="14" fill="{t["bg"]}" stroke="{t["border"]}"/>\n'
-            f'  <circle cx="34" cy="36" r="4" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>\n'
-            f'  <text x="48" y="40" fill="{t["accent_text"]}" font-family="{e(MONO)}" font-size="11" letter-spacing="2.6">{e(header)}</text>\n'
+            f'  <circle cx="34" cy="40" r="5" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>\n'
+            f'  <text x="50" y="45" fill="{t["accent_text"]}" font-family="{e(MONO)}" font-size="{HEADER}" font-weight="700" letter-spacing="2">{e(header)}</text>\n'
             + "".join(f"  {line}\n" for line in body) + "</svg>\n")
 
 
-def text(x, y, s, fill, size=12, anchor="start", weight="400", extra=""):
+def text(x, y, s, fill, size=LABEL, anchor="start", weight="400", extra=""):
     return (f'<text {extra}x="{x}" y="{y}" fill="{fill}" font-family="{e(MONO)}" font-size="{size}" '
             f'font-weight="{weight}" text-anchor="{anchor}">{e(str(s))}</text>')
 
@@ -76,19 +84,19 @@ def projects_chart(items, name_of, theme):
     t = THEMES[theme]
     groups = by_project(items, name_of)
     top = max(len(prs) for _, prs in groups)
-    x0, span, row = 220, 520, 30
+    x0, span = 240, 520
     body = []
     for i, (name, prs) in enumerate(groups):
-        y = 70 + i * row
-        w = max(4, round(span * len(prs) / top))
-        body.append(text(28, y + 14, name, t["text"]))
-        body.append(f'<rect x="{x0}" y="{y}" width="{span}" height="18" rx="4" fill="{t["track"]}"/>')
+        y = TOP + i * ROW
+        w = max(6, round(span * len(prs) / top))
+        body.append(text(28, y + BAR // 2 + 6, name, t["text"]))
+        body.append(f'<rect x="{x0}" y="{y}" width="{span}" height="{BAR}" rx="5" fill="{t["track"]}"/>')
         body.append(f'<rect class="grow-x" {delay(i, len(groups))} data-label="{e(name)}" data-value="{len(prs)}" '
-                    f'x="{x0}" y="{y}" width="{w}" height="18" rx="4" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>')
-        body.append(text(x0 + w + 10, y + 14, len(prs), t["text"], weight="700",
+                    f'x="{x0}" y="{y}" width="{w}" height="{BAR}" rx="5" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>')
+        body.append(text(x0 + w + 12, y + BAR // 2 + 6, len(prs), t["text"], weight="700",
                          extra=f'class="fade" style="animation-delay:{DURATION - 0.35:.2f}s" '))
     label = "Merged PRs by project: " + ", ".join(f"{n} {len(p)}" for n, p in groups)
-    return frame(t, 70 + len(groups) * row + 24, f"MERGED PRS BY PROJECT · {len(items)} TOTAL", label, body)
+    return frame(t, TOP + len(groups) * ROW + 18, f"MERGED PRS BY PROJECT · {len(items)} TOTAL", label, body)
 
 
 def timeline_chart(items, theme):
@@ -96,44 +104,55 @@ def timeline_chart(items, theme):
     ms = months(items)
     counts = [sum(1 for p in items if p["merged_at"][:7] == m) for m in ms]
     top = max(counts) or 1
-    base, tall = 200, 120
+    base, tall = 272, 160
     slot = (WIDTH - 96) / len(ms)
+    # Monospace glyphs are about 0.6em wide. Drop the year from month labels
+    # once "Aug 2026" no longer fits its slot, then label every step-th month,
+    # so labels never overlap however long the ledger runs.
+    glyph = 0.6 * LABEL
+    full = slot >= 8 * glyph + 12
+    step = 1 if full else math.ceil((3 * glyph + 12) / slot)
+    shown_year = None
     body = [f'<line x1="48" y1="{base}" x2="{WIDTH - 48}" y2="{base}" stroke="{t["border"]}"/>']
     points = []
     for i, (m, c) in enumerate(zip(ms, counts)):
         cx = 48 + slot * (i + 0.5)
         h = round(tall * c / top)
-        w = min(96, slot * 0.5)
+        w = min(120, slot * 0.55)
         name = f"{MONTHS[int(m[5:]) - 1]} {m[:4]}"
         points.append(f"{cx:.1f},{base - h}")
         body.append(f'<rect class="grow-y" {delay(i, len(ms), 0.5)} data-label="{m}" data-value="{c}" '
                     f'x="{cx - w / 2:.1f}" y="{base - h}" width="{w:.1f}" height="{h}" rx="4" '
                     f'fill="{t["accent"]}" fill-opacity="0.35" stroke="{t["bar_stroke"] if c else "none"}"/>')
-        body.append(text(round(cx), base - h - 14, c, t["text"], size=14, anchor="middle", weight="700",
+        body.append(text(round(cx), base - h - 16, c, t["text"], size=LABEL + 3, anchor="middle", weight="700",
                          extra=f'class="fade" style="animation-delay:{DURATION - 0.35:.2f}s" '))
-        body.append(text(round(cx), base + 22, name, t["muted"], anchor="middle"))
+        if i % step == 0:
+            body.append(text(round(cx), base + 30, name if full else name[:3], t["muted"], anchor="middle"))
+            if not full and m[:4] != shown_year:
+                shown_year = m[:4]
+                body.append(text(round(cx), base + 50, m[:4], t["muted"], size=LABEL - 3, anchor="middle"))
     body.append(f'<polyline class="draw" style="animation-delay:0.6s" pathLength="1" points="{" ".join(points)}" '
                 f'fill="none" stroke="{t["accent_text"]}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>')
     for i, pt in enumerate(points):
         x, y = pt.split(",")
         body.append(f'<circle class="fade" style="animation-delay:{min(0.6 + 0.9 * i / max(len(points) - 1, 1), DURATION - 0.35):.2f}s" '
-                    f'cx="{x}" cy="{y}" r="5" fill="{t["accent"]}" stroke="{t["bg"]}" stroke-width="2"/>')
+                    f'cx="{x}" cy="{y}" r="6" fill="{t["accent"]}" stroke="{t["bg"]}" stroke-width="2"/>')
     label = "Merges per month: " + ", ".join(
         f"{MONTHS[int(m[5:]) - 1]} {m[:4]} {c}" for m, c in zip(ms, counts))
     first = f"{MONTHS[int(ms[0][5:]) - 1].upper()} {ms[0][:4]}"
-    return frame(t, 244, f"MERGES PER MONTH · SINCE {first}", label, body)
+    return frame(t, base + (56 if full else 70), f"MERGES PER MONTH · SINCE {first}", label, body)
 
 
 def proofs_chart(items, name_of, theme):
     t = THEMES[theme]
     groups = by_project(items, name_of)
     tested = sum(1 for p in items if p["proof"])
-    size, gap, x0, row = 16, 6, 220, 30
+    size, gap, x0 = BAR - 4, 6, 240
     body, seen = [], 0
     for i, (name, prs) in enumerate(groups):
-        y = 70 + i * row
+        y = TOP + i * ROW
         n = sum(1 for p in prs if p["proof"])
-        body.append(text(28, y + 13, name, t["text"]))
+        body.append(text(28, y + size // 2 + 6, name, t["text"]))
         body.append(f'<g data-label="{e(name)}" data-tested="{n}" data-total="{len(prs)}">')
         for j, p in enumerate(sorted(prs, key=lambda p: not p["proof"])):
             x = x0 + j * (size + gap)
@@ -144,14 +163,14 @@ def proofs_chart(items, name_of, theme):
             else:
                 body.append(f'  <rect {fade}x="{x + 0.5}" y="{y + 0.5}" width="{size - 1}" height="{size - 1}" rx="3" fill="none" stroke="{t["second"]}"/>')
         body.append("</g>")
-        body.append(text(x0 + len(prs) * (size + gap) + 8, y + 13, f"{n}/{len(prs)}", t["muted"]))
-    h = 70 + len(groups) * row
-    body.append(f'<rect x="28" y="{h + 2}" width="12" height="12" rx="3" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>')
-    body.append(text(48, h + 12, "ships a regression test", t["muted"], size=11))
-    body.append(f'<rect x="248.5" y="{h + 2.5}" width="11" height="11" rx="3" fill="none" stroke="{t["second"]}"/>')
-    body.append(text(268, h + 12, "no test", t["muted"], size=11))
+        body.append(text(x0 + len(prs) * (size + gap) + 8, y + size // 2 + 6, f"{n}/{len(prs)}", t["muted"]))
+    h = TOP + len(groups) * ROW
+    body.append(f'<rect x="28" y="{h + 2}" width="16" height="16" rx="3" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>')
+    body.append(text(54, h + 16, "ships a regression test", t["muted"], size=LABEL - 2))
+    body.append(f'<rect x="328.5" y="{h + 2.5}" width="15" height="15" rx="3" fill="none" stroke="{t["second"]}"/>')
+    body.append(text(354, h + 16, "no test", t["muted"], size=LABEL - 2))
     label = f"{tested} of {len(items)} merged fixes ship a regression test"
-    return frame(t, h + 36, f"{tested} OF {len(items)} MERGED FIXES SHIP A REGRESSION TEST", label, body)
+    return frame(t, h + 40, f"{tested} OF {len(items)} MERGED FIXES SHIP A REGRESSION TEST", label, body)
 
 
 def lines_chart(items, name_of, theme):
@@ -160,21 +179,21 @@ def lines_chart(items, name_of, theme):
     sums = [(n, sum(p["additions"] for p in prs), sum(p["deletions"] for p in prs)) for n, prs in groups]
     sums.sort(key=lambda s: (-(s[1] + s[2]), s[0].lower()))
     top = max(a + d for _, a, d in sums) or 1
-    x0, span, row = 220, 480, 30
+    x0, span = 240, 440
     body = []
     for i, (name, a, d) in enumerate(sums):
-        y = 70 + i * row
+        y = TOP + i * ROW
         wa, wd = round(span * a / top), round(span * d / top)
-        body.append(text(28, y + 14, name, t["text"]))
+        body.append(text(28, y + BAR // 2 + 6, name, t["text"]))
         body.append(f'<rect class="grow-x" {delay(i, len(sums), 0.6)} data-label="{e(name)}" data-kind="additions" data-value="{a}" x="{x0}" y="{y}" '
-                    f'width="{max(wa, 2)}" height="18" rx="4" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>')
+                    f'width="{max(wa, 2)}" height="{BAR}" rx="5" fill="{t["accent"]}" stroke="{t["bar_stroke"]}"/>')
         body.append(f'<rect class="grow-x" style="animation-delay:{0.3 + i * min(0.12, 0.6 / max(len(sums) - 1, 1)):.2f}s" data-label="{e(name)}" data-kind="deletions" data-value="{d}" x="{x0 + max(wa, 2)}" y="{y}" '
-                    f'width="{wd}" height="18" rx="4" fill="{t["second"]}"/>')
-        body.append(text(x0 + max(wa, 2) + wd + 10, y + 14, f"+{a} −{d}", t["muted"],
+                    f'width="{wd}" height="{BAR}" rx="5" fill="{t["second"]}"/>')
+        body.append(text(x0 + max(wa, 2) + wd + 10, y + BAR // 2 + 6, f"+{a} −{d}", t["muted"],
                          extra=f'class="fade" style="animation-delay:{DURATION - 0.35:.2f}s" '))
     total_a, total_d = sum(s[1] for s in sums), sum(s[2] for s in sums)
     label = "Lines changed by project: " + ", ".join(f"{n} +{a} -{d}" for n, a, d in sums)
-    return frame(t, 70 + len(sums) * row + 24, f"LINES CHANGED BY PROJECT · +{total_a} −{total_d}", label, body)
+    return frame(t, TOP + len(sums) * ROW + 18, f"LINES CHANGED BY PROJECT · +{total_a} −{total_d}", label, body)
 
 
 def render_all(items, name_of):
@@ -188,8 +207,12 @@ def render_all(items, name_of):
 
 
 def picture(name, alt):
-    return (f'<a href="{INTERACTIVE_URL}"><picture>\n'
+    # The <a> and <picture> tags each sit on their own line so GitHub parses the
+    # whole element as one HTML block. With both on one line the <source> lines
+    # start a separate block, the <picture> ends up empty and every theme falls
+    # back to the dark <img>.
+    return (f'<a href="{INTERACTIVE_URL}">\n<picture>\n'
             f'  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/{name}-dark.svg">\n'
             f'  <source media="(prefers-color-scheme: light)" srcset="assets/charts/{name}-light.svg">\n'
             f'  <img src="assets/charts/{name}-dark.svg" alt="{e(alt)}" width="100%">\n'
-            "</picture></a>")
+            "</picture>\n</a>")

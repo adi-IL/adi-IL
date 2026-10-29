@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+import re
 import shutil
 import sys
 import tempfile
@@ -103,6 +104,28 @@ class BuildTest(unittest.TestCase):
             ET.fromstring(svg)
             self.assertNotIn("approv", svg.lower())
         self.assertIn("2 OF 2 MERGED FIXES SHIP A REGRESSION TEST", self.read("assets/charts/proofs-dark.svg"))
+
+    def test_summary_counts_and_notes_limit(self):
+        self.write_readme("<!-- BEGIN:notes -->\n<!-- END:notes -->\n")
+        essays = [{"title": f"E{i}", "url": f"https://www.adityaai.dev/articles/{i}", "date": "2026-09-14"} for i in range(5)]
+        with open(os.path.join(self.dir, "profile", "notes.json"), "w") as f:
+            json.dump({"limit": 3, "essays": essays}, f)
+        build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
+        readme = self.read("README.md")
+        self.assertIn("2 of the 2 merged fixes include a regression test upstream. "
+                      "Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).", readme)
+        self.assertNotIn("| Project | Fix |", readme.split("<details>")[0])
+        self.assertIn("[E2]", readme)
+        self.assertNotIn("[E3]", readme)
+
+    def test_featured_fixes_render_one_line_each(self):
+        featured = (("https://github.com/tensorflow/tensorflow/pull/1", "fixed a crash"),
+                    ("https://github.com/google/gvisor/pull/404", "not in the ledger, skipped"))
+        with mock.patch.object(build, "FEATURED", featured):
+            build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
+        readme = self.read("README.md")
+        self.assertIn("- **TensorFlow** [#1](https://github.com/tensorflow/tensorflow/pull/1): fixed a crash\n", readme)
+        self.assertNotIn("pull/404", readme)
 
     def test_banned_term_in_chart_label_is_caught(self):
         with mock.patch.dict(build.PROJECT_NAMES, {"google/mug": "Zebra Fjord"}):
@@ -239,10 +262,30 @@ class ChartNumbersTest(unittest.TestCase):
             data = [el for el in root.iter() if "data-label" in el.attrib]
             self.assertTrue(all(el.get("class") for el in data) or "proofs" in name, name)
 
+    def test_timeline_month_labels_never_overlap(self):
+        for n in (4, 10, 18, 40):
+            items, y, m = [], 2026, 7
+            for _ in range(n):
+                items.append({"merged_at": f"{y:04d}-{m:02d}-15", "repo": "x"})
+                y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+            svg = charts.timeline_chart(items, "dark")
+            labels = re.findall(r'<text x="(\d+)" y="(\d+)"[^>]*font-size="(\d+)"[^>]*text-anchor="middle">([^<]*)</text>', svg)
+            rows = {}
+            for x, y_, size, s in labels:
+                if not s.isdigit():
+                    half = len(s) * 0.6 * int(size) / 2
+                    rows.setdefault(y_, []).append((int(x) - half, int(x) + half))
+            for spans in rows.values():
+                spans.sort()
+                for (_, end), (start, _) in zip(spans, spans[1:]):
+                    self.assertLess(end, start, n)
+
     def test_charts_link_to_interactive_page(self):
         with open(os.path.join(ROOT, "README.md")) as f:
             readme = f.read()
-        self.assertEqual(readme.count(f'<a href="{charts.INTERACTIVE_URL}"><picture>'), 4)
+        # <a> and <picture> on separate lines, or GitHub splits the element apart.
+        self.assertEqual(readme.count(f'<a href="{charts.INTERACTIVE_URL}">\n<picture>\n'), 4)
+        self.assertEqual(readme.count("</picture>\n</a>"), 4)
         self.assertEqual(readme.count("<picture>"), 5)
 
     def test_committed_charts_match_ledger(self):
