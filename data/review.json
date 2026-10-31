@@ -1,3 +1,11 @@
 {
-  "candidates": []
+  "candidates": [
+    {
+      "url": "https://github.com/google/gvisor/pull/15949",
+      "title": "netlink: do not ack a successful dump",
+      "repo": "google/gvisor",
+      "stars": 19837,
+      "merged_at": "2026-10-30T22:26:18Z"
+    }
+  ]
 }
