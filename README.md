@@ -27,7 +27,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 5, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 12, gVisor 6, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1" width="100%">
 </picture>
 </a>
 
@@ -35,7 +35,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 25" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 26" width="100%">
 </picture>
 </a>
 
@@ -44,10 +44,10 @@ TypeScript · DataHub · MCP · Gemini
 - **TensorFlow** [#126688](https://github.com/tensorflow/tensorflow/pull/126688): fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it
 - **gVisor** [#15301](https://github.com/google/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
 
-17 of the 44 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
+18 of the 45 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
 
 <details>
-<summary>All 44 merged fixes as text</summary>
+<summary>All 45 merged fixes as text</summary>
 
 #### TensorFlow · 12 merged
 
@@ -99,7 +99,11 @@ TypeScript · DataHub · MCP · Gemini
 **Issue** A convolution with an invalid rank aborted the Python process instead of returning an error.<br>
 **Fix** Raise ValueError so callers can catch the bad shape and keep the process alive. [Test ↗](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275)
 
-#### gVisor · 5 merged
+#### gVisor · 6 merged
+
+**google/gvisor [#15949](https://github.com/google/gvisor/pull/15949)** · Oct 2026 · merged · `+37 −1`<br>
+**Issue** A netlink dump request with NLM_F_ACK got an NLMSG_ERROR ack in the reply stream, which broke libnl caches with NLE_SEQ_MISMATCH; Linux sends no ack once a dump starts.<br>
+**Fix** Skip DumpAckMessage when the handler produced a multipart reply and returned no error, keying on the reply rather than the NLM_F_DUMP bit. [Test ↗](https://github.com/google/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294)
 
 **google/gvisor [#14401](https://github.com/google/gvisor/pull/14401)** · Oct 2026 · merged · `+62 −5`<br>
 **Issue** Any user could destroy any SysV shared memory segment with shmctl(IPC_RMID), because gVisor skipped the creator, owner or CAP_SYS_ADMIN check that Linux enforces.<br>
@@ -242,13 +246,13 @@ TypeScript · DataHub · MCP · Gemini
 
 <!-- BEGIN:proofs -->
 <details>
-<summary>All 17 regression tests, and lines changed by project</summary>
+<summary>All 18 regression tests, and lines changed by project</summary>
 
 <a href="https://adityaai.dev/upstream">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="17 of 44 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="18 of 45 merged fixes ship a regression test" width="100%">
 </picture>
 </a>
 
@@ -256,7 +260,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +346 -10, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +826 -196, herdr E2B sandbox +424 -46, gVisor +383 -11, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
 </picture>
 </a>
 
@@ -269,6 +273,7 @@ TypeScript · DataHub · MCP · Gemini
 | TensorFlow | [#126935](https://github.com/tensorflow/tensorflow/pull/126935) fix(tf2xla): register XLA OpKernels for BesselI0 and BesselI1 | [`testBesselI0 / testBesselI1`](https://github.com/tensorflow/tensorflow/blob/957c552af12162dbc096f2258c56c1081a733edc/tensorflow/compiler/tests/unary_ops_test.py#L218) |
 | TensorFlow | [#126449](https://github.com/tensorflow/tensorflow/pull/126449) [XLA:tf2xla] Support half, bfloat16, and integer dtypes in RangeOp | [`testRange`](https://github.com/tensorflow/tensorflow/blob/b95e0be7f86632cec71f29ff379e98184481283b/tensorflow/compiler/tests/ternary_ops_test.py#L62) |
 | TensorFlow | [#125859](https://github.com/tensorflow/tensorflow/pull/125859) fix: validate minimum input rank in convolution_internal to prevent crash on invalid shapes | [`testInvalidInputRank`](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275) |
+| gVisor | [#15949](https://github.com/google/gvisor/pull/15949) netlink: do not ack a successful dump | [`NetlinkRouteTest.GetLinkDumpWithAck`](https://github.com/google/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294) |
 | gVisor | [#14505](https://github.com/google/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
 | Grafana | [#131335](https://github.com/grafana/grafana/pull/131335) ValueMappings: Allow editing negative bounds in range mappings | [`should allow editing negative bounds on existing range mapping`](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159) |
 | Dataflow guides | [#224](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/pull/224) fix(cdp): pass schema as runtime option and add typed join handling | [`test_load_output_schema_default`](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/blob/73f05d16ab6050325ec493a1fd40d3b6a459df57/pipelines/cdp/tests/test_customer_data_platform.py#L83) |
