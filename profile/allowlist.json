@@ -282,6 +282,13 @@
       "tier": "B",
       "issue": "OpenBot's server setup, update and provisioning scripts rejected valid mixed-case Linux usernames, such as the ones Google Compute Engine creates, so installs stopped with \"The service user is not valid.\"",
       "fix": "Allow uppercase letters in the service-user pattern while still rejecting root, empty names and other special characters."
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15949",
+      "tier": "A",
+      "issue": "A netlink dump request with NLM_F_ACK got an NLMSG_ERROR ack in the reply stream, which broke libnl caches with NLE_SEQ_MISMATCH; Linux sends no ack once a dump starts.",
+      "fix": "Skip DumpAckMessage when the handler produced a multipart reply and returned no error, keying on the reply rather than the NLM_F_DUMP bit.",
+      "proof": {"path": "test/syscalls/linux/socket_netlink_route.cc", "anchor": "TEST(NetlinkRouteTest, GetLinkDumpWithAck)", "label": "NetlinkRouteTest.GetLinkDumpWithAck"}
     }
 ]
 }
