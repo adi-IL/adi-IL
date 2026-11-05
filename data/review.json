@@ -1,3 +1,11 @@
 {
-  "candidates": []
+  "candidates": [
+    {
+      "url": "https://github.com/google/gvisor/pull/15760",
+      "title": "Block semop with sem_op -32768 instead of wrapping the semaphore negative",
+      "repo": "google/gvisor",
+      "stars": 19872,
+      "merged_at": "2026-11-04T20:06:10Z"
+    }
+  ]
 }
