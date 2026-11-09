@@ -674,6 +674,42 @@
         "line": 294,
         "url": "https://github.com/google/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294"
       }
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15760",
+      "repo": "google/gvisor",
+      "number": 15760,
+      "title": "Block semop with sem_op -32768 instead of wrapping the semaphore negative",
+      "tier": "A",
+      "merged_at": "2026-11-04T20:06:10Z",
+      "additions": 37,
+      "deletions": 12,
+      "merged_by": "copybara-service",
+      "merge_oid": "2ac0f43d3a755e63413471cf6a1f54e64e922cd9",
+      "proof": {
+        "label": "TestWaitMinInt16",
+        "path": "pkg/sentry/kernel/semaphore/semaphore_test.go",
+        "line": 142,
+        "url": "https://github.com/google/gvisor/blob/2ac0f43d3a755e63413471cf6a1f54e64e922cd9/pkg/sentry/kernel/semaphore/semaphore_test.go#L142"
+      }
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/129984",
+      "repo": "tensorflow/tensorflow",
+      "number": 129984,
+      "title": "Fix XLA truncated normal sampling in far one-sided tails",
+      "tier": "A",
+      "merged_at": "2026-11-09T08:49:30Z",
+      "additions": 134,
+      "deletions": 25,
+      "merged_by": "copybara-service",
+      "merge_oid": "aad13d405493f75040cd8bf4fbf1a81a6db354f0",
+      "proof": {
+        "label": "testParameterizedTruncatedNormalFarRightTail",
+        "path": "tensorflow/compiler/tests/stateless_random_ops_test.py",
+        "line": 504,
+        "url": "https://github.com/tensorflow/tensorflow/blob/aad13d405493f75040cd8bf4fbf1a81a6db354f0/tensorflow/compiler/tests/stateless_random_ops_test.py#L504"
+      }
     }
   ]
 }
