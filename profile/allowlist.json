@@ -289,6 +289,20 @@
       "issue": "A netlink dump request with NLM_F_ACK got an NLMSG_ERROR ack in the reply stream, which broke libnl caches with NLE_SEQ_MISMATCH; Linux sends no ack once a dump starts.",
       "fix": "Skip DumpAckMessage when the handler produced a multipart reply and returned no error, keying on the reply rather than the NLM_F_DUMP bit.",
       "proof": {"path": "test/syscalls/linux/socket_netlink_route.cc", "anchor": "TEST(NetlinkRouteTest, GetLinkDumpWithAck)", "label": "NetlinkRouteTest.GetLinkDumpWithAck"}
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/15760",
+      "tier": "A",
+      "issue": "semop negated sem_op as an int16, so -32768 wrapped back to itself, skipped the wait and range checks, and left the semaphore at -32768.",
+      "fix": "Do the wait check in int32 like Linux, sending the op down the block or EAGAIN path, and apply the same check when waking waiters.",
+      "proof": {"path": "pkg/sentry/kernel/semaphore/semaphore_test.go", "anchor": "func TestWaitMinInt16(", "label": "TestWaitMinInt16"}
+    },
+    {
+      "url": "https://github.com/tensorflow/tensorflow/pull/129984",
+      "tier": "A",
+      "issue": "Under XLA, truncated normal sampling with both bounds far on one side of the mean returned the lower bound for every sample, because float32 CDFs rounded to 0 or 1.",
+      "fix": "Sample one-sided intervals by inverting the log tail probability, with erfc near the mean, a Mills-ratio asymptotic far out, and Newton refinement.",
+      "proof": {"path": "tensorflow/compiler/tests/stateless_random_ops_test.py", "anchor": "def testParameterizedTruncatedNormalFarRightTail", "label": "testParameterizedTruncatedNormalFarRightTail"}
     }
-]
+  ]
 }
