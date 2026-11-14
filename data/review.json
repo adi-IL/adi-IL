@@ -1,3 +1,11 @@
 {
-  "candidates": []
+  "candidates": [
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16656",
+      "title": "fix(coding-agent): expand repeated @-import includes",
+      "repo": "can1357/oh-my-pi",
+      "stars": 38982,
+      "merged_at": "2026-11-14T06:34:05Z"
+    }
+  ]
 }
