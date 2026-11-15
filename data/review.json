@@ -4,8 +4,22 @@
       "url": "https://github.com/can1357/oh-my-pi/pull/16656",
       "title": "fix(coding-agent): expand repeated @-import includes",
       "repo": "can1357/oh-my-pi",
-      "stars": 38982,
+      "stars": 39057,
       "merged_at": "2026-11-14T06:34:05Z"
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14763",
+      "title": "cgroup: skip empty Docker BlockIO when blkio controller is missing",
+      "repo": "google/gvisor",
+      "stars": 20006,
+      "merged_at": "2026-11-14T12:42:38Z"
+    },
+    {
+      "url": "https://github.com/s0ld13rr/pentestcode/pull/12",
+      "title": "fix(provider): consolidate leading system messages to prevent Jinja crash on compaction",
+      "repo": "s0ld13rr/pentestcode",
+      "stars": 1033,
+      "merged_at": "2026-09-02T07:07:38Z"
     }
   ]
 }
