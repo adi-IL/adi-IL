@@ -746,6 +746,42 @@
         "line": 948,
         "url": "https://github.com/google/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948"
       }
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16482",
+      "repo": "can1357/oh-my-pi",
+      "number": 16482,
+      "title": "fix(mcp): report the stdio subprocess exit status on EOF",
+      "tier": "A",
+      "merged_at": "2026-11-16T10:18:49Z",
+      "additions": 131,
+      "deletions": 20,
+      "merged_by": "H4vC",
+      "merge_oid": "9892b196a931eb3a7d3e486790b8ebb8dbb78c5d",
+      "proof": {
+        "label": "reports the subprocess exit code when it terminates before responding",
+        "path": "packages/coding-agent/test/mcp-stdio-transport.test.ts",
+        "line": 702,
+        "url": "https://github.com/can1357/oh-my-pi/blob/9892b196a931eb3a7d3e486790b8ebb8dbb78c5d/packages/coding-agent/test/mcp-stdio-transport.test.ts#L702"
+      }
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/137068",
+      "repo": "grafana/grafana",
+      "number": 137068,
+      "title": "Unified storage: Return the requested apiVersion on list items",
+      "tier": "A",
+      "merged_at": "2026-11-16T10:17:47Z",
+      "additions": 104,
+      "deletions": 0,
+      "merged_by": "pstibrany",
+      "merge_oid": "de9ecd4663d32487b2525ed7236771d1a2824efa",
+      "proof": {
+        "label": "TestGetListItemsUseDeclaredVersion",
+        "path": "pkg/storage/unified/apistore/list_apiversion_test.go",
+        "line": 14,
+        "url": "https://github.com/grafana/grafana/blob/de9ecd4663d32487b2525ed7236771d1a2824efa/pkg/storage/unified/apistore/list_apiversion_test.go#L14"
+      }
     }
   ]
 }
