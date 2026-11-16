@@ -27,7 +27,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/projects-light.svg">
-  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 14, TensorFlow 13, gVisor 7, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1" width="100%">
+  <img src="assets/charts/projects-dark.svg" alt="Merged PRs by project: can1357/oh-my-pi 15, TensorFlow 13, gVisor 8, herdr E2B sandbox 5, Grafana 3, Dataflow guides 1, huggingface/peft 1, Mug 1, nightly-labs/openbot 1, pvlib 1" width="100%">
 </picture>
 </a>
 
@@ -35,7 +35,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/timeline-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/timeline-light.svg">
-  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 26, Nov 2026 2" width="100%">
+  <img src="assets/charts/timeline-dark.svg" alt="Merges per month: Jul 2026 0, Aug 2026 6, Sep 2026 13, Oct 2026 26, Nov 2026 4" width="100%">
 </picture>
 </a>
 
@@ -44,10 +44,10 @@ TypeScript · DataHub · MCP · Gemini
 - **TensorFlow** [#126688](https://github.com/tensorflow/tensorflow/pull/126688): fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it
 - **gVisor** [#15301](https://github.com/google/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
 
-20 of the 47 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
+22 of the 49 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
 
 <details>
-<summary>All 47 merged fixes as text</summary>
+<summary>All 49 merged fixes as text</summary>
 
 #### TensorFlow · 13 merged
 
@@ -103,7 +103,11 @@ TypeScript · DataHub · MCP · Gemini
 **Issue** A convolution with an invalid rank aborted the Python process instead of returning an error.<br>
 **Fix** Raise ValueError so callers can catch the bad shape and keep the process alive. [Test ↗](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275)
 
-#### gVisor · 7 merged
+#### gVisor · 8 merged
+
+**google/gvisor [#14763](https://github.com/google/gvisor/pull/14763)** · Nov 2026 · merged · `+20 −1`<br>
+**Issue** Docker always populates blockIO even when no I/O limits are set, so runsc refused to start on hosts without the blkio cgroup controller.<br>
+**Fix** Skip an empty or weight-zero BlockIO as the cpuset optional controller does, while still rejecting a spec with real limits. [Test ↗](https://github.com/google/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948)
 
 **google/gvisor [#15760](https://github.com/google/gvisor/pull/15760)** · Nov 2026 · merged · `+37 −12`<br>
 **Issue** semop negated sem_op as an int16, so -32768 wrapped back to itself, skipped the wait and range checks, and left the semaphore at -32768.<br>
@@ -147,7 +151,11 @@ TypeScript · DataHub · MCP · Gemini
 **Issue** Value-mapping range inputs rejected minus signs, so you could not set a negative lower or upper bound.<br>
 **Fix** Accept signed numbers in the range fields so negative bounds type normally. [Test ↗](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159)
 
-#### can1357/oh-my-pi · 14 merged
+#### can1357/oh-my-pi · 15 merged
+
+**can1357/oh-my-pi [#16656](https://github.com/can1357/oh-my-pi/pull/16656)** · Nov 2026 · merged by @can1357 · `+104 −18`<br>
+**Issue** A context file that included the same @path twice expanded only the first copy, leaving a literal @path in the prompt, because a tree-wide visited set treated any repeat as a cycle.<br>
+**Fix** Track only the current import chain as the cycle guard, so a repeated include expands at every occurrence, and cap total expansions with one shared budget to bound fan-out. [Test ↗](https://github.com/can1357/oh-my-pi/blob/d304dafecdd7cf6c042b2095f6d93a1dd4b3f801/packages/coding-agent/test/discovery/at-imports.test.ts#L129)
 
 **can1357/oh-my-pi [#16654](https://github.com/can1357/oh-my-pi/pull/16654)** · Oct 2026 · merged by @H4vC · `+163 −20`<br>
 **Issue** The models.json to models.yml migration wrote the new file world-readable and non-atomically, exposing inline API keys to other local users and losing custom providers when a write was interrupted.<br>
@@ -254,13 +262,13 @@ TypeScript · DataHub · MCP · Gemini
 
 <!-- BEGIN:proofs -->
 <details>
-<summary>All 20 regression tests, and lines changed by project</summary>
+<summary>All 22 regression tests, and lines changed by project</summary>
 
 <a href="https://adityaai.dev/upstream">
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/proofs-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/proofs-light.svg">
-  <img src="assets/charts/proofs-dark.svg" alt="20 of 47 merged fixes ship a regression test" width="100%">
+  <img src="assets/charts/proofs-dark.svg" alt="22 of 49 merged fixes ship a regression test" width="100%">
 </picture>
 </a>
 
@@ -268,7 +276,7 @@ TypeScript · DataHub · MCP · Gemini
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/charts/lines-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/charts/lines-light.svg">
-  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1164 -152, TensorFlow +960 -221, herdr E2B sandbox +424 -46, gVisor +420 -23, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
+  <img src="assets/charts/lines-dark.svg" alt="Lines changed by project: can1357/oh-my-pi +1268 -170, TensorFlow +960 -221, herdr E2B sandbox +424 -46, gVisor +440 -24, Dataflow guides +233 -22, Grafana +205 -14, Mug +94 -4, pvlib +22 -8, huggingface/peft +22 -3, nightly-labs/openbot +6 -3" width="100%">
 </picture>
 </a>
 
@@ -282,11 +290,13 @@ TypeScript · DataHub · MCP · Gemini
 | TensorFlow | [#126935](https://github.com/tensorflow/tensorflow/pull/126935) fix(tf2xla): register XLA OpKernels for BesselI0 and BesselI1 | [`testBesselI0 / testBesselI1`](https://github.com/tensorflow/tensorflow/blob/957c552af12162dbc096f2258c56c1081a733edc/tensorflow/compiler/tests/unary_ops_test.py#L218) |
 | TensorFlow | [#126449](https://github.com/tensorflow/tensorflow/pull/126449) [XLA:tf2xla] Support half, bfloat16, and integer dtypes in RangeOp | [`testRange`](https://github.com/tensorflow/tensorflow/blob/b95e0be7f86632cec71f29ff379e98184481283b/tensorflow/compiler/tests/ternary_ops_test.py#L62) |
 | TensorFlow | [#125859](https://github.com/tensorflow/tensorflow/pull/125859) fix: validate minimum input rank in convolution_internal to prevent crash on invalid shapes | [`testInvalidInputRank`](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275) |
+| gVisor | [#14763](https://github.com/google/gvisor/pull/14763) cgroup: skip empty Docker BlockIO when blkio controller is missing | [`TestOptional blkio: Docker 29 empty BlockIO and Docker 24 Weight=0`](https://github.com/google/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948) |
 | gVisor | [#15760](https://github.com/google/gvisor/pull/15760) Block semop with sem_op -32768 instead of wrapping the semaphore negative | [`TestWaitMinInt16`](https://github.com/google/gvisor/blob/2ac0f43d3a755e63413471cf6a1f54e64e922cd9/pkg/sentry/kernel/semaphore/semaphore_test.go#L142) |
 | gVisor | [#15949](https://github.com/google/gvisor/pull/15949) netlink: do not ack a successful dump | [`NetlinkRouteTest.GetLinkDumpWithAck`](https://github.com/google/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294) |
 | gVisor | [#14505](https://github.com/google/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
 | Grafana | [#131335](https://github.com/grafana/grafana/pull/131335) ValueMappings: Allow editing negative bounds in range mappings | [`should allow editing negative bounds on existing range mapping`](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159) |
 | Dataflow guides | [#224](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/pull/224) fix(cdp): pass schema as runtime option and add typed join handling | [`test_load_output_schema_default`](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/blob/73f05d16ab6050325ec493a1fd40d3b6a459df57/pipelines/cdp/tests/test_customer_data_platform.py#L83) |
+| can1357/oh-my-pi | [#16656](https://github.com/can1357/oh-my-pi/pull/16656) fix(coding-agent): expand repeated @-import includes | [`expands the same include every time it appears in one document`](https://github.com/can1357/oh-my-pi/blob/d304dafecdd7cf6c042b2095f6d93a1dd4b3f801/packages/coding-agent/test/discovery/at-imports.test.ts#L129) |
 | herdr E2B sandbox | [#36](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/36) fix: finish pull batches while reporting per-file failures | [`per-file failure tests`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/6cc81c43afec6f11b6e5a30788f5d28307054eb8/test/download-cli.test.js#L77) |
 | herdr E2B sandbox | [#35](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/35) fix: clamp terminal dimensions to positive integers in attach plan | [`terminal dimension tests`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/de09335ce9dd336e5bd4fae29d075d4e9aba2032/test/attach-plan.test.js#L88) |
 | herdr E2B sandbox | [#34](https://github.com/e2b-dev/herdr-e2b-sandbox/pull/34) fix(exec): preserve JSON results for input and setup errors | [`JSON error tests`](https://github.com/e2b-dev/herdr-e2b-sandbox/blob/11943a4a49855759a34540290cca4e88bb57bf78/test/exec.test.js#L39) |

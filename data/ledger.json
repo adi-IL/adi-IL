@@ -710,6 +710,42 @@
         "line": 504,
         "url": "https://github.com/tensorflow/tensorflow/blob/aad13d405493f75040cd8bf4fbf1a81a6db354f0/tensorflow/compiler/tests/stateless_random_ops_test.py#L504"
       }
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16656",
+      "repo": "can1357/oh-my-pi",
+      "number": 16656,
+      "title": "fix(coding-agent): expand repeated @-import includes",
+      "tier": "A",
+      "merged_at": "2026-11-14T06:34:05Z",
+      "additions": 104,
+      "deletions": 18,
+      "merged_by": "can1357",
+      "merge_oid": "d304dafecdd7cf6c042b2095f6d93a1dd4b3f801",
+      "proof": {
+        "label": "expands the same include every time it appears in one document",
+        "path": "packages/coding-agent/test/discovery/at-imports.test.ts",
+        "line": 129,
+        "url": "https://github.com/can1357/oh-my-pi/blob/d304dafecdd7cf6c042b2095f6d93a1dd4b3f801/packages/coding-agent/test/discovery/at-imports.test.ts#L129"
+      }
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14763",
+      "repo": "google/gvisor",
+      "number": 14763,
+      "title": "cgroup: skip empty Docker BlockIO when blkio controller is missing",
+      "tier": "A",
+      "merged_at": "2026-11-14T12:42:38Z",
+      "additions": 20,
+      "deletions": 1,
+      "merged_by": "copybara-service",
+      "merge_oid": "e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c",
+      "proof": {
+        "label": "TestOptional blkio: Docker 29 empty BlockIO and Docker 24 Weight=0",
+        "path": "runsc/cgroup/cgroup_test.go",
+        "line": 948,
+        "url": "https://github.com/google/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948"
+      }
     }
   ]
 }

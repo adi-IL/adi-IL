@@ -1,24 +1,24 @@
 {
   "candidates": [
     {
-      "url": "https://github.com/can1357/oh-my-pi/pull/16656",
-      "title": "fix(coding-agent): expand repeated @-import includes",
+      "url": "https://github.com/can1357/oh-my-pi/pull/16482",
+      "title": "fix(mcp): report the stdio subprocess exit status on EOF",
       "repo": "can1357/oh-my-pi",
-      "stars": 39143,
-      "merged_at": "2026-11-14T06:34:05Z"
+      "stars": 39165,
+      "merged_at": "2026-11-16T10:18:49Z"
     },
     {
-      "url": "https://github.com/google/gvisor/pull/14763",
-      "title": "cgroup: skip empty Docker BlockIO when blkio controller is missing",
-      "repo": "google/gvisor",
-      "stars": 20011,
-      "merged_at": "2026-11-14T12:42:38Z"
+      "url": "https://github.com/grafana/grafana/pull/137068",
+      "title": "Unified storage: Return the requested apiVersion on list items",
+      "repo": "grafana/grafana",
+      "stars": 77940,
+      "merged_at": "2026-11-16T10:17:47Z"
     },
     {
       "url": "https://github.com/s0ld13rr/pentestcode/pull/12",
       "title": "fix(provider): consolidate leading system messages to prevent Jinja crash on compaction",
       "repo": "s0ld13rr/pentestcode",
-      "stars": 1069,
+      "stars": 1079,
       "merged_at": "2026-09-02T07:07:38Z"
     }
   ]
