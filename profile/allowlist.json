@@ -317,6 +317,20 @@
       "issue": "Docker always populates blockIO even when no I/O limits are set, so runsc refused to start on hosts without the blkio cgroup controller.",
       "fix": "Skip an empty or weight-zero BlockIO as the cpuset optional controller does, while still rejecting a spec with real limits.",
       "proof": {"path": "runsc/cgroup/cgroup_test.go", "anchor": "Docker 29", "label": "TestOptional blkio: Docker 29 empty BlockIO and Docker 24 Weight=0"}
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16482",
+      "tier": "A",
+      "issue": "An MCP stdio server that exited before responding always produced a generic closed stdout error. Bun reports EOF before the subprocess exit code, so the code was never read.",
+      "fix": "Wait up to 100 ms after stdout closes for the exit status, then report the exit code or the signal that killed the subprocess.",
+      "proof": {"path": "packages/coding-agent/test/mcp-stdio-transport.test.ts", "anchor": "reports the subprocess exit code when it terminates before responding", "label": "reports the subprocess exit code when it terminates before responding"}
+    },
+    {
+      "url": "https://github.com/grafana/grafana/pull/137068",
+      "tier": "A",
+      "issue": "In unified storage, a list request for v1 could return items marked v1beta1 when both versions shared a Go type, because each item kept its stored apiVersion.",
+      "fix": "Set each item in the same group to the storage's declared group and version, keeping its kind and leaving items from other groups untouched.",
+      "proof": {"path": "pkg/storage/unified/apistore/list_apiversion_test.go", "anchor": "func TestGetListItemsUseDeclaredVersion(", "label": "TestGetListItemsUseDeclaredVersion"}
     }
   ]
 }
