@@ -303,6 +303,20 @@
       "issue": "Under XLA, truncated normal sampling with both bounds far on one side of the mean returned the lower bound for every sample, because float32 CDFs rounded to 0 or 1.",
       "fix": "Sample one-sided intervals by inverting the log tail probability, with erfc near the mean, a Mills-ratio asymptotic far out, and Newton refinement.",
       "proof": {"path": "tensorflow/compiler/tests/stateless_random_ops_test.py", "anchor": "def testParameterizedTruncatedNormalFarRightTail", "label": "testParameterizedTruncatedNormalFarRightTail"}
+    },
+    {
+      "url": "https://github.com/can1357/oh-my-pi/pull/16656",
+      "tier": "A",
+      "issue": "A context file that included the same @path twice expanded only the first copy, leaving a literal @path in the prompt, because a tree-wide visited set treated any repeat as a cycle.",
+      "fix": "Track only the current import chain as the cycle guard, so a repeated include expands at every occurrence, and cap total expansions with one shared budget to bound fan-out.",
+      "proof": {"path": "packages/coding-agent/test/discovery/at-imports.test.ts", "anchor": "expands the same include every time it appears in one document", "label": "expands the same include every time it appears in one document"}
+    },
+    {
+      "url": "https://github.com/google/gvisor/pull/14763",
+      "tier": "A",
+      "issue": "Docker always populates blockIO even when no I/O limits are set, so runsc refused to start on hosts without the blkio cgroup controller.",
+      "fix": "Skip an empty or weight-zero BlockIO as the cpuset optional controller does, while still rejecting a spec with real limits.",
+      "proof": {"path": "runsc/cgroup/cgroup_test.go", "anchor": "Docker 29", "label": "TestOptional blkio: Docker 29 empty BlockIO and Docker 24 Weight=0"}
     }
   ]
 }
