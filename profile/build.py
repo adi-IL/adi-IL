@@ -29,14 +29,14 @@ MIN_STARS = 1000
 TRIVIAL_LINES = 5
 PROJECT_NAMES = {
     "tensorflow/tensorflow": "TensorFlow",
-    "google/gvisor": "gVisor",
+    "gvisor/gvisor": "gVisor",
     "grafana/grafana": "Grafana",
     "e2b-dev/herdr-e2b-sandbox": "herdr E2B sandbox",
     "pvlib/pvlib-python": "pvlib",
     "GoogleCloudPlatform/dataflow-solution-guides": "Dataflow guides",
     "google/mug": "Mug",
 }
-PROJECT_ORDER = ["tensorflow/tensorflow", "google/gvisor", "grafana/grafana"]
+PROJECT_ORDER = ["tensorflow/tensorflow", "gvisor/gvisor", "grafana/grafana"]
 BOTS = {"copybara-service", "github-actions"}
 PR_URL = re.compile(r"https://github\.com/([\w.-]+)/([\w.-]+)/pull/(\d+)")
 
@@ -224,13 +224,13 @@ LEDGER_URL = "https://www.adityaai.dev/upstream"
 # A few fixes worth reading first, one line each. The full record stays in the
 # collapsed sections below and on the site.
 FEATURED = (
-    ("https://github.com/google/gvisor/pull/14401",
+    ("https://github.com/gvisor/gvisor/pull/14401",
      "any user could delete another user's shared memory segment; removal now checks ownership, as on Linux"),
     ("https://github.com/tensorflow/tensorflow/pull/127438",
      "an INT32_MAX index overflowed the list resize in TensorListScatter; it is now rejected"),
     ("https://github.com/tensorflow/tensorflow/pull/126688",
      "fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it"),
-    ("https://github.com/google/gvisor/pull/15301",
+    ("https://github.com/gvisor/gvisor/pull/15301",
      "one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux"),
 )
 

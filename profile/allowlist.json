@@ -58,7 +58,7 @@
       "proof": {"path": "tensorflow/python/kernel_tests/data_structures/lookup_ops_test.py", "anchor": "def testExportSignatureMismatch", "label": "testExportSignatureMismatch"}
     },
     {
-      "url": "https://github.com/google/gvisor/pull/14505",
+      "url": "https://github.com/gvisor/gvisor/pull/14505",
       "tier": "A",
       "issue": "Positional reads and writes on pseudo-terminals returned EINVAL in gVisor, where Linux returns ESPIPE.",
       "fix": "Set DenyPRead and DenyPWrite on both devpts file descriptions so pread and pwrite return ESPIPE.",
@@ -152,13 +152,13 @@
       "fix": "Apply the CPU kernel's num_bits range check when the input folds to a constant."
     },
     {
-      "url": "https://github.com/google/gvisor/pull/15291",
+      "url": "https://github.com/gvisor/gvisor/pull/15291",
       "tier": "A",
       "issue": "A zero-window probe at RCV.NXT was ACKed before TS.Recent was updated, so the ACK echoed a stale timestamp, against RFC 7323.",
       "fix": "Update TS.Recent for a probe at RCV.NXT when timestamps are on, then send the ACK."
     },
     {
-      "url": "https://github.com/google/gvisor/pull/15301",
+      "url": "https://github.com/gvisor/gvisor/pull/15301",
       "tier": "A",
       "issue": "One RTM_DELROUTE request removed every matching route, where Linux removes only the first.",
       "fix": "Stop matching after the first route, so a single request deletes a single route."
@@ -206,7 +206,7 @@
       "fix": "Start a hermes tool call only after the name is complete, through one shared parser also used by qwen3."
     },
     {
-      "url": "https://github.com/google/gvisor/pull/15948",
+      "url": "https://github.com/gvisor/gvisor/pull/15948",
       "tier": "A",
       "issue": "setrlimit(RLIMIT_MSGQUEUE) returned EPERM even when the new value equaled the current one, because the limit was missing from the settable set.",
       "fix": "Add RLIMIT_MSGQUEUE to the settable limits, so it is accepted and stored like Core, ProcessCount and RealTimePriority."
@@ -272,7 +272,7 @@
       "fix": "Pad each cell by its column's alignment, including every wrapped line of the cell."
     },
     {
-      "url": "https://github.com/google/gvisor/pull/14401",
+      "url": "https://github.com/gvisor/gvisor/pull/14401",
       "tier": "A",
       "issue": "Any user could destroy any SysV shared memory segment with shmctl(IPC_RMID), because gVisor skipped the creator, owner or CAP_SYS_ADMIN check that Linux enforces.",
       "fix": "Check ownership inside Shm.MarkDestroyed under the segment lock and return EPERM for unauthorized callers, with a syscall test for both paths."
@@ -284,14 +284,14 @@
       "fix": "Allow uppercase letters in the service-user pattern while still rejecting root, empty names and other special characters."
     },
     {
-      "url": "https://github.com/google/gvisor/pull/15949",
+      "url": "https://github.com/gvisor/gvisor/pull/15949",
       "tier": "A",
       "issue": "A netlink dump request with NLM_F_ACK got an NLMSG_ERROR ack in the reply stream, which broke libnl caches with NLE_SEQ_MISMATCH; Linux sends no ack once a dump starts.",
       "fix": "Skip DumpAckMessage when the handler produced a multipart reply and returned no error, keying on the reply rather than the NLM_F_DUMP bit.",
       "proof": {"path": "test/syscalls/linux/socket_netlink_route.cc", "anchor": "TEST(NetlinkRouteTest, GetLinkDumpWithAck)", "label": "NetlinkRouteTest.GetLinkDumpWithAck"}
     },
     {
-      "url": "https://github.com/google/gvisor/pull/15760",
+      "url": "https://github.com/gvisor/gvisor/pull/15760",
       "tier": "A",
       "issue": "semop negated sem_op as an int16, so -32768 wrapped back to itself, skipped the wait and range checks, and left the semaphore at -32768.",
       "fix": "Do the wait check in int32 like Linux, sending the op down the block or EAGAIN path, and apply the same check when waking waiters.",
@@ -312,7 +312,7 @@
       "proof": {"path": "packages/coding-agent/test/discovery/at-imports.test.ts", "anchor": "expands the same include every time it appears in one document", "label": "expands the same include every time it appears in one document"}
     },
     {
-      "url": "https://github.com/google/gvisor/pull/14763",
+      "url": "https://github.com/gvisor/gvisor/pull/14763",
       "tier": "A",
       "issue": "Docker always populates blockIO even when no I/O limits are set, so runsc refused to start on hosts without the blkio cgroup controller.",
       "fix": "Skip an empty or weight-zero BlockIO as the cpuset optional controller does, while still rejecting a spec with real limits.",

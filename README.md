@@ -39,10 +39,10 @@ TypeScript · DataHub · MCP · Gemini
 </picture>
 </a>
 
-- **gVisor** [#14401](https://github.com/google/gvisor/pull/14401): any user could delete another user's shared memory segment; removal now checks ownership, as on Linux
+- **gVisor** [#14401](https://github.com/gvisor/gvisor/pull/14401): any user could delete another user's shared memory segment; removal now checks ownership, as on Linux
 - **TensorFlow** [#127438](https://github.com/tensorflow/tensorflow/pull/127438): an INT32_MAX index overflowed the list resize in TensorListScatter; it is now rejected
 - **TensorFlow** [#126688](https://github.com/tensorflow/tensorflow/pull/126688): fused MatMul and Conv2D failed on bias shaped like [1, N]; the CPU and GPU kernels now accept it
-- **gVisor** [#15301](https://github.com/google/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
+- **gVisor** [#15301](https://github.com/gvisor/gvisor/pull/15301): one route-delete request could remove several routes in the sandbox network stack; it now removes only the first match, as on Linux
 
 24 of the 51 merged fixes include a regression test upstream. Every fix and its test: [full ledger on adityaai.dev](https://www.adityaai.dev/upstream).
 
@@ -105,37 +105,37 @@ TypeScript · DataHub · MCP · Gemini
 
 #### gVisor · 8 merged
 
-**google/gvisor [#14763](https://github.com/google/gvisor/pull/14763)** · Nov 2026 · merged · `+20 −1`<br>
+**gvisor/gvisor [#14763](https://github.com/gvisor/gvisor/pull/14763)** · Nov 2026 · merged · `+20 −1`<br>
 **Issue** Docker always populates blockIO even when no I/O limits are set, so runsc refused to start on hosts without the blkio cgroup controller.<br>
-**Fix** Skip an empty or weight-zero BlockIO as the cpuset optional controller does, while still rejecting a spec with real limits. [Test ↗](https://github.com/google/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948)
+**Fix** Skip an empty or weight-zero BlockIO as the cpuset optional controller does, while still rejecting a spec with real limits. [Test ↗](https://github.com/gvisor/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948)
 
-**google/gvisor [#15760](https://github.com/google/gvisor/pull/15760)** · Nov 2026 · merged · `+37 −12`<br>
+**gvisor/gvisor [#15760](https://github.com/gvisor/gvisor/pull/15760)** · Nov 2026 · merged · `+37 −12`<br>
 **Issue** semop negated sem_op as an int16, so -32768 wrapped back to itself, skipped the wait and range checks, and left the semaphore at -32768.<br>
-**Fix** Do the wait check in int32 like Linux, sending the op down the block or EAGAIN path, and apply the same check when waking waiters. [Test ↗](https://github.com/google/gvisor/blob/2ac0f43d3a755e63413471cf6a1f54e64e922cd9/pkg/sentry/kernel/semaphore/semaphore_test.go#L142)
+**Fix** Do the wait check in int32 like Linux, sending the op down the block or EAGAIN path, and apply the same check when waking waiters. [Test ↗](https://github.com/gvisor/gvisor/blob/2ac0f43d3a755e63413471cf6a1f54e64e922cd9/pkg/sentry/kernel/semaphore/semaphore_test.go#L142)
 
-**google/gvisor [#15949](https://github.com/google/gvisor/pull/15949)** · Oct 2026 · merged · `+37 −1`<br>
+**gvisor/gvisor [#15949](https://github.com/gvisor/gvisor/pull/15949)** · Oct 2026 · merged · `+37 −1`<br>
 **Issue** A netlink dump request with NLM_F_ACK got an NLMSG_ERROR ack in the reply stream, which broke libnl caches with NLE_SEQ_MISMATCH; Linux sends no ack once a dump starts.<br>
-**Fix** Skip DumpAckMessage when the handler produced a multipart reply and returned no error, keying on the reply rather than the NLM_F_DUMP bit. [Test ↗](https://github.com/google/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294)
+**Fix** Skip DumpAckMessage when the handler produced a multipart reply and returned no error, keying on the reply rather than the NLM_F_DUMP bit. [Test ↗](https://github.com/gvisor/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294)
 
-**google/gvisor [#14401](https://github.com/google/gvisor/pull/14401)** · Oct 2026 · merged · `+62 −5`<br>
+**gvisor/gvisor [#14401](https://github.com/gvisor/gvisor/pull/14401)** · Oct 2026 · merged · `+62 −5`<br>
 **Issue** Any user could destroy any SysV shared memory segment with shmctl(IPC_RMID), because gVisor skipped the creator, owner or CAP_SYS_ADMIN check that Linux enforces.<br>
 **Fix** Check ownership inside Shm.MarkDestroyed under the segment lock and return EPERM for unauthorized callers, with a syscall test for both paths.
 
-**google/gvisor [#15948](https://github.com/google/gvisor/pull/15948)** · Oct 2026 · merged · `+20 −3`<br>
+**gvisor/gvisor [#15948](https://github.com/gvisor/gvisor/pull/15948)** · Oct 2026 · merged · `+20 −3`<br>
 **Issue** setrlimit(RLIMIT_MSGQUEUE) returned EPERM even when the new value equaled the current one, because the limit was missing from the settable set.<br>
 **Fix** Add RLIMIT_MSGQUEUE to the settable limits, so it is accepted and stored like Core, ProcessCount and RealTimePriority.
 
-**google/gvisor [#15291](https://github.com/google/gvisor/pull/15291)** · Oct 2026 · merged · `+48 −0`<br>
+**gvisor/gvisor [#15291](https://github.com/gvisor/gvisor/pull/15291)** · Oct 2026 · merged · `+48 −0`<br>
 **Issue** A zero-window probe at RCV.NXT was ACKed before TS.Recent was updated, so the ACK echoed a stale timestamp, against RFC 7323.<br>
 **Fix** Update TS.Recent for a probe at RCV.NXT when timestamps are on, then send the ACK.
 
-**google/gvisor [#15301](https://github.com/google/gvisor/pull/15301)** · Oct 2026 · merged · `+183 −2`<br>
+**gvisor/gvisor [#15301](https://github.com/gvisor/gvisor/pull/15301)** · Oct 2026 · merged · `+183 −2`<br>
 **Issue** One RTM_DELROUTE request removed every matching route, where Linux removes only the first.<br>
 **Fix** Stop matching after the first route, so a single request deletes a single route.
 
-**google/gvisor [#14505](https://github.com/google/gvisor/pull/14505)** · Sep 2026 · merged · `+33 −0`<br>
+**gvisor/gvisor [#14505](https://github.com/gvisor/gvisor/pull/14505)** · Sep 2026 · merged · `+33 −0`<br>
 **Issue** Positional reads and writes on pseudo-terminals returned EINVAL in gVisor, where Linux returns ESPIPE.<br>
-**Fix** Set DenyPRead and DenyPWrite on both devpts file descriptions so pread and pwrite return ESPIPE. [Test ↗](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908)
+**Fix** Set DenyPRead and DenyPWrite on both devpts file descriptions so pread and pwrite return ESPIPE. [Test ↗](https://github.com/gvisor/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908)
 
 #### Grafana · 4 merged
 
@@ -298,10 +298,10 @@ TypeScript · DataHub · MCP · Gemini
 | TensorFlow | [#126935](https://github.com/tensorflow/tensorflow/pull/126935) fix(tf2xla): register XLA OpKernels for BesselI0 and BesselI1 | [`testBesselI0 / testBesselI1`](https://github.com/tensorflow/tensorflow/blob/957c552af12162dbc096f2258c56c1081a733edc/tensorflow/compiler/tests/unary_ops_test.py#L218) |
 | TensorFlow | [#126449](https://github.com/tensorflow/tensorflow/pull/126449) [XLA:tf2xla] Support half, bfloat16, and integer dtypes in RangeOp | [`testRange`](https://github.com/tensorflow/tensorflow/blob/b95e0be7f86632cec71f29ff379e98184481283b/tensorflow/compiler/tests/ternary_ops_test.py#L62) |
 | TensorFlow | [#125859](https://github.com/tensorflow/tensorflow/pull/125859) fix: validate minimum input rank in convolution_internal to prevent crash on invalid shapes | [`testInvalidInputRank`](https://github.com/tensorflow/tensorflow/blob/deb1655618e2469a5953448d3d22fe92a77c632e/tensorflow/python/kernel_tests/nn_ops/atrous_convolution_test.py#L275) |
-| gVisor | [#14763](https://github.com/google/gvisor/pull/14763) cgroup: skip empty Docker BlockIO when blkio controller is missing | [`TestOptional blkio: Docker 29 empty BlockIO and Docker 24 Weight=0`](https://github.com/google/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948) |
-| gVisor | [#15760](https://github.com/google/gvisor/pull/15760) Block semop with sem_op -32768 instead of wrapping the semaphore negative | [`TestWaitMinInt16`](https://github.com/google/gvisor/blob/2ac0f43d3a755e63413471cf6a1f54e64e922cd9/pkg/sentry/kernel/semaphore/semaphore_test.go#L142) |
-| gVisor | [#15949](https://github.com/google/gvisor/pull/15949) netlink: do not ack a successful dump | [`NetlinkRouteTest.GetLinkDumpWithAck`](https://github.com/google/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294) |
-| gVisor | [#14505](https://github.com/google/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/google/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
+| gVisor | [#14763](https://github.com/gvisor/gvisor/pull/14763) cgroup: skip empty Docker BlockIO when blkio controller is missing | [`TestOptional blkio: Docker 29 empty BlockIO and Docker 24 Weight=0`](https://github.com/gvisor/gvisor/blob/e45d53c763ac5f2278fbee07bcf7e0a5ab6dce5c/runsc/cgroup/cgroup_test.go#L948) |
+| gVisor | [#15760](https://github.com/gvisor/gvisor/pull/15760) Block semop with sem_op -32768 instead of wrapping the semaphore negative | [`TestWaitMinInt16`](https://github.com/gvisor/gvisor/blob/2ac0f43d3a755e63413471cf6a1f54e64e922cd9/pkg/sentry/kernel/semaphore/semaphore_test.go#L142) |
+| gVisor | [#15949](https://github.com/gvisor/gvisor/pull/15949) netlink: do not ack a successful dump | [`NetlinkRouteTest.GetLinkDumpWithAck`](https://github.com/gvisor/gvisor/blob/7317e2f45ed1410ff688ebaaf9c0e4ff1c7ce6e9/test/syscalls/linux/socket_netlink_route.cc#L294) |
+| gVisor | [#14505](https://github.com/gvisor/gvisor/pull/14505) devpts: return ESPIPE on positional read and write | [`PtyTest.PositionalIO`](https://github.com/gvisor/gvisor/blob/d327f2d30b04e5ba65b57d55b12b180130cac254/test/syscalls/linux/pty.cc#L2908) |
 | Grafana | [#137068](https://github.com/grafana/grafana/pull/137068) Unified storage: Return the requested apiVersion on list items | [`TestGetListItemsUseDeclaredVersion`](https://github.com/grafana/grafana/blob/de9ecd4663d32487b2525ed7236771d1a2824efa/pkg/storage/unified/apistore/list_apiversion_test.go#L14) |
 | Grafana | [#131335](https://github.com/grafana/grafana/pull/131335) ValueMappings: Allow editing negative bounds in range mappings | [`should allow editing negative bounds on existing range mapping`](https://github.com/grafana/grafana/blob/8d215375a0ea5ded82ec3266254a4f39aad64b5d/public/app/features/dimensions/editors/ValueMappingsEditor/ValueMappingsEditorModal.test.tsx#L159) |
 | Dataflow guides | [#224](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/pull/224) fix(cdp): pass schema as runtime option and add typed join handling | [`test_load_output_schema_default`](https://github.com/GoogleCloudPlatform/dataflow-solution-guides/blob/73f05d16ab6050325ec493a1fd40d3b6a459df57/pipelines/cdp/tests/test_customer_data_platform.py#L83) |

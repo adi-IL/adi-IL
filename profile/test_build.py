@@ -120,7 +120,7 @@ class BuildTest(unittest.TestCase):
 
     def test_featured_fixes_render_one_line_each(self):
         featured = (("https://github.com/tensorflow/tensorflow/pull/1", "fixed a crash"),
-                    ("https://github.com/google/gvisor/pull/404", "not in the ledger, skipped"))
+                    ("https://github.com/gvisor/gvisor/pull/404", "not in the ledger, skipped"))
         with mock.patch.object(build, "FEATURED", featured):
             build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
         readme = self.read("README.md")
@@ -146,7 +146,7 @@ class BuildTest(unittest.TestCase):
             build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
 
     def test_rejects_pr_link_outside_allowlist(self):
-        self.write_readme("see https://github.com/google/gvisor/pull/14402\n")
+        self.write_readme("see https://github.com/gvisor/gvisor/pull/14402\n")
         with self.assertRaises(build.BuildError):
             build.build(self.dir, self.allow, self.items(), [], log=lambda m: None)
 
@@ -239,7 +239,7 @@ class ChartNumbersTest(unittest.TestCase):
         items = [pr("https://github.com/tensorflow/tensorflow/pull/1", merged_at="2026-09-02T00:00:00Z"),
                  pr("https://github.com/tensorflow/tensorflow/pull/2", proof=False, merged_at="2026-08-02T00:00:00Z",
                     additions=100, deletions=50),
-                 pr("https://github.com/google/gvisor/pull/3", tier="B", merged_at="2026-09-20T00:00:00Z")]
+                 pr("https://github.com/gvisor/gvisor/pull/3", tier="B", merged_at="2026-09-20T00:00:00Z")]
         svgs = self.check(items)
         timeline = chart_values(svgs["assets/charts/timeline-dark.svg"])
         self.assertEqual(timeline, {"2026-07": 0, "2026-08": 1, "2026-09": 2})
